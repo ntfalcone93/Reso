@@ -1,0 +1,6 @@
+framework module Pods_ResoTests {
+  umbrella header "Pods-ResoTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

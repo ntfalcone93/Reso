@@ -1,0 +1,40 @@
+poll app : {
+  polls : {
+    (Poll's Id) : {
+      title : String
+      isPrivate : Bool
+      creationDate : Double(NSTimeInterval)
+      endDate : Double(NSTimeInterval)
+      options : {
+        (Option's Id) : {
+          name : String
+          votes : {
+            (User's Id) : AnyObject
+            (User's Id) : AnyObject
+          }
+        }
+      }
+      members : {
+        (User's Id) : AnyObject
+      }
+    }
+  }
+  comments : {
+    (Comment's Id) : {
+      text : String
+      timestamp : Double(NSTimeInterval)
+      senderId : (User's Id)
+      pollId : (Poll's Id)
+    }
+  }
+  users : {
+    (User's Id) : {
+      firstName : String
+      lastName : String
+      photo : String(Base 64 string)
+      polls : {
+        (Poll's Id) : AnyObject
+      }
+    }
+  }
+}
