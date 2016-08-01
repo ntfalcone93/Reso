@@ -120,7 +120,7 @@
 			children = (
 				02C816651D4FF64700A82AD3 /* AppDelegate.swift */,
 				02C816671D4FF64700A82AD3 /* ViewController.swift */,
-				02C816691D4FF64700A82AD3 /* Main.storyboard */,
+				8B8294F21D5005A5005CA0FF /* Storyboards */,
 				02C8166C1D4FF64700A82AD3 /* Assets.xcassets */,
 				02C8166E1D4FF64700A82AD3 /* LaunchScreen.storyboard */,
 				02C816711D4FF64700A82AD3 /* Info.plist */,
@@ -168,6 +168,14 @@
 				A014E9CE4D6FF84929223A11 /* Pods_ResoUITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8B8294F21D5005A5005CA0FF /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				02C816691D4FF64700A82AD3 /* Main.storyboard */,
+			);
+			name = Storyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
