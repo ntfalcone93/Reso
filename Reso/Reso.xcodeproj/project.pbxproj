@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		027E55481D52832A0010DC7F /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 027E55471D52832A0010DC7F /* Login.storyboard */; };
+		027E554A1D5283350010DC7F /* Detail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 027E55491D5283350010DC7F /* Detail.storyboard */; };
+		027E554C1D52833F0010DC7F /* CreatePoll.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 027E554B1D52833F0010DC7F /* CreatePoll.storyboard */; };
 		02C816661D4FF64700A82AD3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C816651D4FF64700A82AD3 /* AppDelegate.swift */; };
 		02C8166B1D4FF64700A82AD3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02C816691D4FF64700A82AD3 /* Main.storyboard */; };
 		02C8166D1D4FF64700A82AD3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02C8166C1D4FF64700A82AD3 /* Assets.xcassets */; };
@@ -41,6 +44,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		027E55471D52832A0010DC7F /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		027E55491D5283350010DC7F /* Detail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Detail.storyboard; sourceTree = "<group>"; };
+		027E554B1D52833F0010DC7F /* CreatePoll.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreatePoll.storyboard; sourceTree = "<group>"; };
 		02C816621D4FF64700A82AD3 /* Reso.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reso.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02C816651D4FF64700A82AD3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		02C8166A1D4FF64700A82AD3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -217,6 +223,9 @@
 			children = (
 				02C8166E1D4FF64700A82AD3 /* LaunchScreen.storyboard */,
 				02C816691D4FF64700A82AD3 /* Main.storyboard */,
+				027E55471D52832A0010DC7F /* Login.storyboard */,
+				027E55491D5283350010DC7F /* Detail.storyboard */,
+				027E554B1D52833F0010DC7F /* CreatePoll.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -336,7 +345,10 @@
 				02C816701D4FF64700A82AD3 /* LaunchScreen.storyboard in Resources */,
 				02C816941D4FF6C500A82AD3 /* GoogleService-Info.plist in Resources */,
 				02C8166D1D4FF64700A82AD3 /* Assets.xcassets in Resources */,
+				027E554C1D52833F0010DC7F /* CreatePoll.storyboard in Resources */,
+				027E55481D52832A0010DC7F /* Login.storyboard in Resources */,
 				02C8166B1D4FF64700A82AD3 /* Main.storyboard in Resources */,
+				027E554A1D5283350010DC7F /* Detail.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
