@@ -25,6 +25,7 @@
 		2ABA3C60F7F2F0F3E1BE0643 /* Pods_ResoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B45CE722A1EE77C9BF6F674 /* Pods_ResoTests.framework */; };
 		8B767B611D538B3C00E8C35C /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B767B601D538B3C00E8C35C /* Charts.framework */; };
 		8B767B621D538B3C00E8C35C /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8B767B601D538B3C00E8C35C /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8B767B721D539F4300E8C35C /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B767B711D539F4300E8C35C /* ChartView.swift */; };
 		8BA5CC7D1D52D50200EF21FF /* PollOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA5CC7C1D52D50200EF21FF /* PollOptionsViewController.swift */; };
 		8BA5CC7F1D52D53800EF21FF /* PollResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA5CC7E1D52D53800EF21FF /* PollResultsViewController.swift */; };
 		8BA5CC811D52D57200EF21FF /* CommentsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA5CC801D52D57200EF21FF /* CommentsTableViewCell.swift */; };
@@ -125,6 +126,7 @@
 		8B767AD11D53893900E8C35C /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "../../../../../Side Projects/Charts-master/Charts/Charts.xcodeproj"; sourceTree = "<group>"; };
 		8B767AE01D53894A00E8C35C /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		8B767B601D538B3C00E8C35C /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = ../Charts.framework; sourceTree = "<group>"; };
+		8B767B711D539F4300E8C35C /* ChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		8BA5CC7C1D52D50200EF21FF /* PollOptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollOptionsViewController.swift; sourceTree = "<group>"; };
 		8BA5CC7E1D52D53800EF21FF /* PollResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollResultsViewController.swift; sourceTree = "<group>"; };
 		8BA5CC801D52D57200EF21FF /* CommentsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsTableViewCell.swift; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 				8B8294F21D5005A5005CA0FF /* Storyboards */,
 				02F7CB601D5140910036B3C3 /* View Controllers */,
 				02F7CB5F1D51406E0036B3C3 /* Cells */,
+				8B767B781D53B44000E8C35C /* View */,
 				02F7CB5E1D51405F0036B3C3 /* Controllers */,
 				02F7CB5D1D5140530036B3C3 /* Models */,
 				02F7CB5C1D5140420036B3C3 /* Other */,
@@ -323,6 +326,14 @@
 				8B767ADF1D53893900E8C35C /* ChartsTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		8B767B781D53B44000E8C35C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8B767B711D539F4300E8C35C /* ChartView.swift */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		8B8294F21D5005A5005CA0FF /* Storyboards */ = {
@@ -650,6 +661,7 @@
 				8BDF5C821D52A9ED009C15EB /* PollDetailViewController.swift in Sources */,
 				02F7CB641D5140E30036B3C3 /* UserController.swift in Sources */,
 				DDED6A3F1D52AA5400BC80DD /* PollCreateViewController.swift in Sources */,
+				8B767B721D539F4300E8C35C /* ChartView.swift in Sources */,
 				DDD658D01D51850E00D12159 /* Comment.swift in Sources */,
 				02F7CB631D5140E30036B3C3 /* FirebaseController.swift in Sources */,
 				DDD658CE1D51511800D12159 /* Option.swift in Sources */,

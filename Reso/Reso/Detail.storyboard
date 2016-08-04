@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="GtN-Or-DJp">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -30,7 +31,7 @@
                                                     <segue destination="Xpp-ej-Omo" kind="embed" identifier="optionsSegue" id="qVi-6z-78k"/>
                                                 </connections>
                                             </containerView>
-                                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GXB-Lu-Pfg" userLabel="Poll Results Container View">
+                                            <containerView opaque="NO" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GXB-Lu-Pfg" userLabel="Poll Results Container View">
                                                 <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
                                                 <connections>
                                                     <segue destination="bVC-cF-G80" kind="embed" identifier="resultsSegue" id="Hlv-Iv-zSr"/>
@@ -156,6 +157,8 @@
                     </view>
                     <connections>
                         <outlet property="commentTextField" destination="FpL-S6-C9x" id="kNz-Op-NWp"/>
+                        <outlet property="optionsContainerView" destination="nQw-Xd-RWG" id="zwC-dq-F2V"/>
+                        <outlet property="resultsContainerView" destination="GXB-Lu-Pfg" id="kBx-0T-oKD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mpx-YU-L9f" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -173,10 +176,24 @@
                     <view key="view" contentMode="scaleToFill" id="Seb-zY-Rsx" customClass="PieChartView" customModule="Charts">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7IW-9H-QRw" customClass="ChartView" customModule="Reso" customModuleProvider="target">
+                                <rect key="frame" x="180" y="30" width="240" height="240"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="AE4-kG-PP9"/>
+                                    <constraint firstAttribute="height" constant="240" id="oaY-bl-Tl4"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="7IW-9H-QRw" firstAttribute="centerY" secondItem="Seb-zY-Rsx" secondAttribute="centerY" id="eqj-ha-5ot"/>
+                            <constraint firstItem="7IW-9H-QRw" firstAttribute="centerX" secondItem="Seb-zY-Rsx" secondAttribute="centerX" id="vvn-t7-FMQ"/>
+                        </constraints>
                     </view>
                     <connections>
-                        <outlet property="pieChartView" destination="Seb-zY-Rsx" id="SNE-tX-3Lg"/>
+                        <outlet property="pieChartView" destination="7IW-9H-QRw" id="hEM-Ix-CXa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AXi-MJ-sKi" userLabel="First Responder" sceneMemberID="firstResponder"/>

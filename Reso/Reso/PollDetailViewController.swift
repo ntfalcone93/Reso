@@ -13,23 +13,38 @@ class PollDetailViewController: UIViewController {
     // MARK: - IBOutlets
     
     @IBOutlet weak var commentTextField: UITextField!
-    
+    @IBOutlet weak var optionsContainerView: UIView!
+    @IBOutlet weak var resultsContainerView: UIView!
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-//        let backgroundImage = UIImage(named: "ResoBackground")
-//        let imageView = UIImageView(image: backgroundImage)
-//        imageView.frame = view.frame
         
-        let background = UIImage(named: "ResoBackground")
-        self.view.backgroundColor = UIColor(patternImage: background!)
+//        let background = UIImage(named: "ResoBackground")
+//        self.view.backgroundColor = UIColor(patternImage: background!)
     
     }
 
     // MARK: - IBActions
     
     @IBAction func sendButtonTapped(sender: AnyObject) {
+    }
+    
+    
+    // MARK: - Functions
+    
+    func showResults() {
+        if sender.selectedSegmentIndex == 0 {
+            UIView.animateWithDuration(0.5, animations: {
+                self.optionsContainerView.alpha = 1
+                self.resultsContainerView.alpha = 0
+            })
+        } else {
+            UIView.animateWithDuration(0.5, animations: {
+                self.optionsContainerView.alpha = 0
+                self.resultsContainerView.alpha = 1
+            })
+        }
     }
     
     
