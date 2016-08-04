@@ -20,7 +20,7 @@ class PollCreateViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    var dueDateValue: NSDate
+    var dueDateValue: NSDate?
     
     //MARK: Actions
     
