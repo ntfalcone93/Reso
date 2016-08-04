@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainMenuTableViewCell: UITableViewCell {
+class PollTableViewCell: UITableViewCell {
 
     @IBOutlet weak var votingStatusImageView: UIImageView!
     

@@ -8,21 +8,22 @@
 
 import UIKit
 
-class MainMenuViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class PollListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var privatePolls: [Poll] = []
     var publicPolls: [Poll] = []
     var incompletePolls: [Poll] = []
     var completePolls: [Poll] = []
 
-    @IBOutlet weak var mainMenuTableView: UITableView!
+    
+    @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var privatePublicSegmentedControl: UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,7 +33,7 @@ class MainMenuViewController: UIViewController, UITableViewDataSource, UITableVi
     
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
+        return 0
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -53,7 +54,7 @@ class MainMenuViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("pollCell") as! MainMenuTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("pollCell") as! PollTableViewCell
         return cell
     }
 
