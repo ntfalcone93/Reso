@@ -18,9 +18,12 @@ class PollDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let backgroundImage = UIImage(named: "")
-        let imageView = UIImageView(image: backgroundImage)
-        self.view.backgroundView = imageView
+//        let backgroundImage = UIImage(named: "ResoBackground")
+//        let imageView = UIImageView(image: backgroundImage)
+//        imageView.frame = view.frame
+        
+        let background = UIImage(named: "ResoBackground")
+        self.view.backgroundColor = UIColor(patternImage: background!)
     
     }
 
@@ -45,6 +48,10 @@ class PollDetailViewController: UIViewController {
 extension PollDetailViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 0
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 0
     }
     

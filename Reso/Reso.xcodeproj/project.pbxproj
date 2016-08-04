@@ -23,6 +23,8 @@
 		02F7CB641D5140E30036B3C3 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F7CB621D5140E30036B3C3 /* UserController.swift */; };
 		131996EA414A9B7D84ACC803 /* Pods_Reso.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C85C9DE10777AFE73DD3F627 /* Pods_Reso.framework */; };
 		2ABA3C60F7F2F0F3E1BE0643 /* Pods_ResoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B45CE722A1EE77C9BF6F674 /* Pods_ResoTests.framework */; };
+		8B767B611D538B3C00E8C35C /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B767B601D538B3C00E8C35C /* Charts.framework */; };
+		8B767B621D538B3C00E8C35C /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8B767B601D538B3C00E8C35C /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8BA5CC7D1D52D50200EF21FF /* PollOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA5CC7C1D52D50200EF21FF /* PollOptionsViewController.swift */; };
 		8BA5CC7F1D52D53800EF21FF /* PollResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA5CC7E1D52D53800EF21FF /* PollResultsViewController.swift */; };
 		8BA5CC811D52D57200EF21FF /* CommentsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA5CC801D52D57200EF21FF /* CommentsTableViewCell.swift */; };
@@ -51,7 +53,49 @@
 			remoteGlobalIDString = 02C816611D4FF64700A82AD3;
 			remoteInfo = Reso;
 		};
+		8B767AD81D53893900E8C35C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8B767AD11D53893900E8C35C /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5BA8EC401A9D14DC00CE82E1;
+			remoteInfo = "Charts-iOS";
+		};
+		8B767ADA1D53893900E8C35C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8B767AD11D53893900E8C35C /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A52C5C371BAC5CA400594CDD;
+			remoteInfo = "Charts-TV";
+		};
+		8B767ADC1D53893900E8C35C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8B767AD11D53893900E8C35C /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 65B3F5BF1C7370BE000983D0;
+			remoteInfo = "Charts-OSX";
+		};
+		8B767ADE1D53893900E8C35C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8B767AD11D53893900E8C35C /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 06AEE7A21BDC3F8B009875AE;
+			remoteInfo = ChartsTests;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8B767B671D538B3C00E8C35C /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				8B767B621D538B3C00E8C35C /* Charts.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		027E55471D52832A0010DC7F /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
@@ -77,6 +121,9 @@
 		509B1E0A318E78B6FE175703 /* Pods-ResoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ResoUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ResoUITests/Pods-ResoUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		6DACDC4724B11F6869D8162F /* Pods-Reso.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reso.release.xcconfig"; path = "Pods/Target Support Files/Pods-Reso/Pods-Reso.release.xcconfig"; sourceTree = "<group>"; };
 		8B45CE722A1EE77C9BF6F674 /* Pods_ResoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ResoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B767AD11D53893900E8C35C /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "../../../../../Side Projects/Charts-master/Charts/Charts.xcodeproj"; sourceTree = "<group>"; };
+		8B767AE01D53894A00E8C35C /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		8B767B601D538B3C00E8C35C /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = ../Charts.framework; sourceTree = "<group>"; };
 		8BA5CC7C1D52D50200EF21FF /* PollOptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollOptionsViewController.swift; sourceTree = "<group>"; };
 		8BA5CC7E1D52D53800EF21FF /* PollResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollResultsViewController.swift; sourceTree = "<group>"; };
 		8BA5CC801D52D57200EF21FF /* CommentsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsTableViewCell.swift; sourceTree = "<group>"; };
@@ -97,6 +144,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				131996EA414A9B7D84ACC803 /* Pods_Reso.framework in Frameworks */,
+				8B767B611D538B3C00E8C35C /* Charts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -175,6 +223,8 @@
 		02F7CB5C1D5140420036B3C3 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				8B767ACF1D53891400E8C35C /* Frameworks */,
+				8B767AE01D53894A00E8C35C /* Bridging-Header.h */,
 				02C816651D4FF64700A82AD3 /* AppDelegate.swift */,
 				02C8166C1D4FF64700A82AD3 /* Assets.xcassets */,
 				02C816711D4FF64700A82AD3 /* Info.plist */,
@@ -244,6 +294,34 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8B767ACF1D53891400E8C35C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8B767AD01D53891D00E8C35C /* Charts */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8B767AD01D53891D00E8C35C /* Charts */ = {
+			isa = PBXGroup;
+			children = (
+				8B767B601D538B3C00E8C35C /* Charts.framework */,
+				8B767AD11D53893900E8C35C /* Charts.xcodeproj */,
+			);
+			name = Charts;
+			sourceTree = "<group>";
+		};
+		8B767AD21D53893900E8C35C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8B767AD91D53893900E8C35C /* Charts.framework */,
+				8B767ADB1D53893900E8C35C /* Charts.framework */,
+				8B767ADD1D53893900E8C35C /* Charts.framework */,
+				8B767ADF1D53893900E8C35C /* ChartsTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		8B8294F21D5005A5005CA0FF /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
@@ -269,6 +347,7 @@
 				02C816601D4FF64700A82AD3 /* Resources */,
 				D32609D07AAB188E62BD8512 /* [CP] Embed Pods Frameworks */,
 				8DD06D439CCF2BF93D35C297 /* [CP] Copy Pods Resources */,
+				8B767B671D538B3C00E8C35C /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -354,6 +433,12 @@
 			mainGroup = 02C816591D4FF64700A82AD3;
 			productRefGroup = 02C816631D4FF64700A82AD3 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 8B767AD21D53893900E8C35C /* Products */;
+					ProjectRef = 8B767AD11D53893900E8C35C /* Charts.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				02C816611D4FF64700A82AD3 /* Reso */,
@@ -362,6 +447,37 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		8B767AD91D53893900E8C35C /* Charts.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Charts.framework;
+			remoteRef = 8B767AD81D53893900E8C35C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		8B767ADB1D53893900E8C35C /* Charts.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Charts.framework;
+			remoteRef = 8B767ADA1D53893900E8C35C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		8B767ADD1D53893900E8C35C /* Charts.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Charts.framework;
+			remoteRef = 8B767ADC1D53893900E8C35C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		8B767ADF1D53893900E8C35C /* ChartsTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ChartsTests.xctest;
+			remoteRef = 8B767ADE1D53893900E8C35C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		02C816601D4FF64700A82AD3 /* Resources */ = {
@@ -679,6 +795,10 @@
 			baseConfigurationReference = 22BF5A2203B90305865320EE /* Pods-Reso.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Reso/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ResoDevelopment.Reso;
@@ -691,6 +811,10 @@
 			baseConfigurationReference = 6DACDC4724B11F6869D8162F /* Pods-Reso.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Reso/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ResoDevelopment.Reso;
