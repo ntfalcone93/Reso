@@ -9,19 +9,27 @@
 import UIKit
 
 class PollDetailViewController: UIViewController {
+    
+    // MARK: - IBOutlets
+    
+    @IBOutlet weak var commentTextField: UITextField!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        let backgroundImage = UIImage(named: "")
+        let imageView = UIImageView(image: backgroundImage)
+        self.view.backgroundView = imageView
+    
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    // MARK: - IBActions
+    
+    @IBAction func sendButtonTapped(sender: AnyObject) {
     }
     
-
+    
     /*
     // MARK: - Navigation
 

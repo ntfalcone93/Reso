@@ -38,7 +38,7 @@
                                                 </connections>
                                             </containerView>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Wat-TK-Lqf" secondAttribute="height" multiplier="3:1.5" id="4sk-n1-WPb"/>
                                             <constraint firstItem="GXB-Lu-Pfg" firstAttribute="top" secondItem="Wat-TK-Lqf" secondAttribute="top" id="7RJ-Cc-N4A"/>
@@ -99,6 +99,11 @@
                                                         <constraint firstItem="Z8q-Ly-Ka2" firstAttribute="top" secondItem="vUi-MJ-xWf" secondAttribute="bottom" id="zzJ-ve-1wK"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="userCommentLabel" destination="Z8q-Ly-Ka2" id="Wc3-YO-evD"/>
+                                                    <outlet property="userNameLabel" destination="vUi-MJ-xWf" id="GH6-Qp-MLR"/>
+                                                    <outlet property="userPhotoImageView" destination="XTW-Ns-0vz" id="0cp-hY-PgJ"/>
+                                                </connections>
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
@@ -119,6 +124,9 @@
                                                             <constraint firstAttribute="width" constant="46" id="pz9-sr-cfU"/>
                                                         </constraints>
                                                         <state key="normal" title="Send"/>
+                                                        <connections>
+                                                            <action selector="sendButtonTapped:" destination="GtN-Or-DJp" eventType="touchUpInside" id="aNA-tM-n1N"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -133,6 +141,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -143,6 +152,9 @@
                             <constraint firstItem="3Yc-C0-3CD" firstAttribute="top" secondItem="vOR-Jy-but" secondAttribute="bottom" id="Yfs-Uh-kIL"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="commentTextField" destination="FpL-S6-C9x" id="kNz-Op-NWp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mpx-YU-L9f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -199,6 +211,9 @@
                                                             <constraint firstAttribute="width" constant="35" id="tYc-Sd-ZUI"/>
                                                         </constraints>
                                                         <state key="normal" title="Button"/>
+                                                        <connections>
+                                                            <action selector="questionOneButtonTapped:" destination="Xpp-ej-Omo" eventType="touchUpInside" id="12J-Pw-ANO"/>
+                                                        </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dI6-wo-lvQ" userLabel="questionOneLabel">
                                                         <rect key="frame" x="35" y="0.0" width="525" height="60"/>
@@ -222,6 +237,9 @@
                                                             <constraint firstAttribute="width" constant="35" id="m1F-Dq-nku"/>
                                                         </constraints>
                                                         <state key="normal" title="Button"/>
+                                                        <connections>
+                                                            <action selector="questionTwoButtonTapped:" destination="Xpp-ej-Omo" eventType="touchUpInside" id="nGx-jj-xAc"/>
+                                                        </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NrS-Tb-AOi" userLabel="questionTwoLabel">
                                                         <rect key="frame" x="35" y="0.0" width="525" height="60"/>
@@ -245,6 +263,9 @@
                                                             <constraint firstAttribute="width" constant="35" id="a4M-1Z-IXb"/>
                                                         </constraints>
                                                         <state key="normal" title="Button"/>
+                                                        <connections>
+                                                            <action selector="questionThreeButtonTapped:" destination="Xpp-ej-Omo" eventType="touchUpInside" id="fDJ-hz-kHj"/>
+                                                        </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ufa-yG-fzS" userLabel="questionThreeLabel">
                                                         <rect key="frame" x="35" y="0.0" width="525" height="60"/>
@@ -268,6 +289,9 @@
                                                             <constraint firstAttribute="width" constant="35" id="x4X-Hz-qFT"/>
                                                         </constraints>
                                                         <state key="normal" title="Button"/>
+                                                        <connections>
+                                                            <action selector="questionFourButtonTapped:" destination="Xpp-ej-Omo" eventType="touchUpInside" id="PMY-Gj-HCa"/>
+                                                        </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lW2-3N-llI" userLabel="questionFourLabel">
                                                         <rect key="frame" x="35" y="0.0" width="525" height="60"/>
@@ -290,6 +314,16 @@
                             <constraint firstItem="9Y2-oP-h9k" firstAttribute="top" secondItem="qrh-O1-YQc" secondAttribute="topMargin" id="w4i-9W-4jq"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="questionFourButton" destination="x9I-Af-khT" id="f0q-4i-6HF"/>
+                        <outlet property="questionFourLabel" destination="lW2-3N-llI" id="E8A-FG-BDl"/>
+                        <outlet property="questionOneButton" destination="Y05-4o-mmE" id="v2n-t5-leX"/>
+                        <outlet property="questionOneLabel" destination="dI6-wo-lvQ" id="v13-1t-nUj"/>
+                        <outlet property="questionThreeButton" destination="4Us-3b-sNp" id="iGV-4a-NZl"/>
+                        <outlet property="questionThreeLabel" destination="Ufa-yG-fzS" id="U9d-Pb-BSJ"/>
+                        <outlet property="questionTwoButton" destination="tJx-B1-I4G" id="0hg-mL-I1w"/>
+                        <outlet property="questionTwoLabel" destination="NrS-Tb-AOi" id="u39-RB-bB4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fMN-kP-efn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
