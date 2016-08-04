@@ -28,6 +28,7 @@
 		DDD658CC1D514E7200D12159 /* Poll.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD658CB1D514E7200D12159 /* Poll.swift */; };
 		DDD658CE1D51511800D12159 /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD658CD1D51511800D12159 /* Option.swift */; };
 		DDD658D01D51850E00D12159 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD658CF1D51850E00D12159 /* Comment.swift */; };
+		DDED6A3F1D52AA5400BC80DD /* PollCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDED6A3E1D52AA5400BC80DD /* PollCreateViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		DDD658CB1D514E7200D12159 /* Poll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Poll.swift; sourceTree = "<group>"; };
 		DDD658CD1D51511800D12159 /* Option.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Option.swift; sourceTree = "<group>"; };
 		DDD658CF1D51850E00D12159 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		DDED6A3E1D52AA5400BC80DD /* PollCreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollCreateViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,6 +205,7 @@
 		02F7CB601D5140910036B3C3 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				DDED6A3E1D52AA5400BC80DD /* PollCreateViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -513,6 +516,7 @@
 				DDD658CC1D514E7200D12159 /* Poll.swift in Sources */,
 				DDD658CA1D51424500D12159 /* User.swift in Sources */,
 				02F7CB641D5140E30036B3C3 /* UserController.swift in Sources */,
+				DDED6A3F1D52AA5400BC80DD /* PollCreateViewController.swift in Sources */,
 				DDD658D01D51850E00D12159 /* Comment.swift in Sources */,
 				02F7CB631D5140E30036B3C3 /* FirebaseController.swift in Sources */,
 				DDD658CE1D51511800D12159 /* Option.swift in Sources */,
