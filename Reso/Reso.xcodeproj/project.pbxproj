@@ -32,6 +32,9 @@
 		8BDF5C831D52A9ED009C15EB /* PollDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDF5C811D52A9ED009C15EB /* PollDetailViewController.swift */; };
 		8BDF5C841D52A9ED009C15EB /* PollDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDF5C811D52A9ED009C15EB /* PollDetailViewController.swift */; };
 		9A4BDCE98A24FE148114102B /* Pods_ResoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A014E9CE4D6FF84929223A11 /* Pods_ResoUITests.framework */; };
+		AC3396401D52FFFF00B8928E /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC33963F1D52FFFF00B8928E /* MainMenuViewController.swift */; };
+		AC3396421D53005E00B8928E /* MainMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3396411D53005E00B8928E /* MainMenuTableViewCell.swift */; };
+		AC3396441D530D5500B8928E /* LoginSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3396431D530D5500B8928E /* LoginSignupViewController.swift */; };
 		DDD658CA1D51424500D12159 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD658C91D51424500D12159 /* User.swift */; };
 		DDD658CC1D514E7200D12159 /* Poll.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD658CB1D514E7200D12159 /* Poll.swift */; };
 		DDD658CE1D51511800D12159 /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD658CD1D51511800D12159 /* Option.swift */; };
@@ -131,6 +134,9 @@
 		8BDF5C811D52A9ED009C15EB /* PollDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollDetailViewController.swift; sourceTree = "<group>"; };
 		906B03D46348B32C74AE877F /* Pods-ResoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ResoUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ResoUITests/Pods-ResoUITests.release.xcconfig"; sourceTree = "<group>"; };
 		A014E9CE4D6FF84929223A11 /* Pods_ResoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ResoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC33963F1D52FFFF00B8928E /* MainMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
+		AC3396411D53005E00B8928E /* MainMenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuTableViewCell.swift; sourceTree = "<group>"; };
+		AC3396431D530D5500B8928E /* LoginSignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginSignupViewController.swift; sourceTree = "<group>"; };
 		C85C9DE10777AFE73DD3F627 /* Pods_Reso.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Reso.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8098A586B1B4ECB8949D1E2 /* Pods-ResoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ResoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ResoTests/Pods-ResoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DDD658C91D51424500D12159 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -259,6 +265,7 @@
 			isa = PBXGroup;
 			children = (
 				8BA5CC801D52D57200EF21FF /* CommentsTableViewCell.swift */,
+				AC3396411D53005E00B8928E /* MainMenuTableViewCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -270,6 +277,8 @@
 				8BA5CC7E1D52D53800EF21FF /* PollResultsViewController.swift */,
 				8BA5CC7C1D52D50200EF21FF /* PollOptionsViewController.swift */,
 				8BDF5C811D52A9ED009C15EB /* PollDetailViewController.swift */,
+				AC3396431D530D5500B8928E /* LoginSignupViewController.swift */,
+				AC33963F1D52FFFF00B8928E /* MainMenuViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -644,6 +653,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8BA5CC7F1D52D53800EF21FF /* PollResultsViewController.swift in Sources */,
+				AC3396401D52FFFF00B8928E /* MainMenuViewController.swift in Sources */,
 				DDD658CC1D514E7200D12159 /* Poll.swift in Sources */,
 				DDD658CA1D51424500D12159 /* User.swift in Sources */,
 				8BA5CC7D1D52D50200EF21FF /* PollOptionsViewController.swift in Sources */,
@@ -651,8 +661,10 @@
 				02F7CB641D5140E30036B3C3 /* UserController.swift in Sources */,
 				DDED6A3F1D52AA5400BC80DD /* PollCreateViewController.swift in Sources */,
 				DDD658D01D51850E00D12159 /* Comment.swift in Sources */,
+				AC3396421D53005E00B8928E /* MainMenuTableViewCell.swift in Sources */,
 				02F7CB631D5140E30036B3C3 /* FirebaseController.swift in Sources */,
 				DDD658CE1D51511800D12159 /* Option.swift in Sources */,
+				AC3396441D530D5500B8928E /* LoginSignupViewController.swift in Sources */,
 				02C816661D4FF64700A82AD3 /* AppDelegate.swift in Sources */,
 				8BA5CC811D52D57200EF21FF /* CommentsTableViewCell.swift in Sources */,
 			);
