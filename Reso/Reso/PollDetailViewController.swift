@@ -14,7 +14,7 @@ class PollDetailViewController: UIViewController {
     
     @IBOutlet weak var commentTextField: UITextField!
     @IBOutlet weak var optionsContainerView: UIView!
-    @IBOutlet weak var resultsContainerView: UIView!
+//    @IBOutlet weak var resultsContainerView: UIView!
 
     
     override func viewDidLoad() {
@@ -33,19 +33,19 @@ class PollDetailViewController: UIViewController {
     
     // MARK: - Functions
     
-    func showResults() {
-        if sender.selectedSegmentIndex == 0 {
-            UIView.animateWithDuration(0.5, animations: {
-                self.optionsContainerView.alpha = 1
-                self.resultsContainerView.alpha = 0
-            })
-        } else {
-            UIView.animateWithDuration(0.5, animations: {
-                self.optionsContainerView.alpha = 0
-                self.resultsContainerView.alpha = 1
-            })
-        }
-    }
+//    func showResults() {
+//        if sender.selectedSegmentIndex == 0 {
+//            UIView.animateWithDuration(0.5, animations: {
+//                self.optionsContainerView.alpha = 1
+//                self.resultsContainerView.alpha = 0
+//            })
+//        } else {
+//            UIView.animateWithDuration(0.5, animations: {
+//                self.optionsContainerView.alpha = 0
+//                self.resultsContainerView.alpha = 1
+//            })
+//        }
+//    }
     
     
     /*

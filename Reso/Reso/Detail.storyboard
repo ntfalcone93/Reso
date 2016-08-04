@@ -19,6 +19,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ResoBackground" translatesAutoresizingMaskIntoConstraints="NO" id="L9w-r5-LRY">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="3Yc-C0-3CD">
                                 <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                                 <subviews>
@@ -31,23 +34,13 @@
                                                     <segue destination="Xpp-ej-Omo" kind="embed" identifier="optionsSegue" id="qVi-6z-78k"/>
                                                 </connections>
                                             </containerView>
-                                            <containerView opaque="NO" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GXB-Lu-Pfg" userLabel="Poll Results Container View">
-                                                <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
-                                                <connections>
-                                                    <segue destination="bVC-cF-G80" kind="embed" identifier="resultsSegue" id="Hlv-Iv-zSr"/>
-                                                </connections>
-                                            </containerView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Wat-TK-Lqf" secondAttribute="height" multiplier="3:1.5" id="4sk-n1-WPb"/>
-                                            <constraint firstItem="GXB-Lu-Pfg" firstAttribute="top" secondItem="Wat-TK-Lqf" secondAttribute="top" id="7RJ-Cc-N4A"/>
-                                            <constraint firstAttribute="trailing" secondItem="GXB-Lu-Pfg" secondAttribute="trailing" id="7ef-2K-jAB"/>
                                             <constraint firstItem="nQw-Xd-RWG" firstAttribute="leading" secondItem="Wat-TK-Lqf" secondAttribute="leading" id="Cec-nq-j2H"/>
                                             <constraint firstItem="nQw-Xd-RWG" firstAttribute="top" secondItem="Wat-TK-Lqf" secondAttribute="top" id="L03-c5-Oyj"/>
-                                            <constraint firstItem="GXB-Lu-Pfg" firstAttribute="leading" secondItem="Wat-TK-Lqf" secondAttribute="leading" id="LYa-xh-aLC"/>
                                             <constraint firstAttribute="trailing" secondItem="nQw-Xd-RWG" secondAttribute="trailing" id="QYE-W5-GrR"/>
-                                            <constraint firstAttribute="bottom" secondItem="GXB-Lu-Pfg" secondAttribute="bottom" id="x9b-LW-1Xe"/>
                                             <constraint firstAttribute="bottom" secondItem="nQw-Xd-RWG" secondAttribute="bottom" id="xzk-zy-KNW"/>
                                         </constraints>
                                     </view>
@@ -151,24 +144,27 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="3Yc-C0-3CD" secondAttribute="trailing" id="4Pv-Vq-cfD"/>
                             <constraint firstItem="o7t-w1-Wqa" firstAttribute="top" secondItem="3Yc-C0-3CD" secondAttribute="bottom" id="8Qe-Hz-RK0"/>
+                            <constraint firstAttribute="trailing" secondItem="L9w-r5-LRY" secondAttribute="trailing" id="GVE-P8-Wke"/>
                             <constraint firstItem="3Yc-C0-3CD" firstAttribute="leading" secondItem="ADm-mp-Oho" secondAttribute="leading" id="SMR-rS-0KK"/>
                             <constraint firstItem="3Yc-C0-3CD" firstAttribute="top" secondItem="vOR-Jy-but" secondAttribute="bottom" id="Yfs-Uh-kIL"/>
+                            <constraint firstItem="L9w-r5-LRY" firstAttribute="top" secondItem="vOR-Jy-but" secondAttribute="bottom" constant="-20" id="ihr-mz-8Ek"/>
+                            <constraint firstItem="o7t-w1-Wqa" firstAttribute="top" secondItem="L9w-r5-LRY" secondAttribute="bottom" id="z3u-AY-yIx"/>
+                            <constraint firstItem="L9w-r5-LRY" firstAttribute="leading" secondItem="ADm-mp-Oho" secondAttribute="leading" id="z9o-sZ-XJN"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="commentTextField" destination="FpL-S6-C9x" id="kNz-Op-NWp"/>
                         <outlet property="optionsContainerView" destination="nQw-Xd-RWG" id="zwC-dq-F2V"/>
-                        <outlet property="resultsContainerView" destination="GXB-Lu-Pfg" id="kBx-0T-oKD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mpx-YU-L9f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="729" y="429"/>
+            <point key="canvasLocation" x="725" y="472"/>
         </scene>
         <!--Poll Results View Controller-->
         <scene sceneID="rzC-4M-JPr">
             <objects>
-                <viewController id="bVC-cF-G80" customClass="PollResultsViewController" customModule="Reso" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="flipHorizontal" modalPresentationStyle="currentContext" id="bVC-cF-G80" customClass="PollResultsViewController" customModule="Reso" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3YH-jc-JN6"/>
                         <viewControllerLayoutGuide type="bottom" id="4ES-Tb-Pm7"/>
@@ -185,25 +181,37 @@
                                     <constraint firstAttribute="height" constant="240" id="oaY-bl-Tl4"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Og3-1y-rYd">
+                                <rect key="frame" x="283" y="0.0" width="34" height="30"/>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <segue destination="C1a-cR-WoM" kind="unwind" unwindAction="unwindToOptions:" id="UmE-Fl-Hmb"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Og3-1y-rYd" firstAttribute="centerX" secondItem="Seb-zY-Rsx" secondAttribute="centerX" id="7Dk-8S-Y4W"/>
                             <constraint firstItem="7IW-9H-QRw" firstAttribute="centerY" secondItem="Seb-zY-Rsx" secondAttribute="centerY" id="eqj-ha-5ot"/>
+                            <constraint firstItem="Og3-1y-rYd" firstAttribute="top" secondItem="3YH-jc-JN6" secondAttribute="bottom" id="m9j-0J-L4y"/>
                             <constraint firstItem="7IW-9H-QRw" firstAttribute="centerX" secondItem="Seb-zY-Rsx" secondAttribute="centerX" id="vvn-t7-FMQ"/>
                         </constraints>
                     </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="600" height="300"/>
                     <connections>
                         <outlet property="pieChartView" destination="7IW-9H-QRw" id="hEM-Ix-CXa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AXi-MJ-sKi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="C1a-cR-WoM" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1095" y="1061"/>
+            <point key="canvasLocation" x="1166" y="1061"/>
         </scene>
         <!--Poll Options View Controller-->
         <scene sceneID="RER-cx-vyQ">
             <objects>
-                <viewController id="Xpp-ej-Omo" customClass="PollOptionsViewController" customModule="Reso" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController definesPresentationContext="YES" id="Xpp-ej-Omo" customClass="PollOptionsViewController" customModule="Reso" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="XnW-oP-AaM"/>
                         <viewControllerLayoutGuide type="bottom" id="tul-E5-UIZ"/>
@@ -212,149 +220,163 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="9Y2-oP-h9k" userLabel="Question Options Stack View">
-                                <rect key="frame" x="20" y="0.0" width="560" height="300"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="9Y2-oP-h9k" userLabel="Question Options Stack View">
+                                <rect key="frame" x="20" y="0.0" width="560" height="252"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0kg-WW-IoM" userLabel="questionLabel">
-                                        <rect key="frame" x="0.0" y="0.0" width="560" height="60"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="560" height="44"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Lbg-vK-Y3E" userLabel="Question One Stack View">
-                                        <rect key="frame" x="0.0" y="60" width="560" height="60"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Lbg-vK-Y3E" userLabel="Question One Stack View">
+                                        <rect key="frame" x="0.0" y="52" width="560" height="44"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U6w-g1-hhV" userLabel="Options Stack View">
-                                                <rect key="frame" x="0.0" y="0.0" width="560" height="60"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y05-4o-mmE" userLabel="questionOneButton">
-                                                        <rect key="frame" x="0.0" y="0.0" width="35" height="60"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="35" id="tYc-Sd-ZUI"/>
-                                                        </constraints>
-                                                        <state key="normal" title="Button"/>
-                                                        <connections>
-                                                            <action selector="questionOneButtonTapped:" destination="Xpp-ej-Omo" eventType="touchUpInside" id="12J-Pw-ANO"/>
-                                                        </connections>
-                                                    </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dI6-wo-lvQ" userLabel="questionOneLabel">
-                                                        <rect key="frame" x="35" y="0.0" width="525" height="60"/>
-                                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                            </stackView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y05-4o-mmE" userLabel="questionOneButton">
+                                                <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
+                                                <color key="backgroundColor" red="0.98431372549019602" green="0.11764705882352941" blue="0.25098039215686274" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="44" id="gnf-Z5-WBa"/>
+                                                    <constraint firstAttribute="width" constant="44" id="tYc-Sd-ZUI"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="22"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="buttonTapped:" destination="Xpp-ej-Omo" eventType="touchUpInside" id="QPS-Gx-1t8"/>
+                                                    <action selector="buttonTouchCancelled:" destination="Xpp-ej-Omo" eventType="touchDragExit" id="kJQ-Y1-4Gg"/>
+                                                    <action selector="buttonTouchDown:" destination="Xpp-ej-Omo" eventType="touchDown" id="YiW-OJ-cY2"/>
+                                                    <segue destination="bVC-cF-G80" kind="presentation" id="ZZm-La-4nF"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dI6-wo-lvQ" userLabel="questionOneLabel">
+                                                <rect key="frame" x="52" y="14" width="508" height="18"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="KLv-lt-Gug" userLabel="Question Two Stack View">
-                                        <rect key="frame" x="0.0" y="120" width="560" height="60"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Vjy-iS-RRb" userLabel="Question One Stack View">
+                                        <rect key="frame" x="0.0" y="104" width="560" height="44"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dh2-LH-oJb">
-                                                <rect key="frame" x="0.0" y="0.0" width="560" height="60"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tJx-B1-I4G" userLabel="questionTwoButton">
-                                                        <rect key="frame" x="0.0" y="0.0" width="35" height="60"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="35" id="m1F-Dq-nku"/>
-                                                        </constraints>
-                                                        <state key="normal" title="Button"/>
-                                                        <connections>
-                                                            <action selector="questionTwoButtonTapped:" destination="Xpp-ej-Omo" eventType="touchUpInside" id="nGx-jj-xAc"/>
-                                                        </connections>
-                                                    </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NrS-Tb-AOi" userLabel="questionTwoLabel">
-                                                        <rect key="frame" x="35" y="0.0" width="525" height="60"/>
-                                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                            </stackView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hQR-jc-gAO" userLabel="questionOneButton">
+                                                <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
+                                                <color key="backgroundColor" red="0.98039215686274506" green="0.88235294117647056" blue="0.25098039215686274" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="44" id="qay-BB-fBe"/>
+                                                    <constraint firstAttribute="height" constant="44" id="v6y-n2-wHs"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="22"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="buttonTapped:" destination="Xpp-ej-Omo" eventType="touchUpInside" id="8P4-4j-nZM"/>
+                                                    <action selector="buttonTouchCancelled:" destination="Xpp-ej-Omo" eventType="touchDragExit" id="mwd-oF-zsj"/>
+                                                    <action selector="buttonTouchDown:" destination="Xpp-ej-Omo" eventType="touchDown" id="UMA-do-mgv"/>
+                                                    <segue destination="bVC-cF-G80" kind="presentation" id="luV-sK-3lr"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7yJ-hu-jbG" userLabel="questionOneLabel">
+                                                <rect key="frame" x="52" y="14" width="508" height="18"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="THa-OK-Yaz" userLabel="Question Three Stack View">
-                                        <rect key="frame" x="0.0" y="180" width="560" height="60"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ni9-7g-afm" userLabel="Question One Stack View">
+                                        <rect key="frame" x="0.0" y="156" width="560" height="44"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e4f-eM-w7o">
-                                                <rect key="frame" x="0.0" y="0.0" width="560" height="60"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Us-3b-sNp" userLabel="questionThreeButton">
-                                                        <rect key="frame" x="0.0" y="0.0" width="35" height="60"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="35" id="a4M-1Z-IXb"/>
-                                                        </constraints>
-                                                        <state key="normal" title="Button"/>
-                                                        <connections>
-                                                            <action selector="questionThreeButtonTapped:" destination="Xpp-ej-Omo" eventType="touchUpInside" id="fDJ-hz-kHj"/>
-                                                        </connections>
-                                                    </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ufa-yG-fzS" userLabel="questionThreeLabel">
-                                                        <rect key="frame" x="35" y="0.0" width="525" height="60"/>
-                                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                            </stackView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JN7-3v-Dzf" userLabel="questionOneButton">
+                                                <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
+                                                <color key="backgroundColor" red="0.24313725490196078" green="0.8666666666666667" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="44" id="aeK-cf-Cpr"/>
+                                                    <constraint firstAttribute="width" constant="44" id="i9m-Iv-7mB"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="22"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="buttonTapped:" destination="Xpp-ej-Omo" eventType="touchUpInside" id="uOS-QB-CSH"/>
+                                                    <action selector="buttonTouchCancelled:" destination="Xpp-ej-Omo" eventType="touchDragExit" id="ABz-A0-Bfo"/>
+                                                    <action selector="buttonTouchDown:" destination="Xpp-ej-Omo" eventType="touchDown" id="73J-6d-Bcd"/>
+                                                    <segue destination="bVC-cF-G80" kind="presentation" id="KqG-ls-5oq"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wgg-j8-Ef0" userLabel="questionOneLabel">
+                                                <rect key="frame" x="52" y="14" width="508" height="18"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="tID-s1-KNr" userLabel="Question Four Stack View">
-                                        <rect key="frame" x="0.0" y="240" width="560" height="60"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="23K-nV-6fy" userLabel="Question One Stack View">
+                                        <rect key="frame" x="0.0" y="208" width="560" height="44"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yAN-wX-sZq">
-                                                <rect key="frame" x="0.0" y="0.0" width="560" height="60"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x9I-Af-khT" userLabel="questionFourButton">
-                                                        <rect key="frame" x="0.0" y="0.0" width="35" height="60"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="35" id="x4X-Hz-qFT"/>
-                                                        </constraints>
-                                                        <state key="normal" title="Button"/>
-                                                        <connections>
-                                                            <action selector="questionFourButtonTapped:" destination="Xpp-ej-Omo" eventType="touchUpInside" id="PMY-Gj-HCa"/>
-                                                        </connections>
-                                                    </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lW2-3N-llI" userLabel="questionFourLabel">
-                                                        <rect key="frame" x="35" y="0.0" width="525" height="60"/>
-                                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                            </stackView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xOd-w8-tdG" userLabel="questionOneButton">
+                                                <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
+                                                <color key="backgroundColor" red="0.14509803921568629" green="1" blue="0.54509803921568623" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="44" id="ink-qg-BxC"/>
+                                                    <constraint firstAttribute="width" constant="44" id="xcV-BN-pyI"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="22"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="buttonTapped:" destination="Xpp-ej-Omo" eventType="touchUpInside" id="l3o-CM-4Fj"/>
+                                                    <action selector="buttonTouchCancelled:" destination="Xpp-ej-Omo" eventType="touchDragExit" id="uxS-cv-7G0"/>
+                                                    <action selector="buttonTouchDown:" destination="Xpp-ej-Omo" eventType="touchDown" id="ytb-nc-OO4"/>
+                                                    <segue destination="bVC-cF-G80" kind="presentation" id="Otd-dP-dmT"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iij-VJ-qbq" userLabel="questionOneLabel">
+                                                <rect key="frame" x="52" y="14" width="508" height="18"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </stackView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="252" id="Ey5-8s-rYG"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="9Y2-oP-h9k" firstAttribute="leading" secondItem="qrh-O1-YQc" secondAttribute="leadingMargin" id="Rgi-lH-rFN"/>
                             <constraint firstAttribute="trailingMargin" secondItem="9Y2-oP-h9k" secondAttribute="trailing" id="YQg-kI-jyW"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="9Y2-oP-h9k" secondAttribute="bottom" id="uaz-mH-TpH"/>
                             <constraint firstItem="9Y2-oP-h9k" firstAttribute="top" secondItem="qrh-O1-YQc" secondAttribute="topMargin" id="w4i-9W-4jq"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="questionFourButton" destination="x9I-Af-khT" id="f0q-4i-6HF"/>
-                        <outlet property="questionFourLabel" destination="lW2-3N-llI" id="E8A-FG-BDl"/>
+                        <outlet property="questionFourButton" destination="xOd-w8-tdG" id="cZK-ta-9iS"/>
+                        <outlet property="questionFourLabel" destination="iij-VJ-qbq" id="cdU-Qv-K9m"/>
                         <outlet property="questionOneButton" destination="Y05-4o-mmE" id="v2n-t5-leX"/>
                         <outlet property="questionOneLabel" destination="dI6-wo-lvQ" id="v13-1t-nUj"/>
-                        <outlet property="questionThreeButton" destination="4Us-3b-sNp" id="iGV-4a-NZl"/>
-                        <outlet property="questionThreeLabel" destination="Ufa-yG-fzS" id="U9d-Pb-BSJ"/>
-                        <outlet property="questionTwoButton" destination="tJx-B1-I4G" id="0hg-mL-I1w"/>
-                        <outlet property="questionTwoLabel" destination="NrS-Tb-AOi" id="u39-RB-bB4"/>
+                        <outlet property="questionThreeButton" destination="JN7-3v-Dzf" id="6HZ-A3-F8o"/>
+                        <outlet property="questionThreeLabel" destination="wgg-j8-Ef0" id="frA-cl-a0N"/>
+                        <outlet property="questionTwoButton" destination="hQR-jc-gAO" id="sHH-9q-1Gd"/>
+                        <outlet property="questionTwoLabel" destination="7yJ-hu-jbG" id="Kpg-Vm-koS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fMN-kP-efn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -362,4 +384,10 @@
             <point key="canvasLocation" x="418" y="1061"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ResoBackground" width="414" height="736"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="luV-sK-3lr"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -34,22 +34,31 @@ class PollOptionsViewController: UIViewController {
     // MARK: - IBActions
     // MARK: Button Tapped
 
-    @IBAction func questionOneButtonTapped(sender: AnyObject) {
+    @IBAction func buttonTapped(sender: UIButton) {
+        if sender == questionOneButton {
+            // record fishing
+        }
     }
     
-    @IBAction func questionTwoButtonTapped(sender: AnyObject) {
+    @IBAction func buttonTouchDown(sender: UIButton) {
+        sender.layer.borderWidth = 2.0
+        guard sender.backgroundColor != nil else { return }
+        sender.layer.borderColor = sender.backgroundColor?.CGColor
+        sender.backgroundColor = nil
     }
     
-    @IBAction func questionThreeButtonTapped(sender: AnyObject) {
+    @IBAction func buttonTouchCancelled(sender: UIButton) {
+        sender.layer.borderWidth = 0.0
+        guard let cgColor = sender.layer.borderColor else { return }
+        sender.backgroundColor = UIColor(CGColor: cgColor)
     }
     
-    @IBAction func questionFourButtonTapped(sender: AnyObject) {
-    }
     
     
-    /*
     // MARK: - Navigation
 
+    @IBAction func unwindToOptions(segue: UIStoryboardSegue) { }
+    /*
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
