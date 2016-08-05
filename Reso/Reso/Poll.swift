@@ -71,3 +71,10 @@ struct Poll: FirebaseType {
 }
 
 
+// MARK: - Equatable
+
+extension Poll: Equatable { }
+
+func ==(lhs: Poll, rhs: Poll) -> Bool {
+    return lhs.identifier == rhs.identifier && lhs.title == rhs.title
+}

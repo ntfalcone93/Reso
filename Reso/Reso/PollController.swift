@@ -18,7 +18,7 @@ class PollListViewController: UIViewController, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(reloadTable), name: PollController.pollAddedNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(reloadTable), name: PollController.pollsChangedNotification, object: nil)
     }
     
     func reloadTable() {
@@ -47,7 +47,7 @@ class PollController {
     
     static let sharedController = PollController()
     
-    static let pollAddedNotification = "pollAddedNotification"
+    static let pollsChangedNotification = "pollAddedNotification"
     
     var polls = [Poll]()
     var publicPolls: [Poll] {
@@ -66,22 +66,34 @@ class PollController {
         poll.delete()
     }
     
-    func fetchAllPolls() {
-        FirebaseController.ref.child("usersPolls").child(UserController.shared.currentUserId).observeEventType(.ChildAdded, withBlock: { data in
-            guard let pollIdDictionaries = data.value as? [String: AnyObject], pollId = pollIdDictionaries.first?.0 else { return }
-            self.fetchPoll(with: pollId) { poll in
-                guard let poll = poll else { return }
-                self.polls.append(poll)
-                NSNotificationCenter.defaultCenter().postNotificationName(PollController.pollAddedNotification, object: nil)
-            }
-        })
-    }
-    
-    func fetchPoll(with identifier: String, completion: (poll: Poll?) -> Void) {
-        FirebaseController.ref.child("polls").child(identifier).observeSingleEventOfType(.Value, withBlock: { data in
+    /**
+     Subscribes to all poll objects in Firebase. Sends an `NSNotification` named `PollController.pollsChangedNotification` when
+     a poll is added, changed, or removed.
+     
+     Note: This only needs to be called once in the app—after the current user has authenticated, and you have the current user id.
+     */
+    func subscribeToAllPolls() {
+        let query = FirebaseController.ref.child("polls").queryOrderedByChild("members").queryEqualToValue(UserController.shared.currentUserId)
+        query.observeEventType(.ChildAdded, withBlock: { data in
             guard let dataDict = data.value as? [String: AnyObject],
-                poll = Poll(dictionary: dataDict, identifier: data.key) else { completion(poll: nil); return }
-            completion(poll: poll)
+                poll = Poll(dictionary: dataDict, identifier: data.key) else { return }
+            self.polls.append(poll)
+            NSNotificationCenter.defaultCenter().postNotificationName(PollController.pollsChangedNotification, object: data.key)
+        })
+        query.observeEventType(.ChildChanged, withBlock: { data in
+            guard let dataDict = data.value as? [String: AnyObject],
+                poll = Poll(dictionary: dataDict, identifier: data.key), index = self.polls.indexOf(poll) else { return }           ///Index?
+            self.polls[index] = poll
+            NSNotificationCenter.defaultCenter().postNotificationName(PollController.pollsChangedNotification, object: data.key)
+            // Using data.key as object allows you to subscribe to this notification only for a specific identifier:
+            // Example for detail page
+//            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(update), name: PollController.pollsChangedNotification, object: currentPoll.identifier)
+        })
+        query.observeEventType(.ChildRemoved, withBlock: { data in
+            guard let dataDict = data.value as? [String: AnyObject],
+                poll = Poll(dictionary: dataDict, identifier: data.key), index = self.polls.indexOf(poll) else { return }
+            self.polls.removeAtIndex(index)
+            NSNotificationCenter.defaultCenter().postNotificationName(PollController.pollsChangedNotification, object: data.key)
         })
     }
     
