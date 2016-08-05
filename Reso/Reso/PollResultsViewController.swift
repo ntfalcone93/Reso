@@ -20,7 +20,48 @@ class PollResultsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let options = ["Jimmy John's", "Papa johns", "Harmons", "SUSHI"]
+        let votes = [2.0, 5.0, 7.0, 0.0]
+        
+        setChart(options, values: votes)
         
     }
-
+    
+    func setChart(dataPoints: [String], values: [Double]) {
+        
+        pieChartView.noDataText = "No Results"
+        pieChartView.noDataTextDescription = "There is no results to display."
+        pieChartView.descriptionText = "Results"
+        
+        
+        var dataEntries: [ChartDataEntry] = []
+        pieChartView.centerText = ""
+        
+        
+        for i in 0..<dataPoints.count {
+          
+            let dataEntry = ChartDataEntry(value: values[i], xIndex: i)
+            
+            dataEntries.append(dataEntry)
+        }
+        
+        let pieChartDataSet = PieChartDataSet(yVals: dataEntries, label: "Votes")
+        pieChartDataSet.colors = [UIColor(red: 0.984, green: 0.118, blue: 0.251, alpha: 1.00), UIColor(red: 0.996, green: 0.902, blue: 0.192, alpha: 1.00), UIColor(red: 0.243, green: 0.867, blue: 1.000, alpha: 1.00), UIColor(red: 0.145, green: 1.000, blue: 0.545, alpha: 1.00)]
+        
+        
+        let pieChartData = PieChartData(xVals: dataPoints, dataSet: pieChartDataSet)
+        
+        pieChartView.data = pieChartData
+        pieChartView.animate(yAxisDuration: 2.0, easingOption: .EaseInOutBack)
+        pieChartView.backgroundColor = UIColor.clearColor()
+        pieChartView.descriptionTextColor = UIColor.whiteColor()
+        
+        pieChartView.drawSliceTextEnabled = false
+        pieChartView.drawHoleEnabled = false
+        pieChartView.usePercentValuesEnabled = true
+        
+        pieChartView.centerText = ""
+        pieChartView.highlighter = nil
+        
+    }
 }

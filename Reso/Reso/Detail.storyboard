@@ -169,16 +169,16 @@
                         <viewControllerLayoutGuide type="top" id="3YH-jc-JN6"/>
                         <viewControllerLayoutGuide type="bottom" id="4ES-Tb-Pm7"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Seb-zY-Rsx" customClass="PieChartView" customModule="Charts">
+                    <view key="view" contentMode="scaleToFill" id="Seb-zY-Rsx" userLabel="Pie Chart Results View">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7IW-9H-QRw" customClass="ChartView" customModule="Reso" customModuleProvider="target">
-                                <rect key="frame" x="180" y="30" width="240" height="240"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7IW-9H-QRw" customClass="PieChartView" customModule="Charts">
+                                <rect key="frame" x="153" y="3" width="295" height="295"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="AE4-kG-PP9"/>
-                                    <constraint firstAttribute="height" constant="240" id="oaY-bl-Tl4"/>
+                                    <constraint firstAttribute="width" constant="295" id="AE4-kG-PP9"/>
+                                    <constraint firstAttribute="height" constant="295" id="oaY-bl-Tl4"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Og3-1y-rYd">
@@ -388,6 +388,6 @@
         <image name="ResoBackground" width="414" height="736"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="luV-sK-3lr"/>
+        <segue reference="ZZm-La-4nF"/>
     </inferredMetricsTieBreakers>
 </document>
