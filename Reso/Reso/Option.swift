@@ -9,39 +9,35 @@
 import Foundation
 
 
-struct Option: FirebaseType {
+struct Option {
     
     private let kName = "name"
     private let kVotes = "votes"
-    private let kPollId = "pollId"
     
     var name: String
     var votes: [String]
-    var pollId: String
     var identifier: String?
-    
-    var endpoint: String {
-        return "polls/\(pollId)/options"
-    }
+
     
     var dictionaryCopy: [String : AnyObject]{
-        return[kName: name, kVotes: votes.map { [$0 : true] }, kPollId: pollId]
+        return[kName: name, kVotes: votes.map { $0 }.toDic()]
     }
     
-    init(name: String, pollId: String) {
+    init(name: String) {
         self.name = name
         self.votes = []
-        self.pollId = pollId
+        self.identifier = FirebaseController.ref.childByAutoId().key
     }
     
     init?(dictionary: [String : AnyObject], identifier: String) {
-        guard let name = dictionary[kName] as? String,
-            voteDict = dictionary[kVotes] as? [String: AnyObject],
-            pollId = dictionary[kPollId] as? String else {
+        guard let name = dictionary[kName] as? String else {
                 return nil
         }
         self.name = name
-        self.votes = Array(voteDict.keys)
-        self.pollId = pollId
+        if let voteDicts = dictionary[kVotes] as? [String: AnyObject] {
+            self.votes = Array(voteDicts.keys)
+        } else {
+            self.votes = []
+        }
     }
 }

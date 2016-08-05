@@ -23,7 +23,9 @@ class PollListViewController: UIViewController, UITableViewDataSource, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(reloadTable), name: PollController.pollsChangedNotification, object: nil)
+        PollController.observePolls(.Public) { (polls) in
+            print(polls.count)
+        }
     }
     
     func reloadTable() {

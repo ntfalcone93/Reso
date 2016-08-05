@@ -37,7 +37,15 @@ struct Poll: FirebaseType {
     }
     
     var dictionaryCopy: [String : AnyObject] {
-        return [kTitle: title, kOptions: options.map{ $0.dictionaryCopy }, kMembers: memberIds.map{ [$0 : true] }, kIsPrivate: isPrivate, kCreationDate: creationDate.timeIntervalSince1970, kEndDate: endDate.timeIntervalSince1970]
+        
+        var optionDict = [String: AnyObject]()
+        for option in options {
+            if let optionId = option.identifier {
+                optionDict.updateValue(option.dictionaryCopy, forKey: optionId)
+            }
+        }
+        
+        return [kTitle: title, kOptions: optionDict, kMembers: memberIds.map{ $0 }.toDic(), kIsPrivate: isPrivate, kCreationDate: creationDate.timeIntervalSince1970, kEndDate: endDate.timeIntervalSince1970]
     }
     
     init(title: String, options: [Option], memberIds: [String], isPrivate: Bool, endDate: NSDate) {
@@ -77,4 +85,14 @@ extension Poll: Equatable { }
 
 func ==(lhs: Poll, rhs: Poll) -> Bool {
     return lhs.identifier == rhs.identifier && lhs.title == rhs.title
+}
+
+extension Array {
+    func toDic() -> [String : AnyObject] {
+        var dicToReturn = [String : AnyObject]()
+        for item in self {
+            dicToReturn.updateValue(true, forKey: String(item))
+        }
+        return dicToReturn
+    }
 }
