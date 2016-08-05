@@ -40,13 +40,20 @@
                                             <constraint firstAttribute="width" secondItem="Wat-TK-Lqf" secondAttribute="height" multiplier="3:1.5" id="4sk-n1-WPb"/>
                                             <constraint firstItem="nQw-Xd-RWG" firstAttribute="leading" secondItem="Wat-TK-Lqf" secondAttribute="leading" id="Cec-nq-j2H"/>
                                             <constraint firstItem="nQw-Xd-RWG" firstAttribute="top" secondItem="Wat-TK-Lqf" secondAttribute="top" id="L03-c5-Oyj"/>
+                                            <constraint firstAttribute="height" constant="300" id="OVT-az-M3T"/>
                                             <constraint firstAttribute="trailing" secondItem="nQw-Xd-RWG" secondAttribute="trailing" id="QYE-W5-GrR"/>
                                             <constraint firstAttribute="bottom" secondItem="nQw-Xd-RWG" secondAttribute="bottom" id="xzk-zy-KNW"/>
                                         </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="4sk-n1-WPb"/>
+                                            </mask>
+                                        </variation>
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qnk-H8-fhI" userLabel="Comments Table View">
                                         <rect key="frame" x="0.0" y="300" width="600" height="240"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="commentCell" rowHeight="60" id="bSe-xC-faS" customClass="CommentsTableViewCell" customModule="Reso" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="600" height="60"/>
@@ -101,6 +108,10 @@
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="GtN-Or-DJp" id="tjZ-Vl-CVz"/>
+                                            <outlet property="delegate" destination="GtN-Or-DJp" id="E1N-xr-iZx"/>
+                                        </connections>
                                     </tableView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="InH-fg-Elo" userLabel="Custom Toolbar View">
                                         <rect key="frame" x="0.0" y="540" width="600" height="40"/>
@@ -138,6 +149,12 @@
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="qnk-H8-fhI" firstAttribute="leading" secondItem="3Yc-C0-3CD" secondAttribute="leading" id="4jz-yh-jlk"/>
+                                    <constraint firstItem="InH-fg-Elo" firstAttribute="top" secondItem="qnk-H8-fhI" secondAttribute="bottom" id="LnJ-XR-hX2"/>
+                                    <constraint firstAttribute="trailing" secondItem="qnk-H8-fhI" secondAttribute="trailing" id="Suh-sN-t3P"/>
+                                    <constraint firstItem="qnk-H8-fhI" firstAttribute="top" secondItem="Wat-TK-Lqf" secondAttribute="bottom" id="xB4-TH-dsP"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -155,6 +172,7 @@
                     <connections>
                         <outlet property="commentTextField" destination="FpL-S6-C9x" id="kNz-Op-NWp"/>
                         <outlet property="optionsContainerView" destination="nQw-Xd-RWG" id="zwC-dq-F2V"/>
+                        <outlet property="tableView" destination="qnk-H8-fhI" id="tav-OR-DYB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mpx-YU-L9f" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -249,7 +267,6 @@
                                                     <action selector="buttonTapped:" destination="Xpp-ej-Omo" eventType="touchUpInside" id="QPS-Gx-1t8"/>
                                                     <action selector="buttonTouchCancelled:" destination="Xpp-ej-Omo" eventType="touchDragExit" id="kJQ-Y1-4Gg"/>
                                                     <action selector="buttonTouchDown:" destination="Xpp-ej-Omo" eventType="touchDown" id="YiW-OJ-cY2"/>
-                                                    <segue destination="bVC-cF-G80" kind="presentation" id="ZZm-La-4nF"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dI6-wo-lvQ" userLabel="questionOneLabel">
@@ -280,7 +297,6 @@
                                                     <action selector="buttonTapped:" destination="Xpp-ej-Omo" eventType="touchUpInside" id="8P4-4j-nZM"/>
                                                     <action selector="buttonTouchCancelled:" destination="Xpp-ej-Omo" eventType="touchDragExit" id="mwd-oF-zsj"/>
                                                     <action selector="buttonTouchDown:" destination="Xpp-ej-Omo" eventType="touchDown" id="UMA-do-mgv"/>
-                                                    <segue destination="bVC-cF-G80" kind="presentation" id="luV-sK-3lr"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7yJ-hu-jbG" userLabel="questionOneLabel">
@@ -311,7 +327,6 @@
                                                     <action selector="buttonTapped:" destination="Xpp-ej-Omo" eventType="touchUpInside" id="uOS-QB-CSH"/>
                                                     <action selector="buttonTouchCancelled:" destination="Xpp-ej-Omo" eventType="touchDragExit" id="ABz-A0-Bfo"/>
                                                     <action selector="buttonTouchDown:" destination="Xpp-ej-Omo" eventType="touchDown" id="73J-6d-Bcd"/>
-                                                    <segue destination="bVC-cF-G80" kind="presentation" id="KqG-ls-5oq"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wgg-j8-Ef0" userLabel="questionOneLabel">
@@ -342,7 +357,6 @@
                                                     <action selector="buttonTapped:" destination="Xpp-ej-Omo" eventType="touchUpInside" id="l3o-CM-4Fj"/>
                                                     <action selector="buttonTouchCancelled:" destination="Xpp-ej-Omo" eventType="touchDragExit" id="uxS-cv-7G0"/>
                                                     <action selector="buttonTouchDown:" destination="Xpp-ej-Omo" eventType="touchDown" id="ytb-nc-OO4"/>
-                                                    <segue destination="bVC-cF-G80" kind="presentation" id="Otd-dP-dmT"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iij-VJ-qbq" userLabel="questionOneLabel">
@@ -377,17 +391,15 @@
                         <outlet property="questionThreeLabel" destination="wgg-j8-Ef0" id="frA-cl-a0N"/>
                         <outlet property="questionTwoButton" destination="hQR-jc-gAO" id="sHH-9q-1Gd"/>
                         <outlet property="questionTwoLabel" destination="7yJ-hu-jbG" id="Kpg-Vm-koS"/>
+                        <segue destination="bVC-cF-G80" kind="presentation" identifier="toResultsSegue" modalTransitionStyle="flipHorizontal" id="NV3-HX-zrO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fMN-kP-efn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="418" y="1061"/>
+            <point key="canvasLocation" x="417" y="1061"/>
         </scene>
     </scenes>
     <resources>
         <image name="ResoBackground" width="414" height="736"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="KqG-ls-5oq"/>
-    </inferredMetricsTieBreakers>
 </document>

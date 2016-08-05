@@ -18,12 +18,18 @@ class PollDetailViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var commentTextField: UITextField!
     @IBOutlet weak var optionsContainerView: UIView!
-    
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupKeyboardNotifications()
+        
+        let option = Option(name: "True")
+        let option1 = Option(name: "False")
+        self.poll = Poll(title: "Star Wars or Star TreK?", options: [option, option1], memberIds: ["turkeydumpling567", "googlehacks7823"], isPrivate: true, endDate: NSDate().dateByAddingTimeInterval(1500))
+        self.poll?.identifier = "turkeyJones007"
+        
         if let poll = poll {
             fetchUsersForPoll(poll)
         }
@@ -34,7 +40,26 @@ class PollDetailViewController: UIViewController, UITextFieldDelegate {
     // MARK: - IBActions
     
     @IBAction func sendButtonTapped(sender: AnyObject) {
+        let user = User(firstName: "Frank", lastName: "Billbong", photoUrl: "", identifier: "456A-78SR-TWV7-U23O")
         
+        if let commentText = commentTextField.text, let currentUserID = user.identifier, poll = self.poll, pollID = poll.identifier {
+            CommentController.create(commentText, senderId: currentUserID, pollId: pollID)
+            updateComments(poll)
+//            dismissViewControllerAnimated(true, completion: nil)
+        } else {
+             let alertController = UIAlertController(title: "Missing Information", message: "You did not type any text.", preferredStyle: .Alert)
+            alertController.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: nil))
+            
+            presentViewController(alertController, animated: true, completion: nil)
+        }
+    }
+    
+    func updateComments(pollID: Poll) {
+        CommentController.observeCommentsOnPoll(pollID, completion: { (comments) in
+            print("COMMENTS COUNT: --______------> ....... (\(comments.count))")
+            self.comments = comments
+            self.tableView.reloadData()
+        })
     }
     
     // MARK: - Functions
@@ -103,7 +128,8 @@ extension PollDetailViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCellWithIdentifier("commentCell", forIndexPath: indexPath) as? CommentsTableViewCell ?? CommentsTableViewCell()
         
         let comment = comments[indexPath.row]
-//        cell.updateWithComment
+        let user = User(firstName: "Justin", lastName: "Smith", photoUrl: "", identifier: "resdtsd1123")
+        cell.updateWithComment(comment, user: user)
         
         return cell
     }

@@ -1,4 +1,4 @@
-poll app : {
+	poll app : {
   polls : {
     (Poll's Id) : {
       title : String
@@ -24,7 +24,8 @@ poll app : {
       text : String
       timestamp : Double(NSTimeInterval)
       senderId : (User's Id)
-      pollId : (Poll's Id)
+      
+ : (Poll's Id)
     }
   }
   users : {
