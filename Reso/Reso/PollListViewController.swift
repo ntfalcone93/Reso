@@ -22,41 +22,29 @@ class PollListViewController: UIViewController, UITableViewDataSource, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(reloadTable), name: PollController.pollsChangedNotification, object: nil)
     }
     
-    
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 0
+    func reloadTable() {
+        tableView.reloadData()
     }
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 0 {
-            return "Complete"
-        } else {
-            return "Incomplete"
-        }
-    }
+    // MARK: - Table view data source
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return incompletePolls.count
-        } else {
-            return completePolls.count
-        }
+        return publicPolls.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCellWithIdentifier("pollCell") as! PollTableViewCell
+        // TODO: return real cell for poll
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
+        let poll = publicPolls[indexPath.row]
+        print(poll) // TODO: Remove debug logging
+        // cell.update(with: poll)
         return cell
     }
+    
 
     /*
     // MARK: - Navigation
