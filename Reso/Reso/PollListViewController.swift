@@ -12,9 +12,9 @@ class PollListViewController: UIViewController, UITableViewDataSource, UITableVi
     
     var privatePolls: [Poll] = []
     var publicPolls: [Poll] = []
-    var incompletePolls: [Poll] = []
-    var completePolls: [Poll] = []
-
+    var incompletePolls: [Poll] = [Poll(title: "what movie should we go to", options: [], members: ["parker","sean","patrick","nate"], isPrivate: false, endDate: NSDate(timeIntervalSinceNow: 24)), Poll(title: "which vacatio shoudld we go on?", options: [], members: ["parker","sean","patrick","nate", "josh", "justin", "alan"], isPrivate: true, endDate: NSDate(timeIntervalSinceNow: 900))]
+    var completePolls: [Poll] = [Poll(title: "who is your favorite super hero?", options: [], members: ["parker","sean","patrick"], isPrivate: true, endDate: NSDate(timeIntervalSinceNow: 24)), Poll(title: "should I buy the Jordan's or the LeBrons?", options: [], members: ["parker","sean","patrick","nate", "josh", "justin", "alan", "mason", "Tyler", "Jordan", "jake"], isPrivate: false, endDate: NSDate(timeIntervalSinceNow: 400000))]
+    var user: User?
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -22,22 +22,28 @@ class PollListViewController: UIViewController, UITableViewDataSource, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        
         
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func segmentedContolButtonTapped(sender: AnyObject) {
+        if privatePublicSegmentedControl.selectedSegmentIndex == 0 {
+            
+        }
+    }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 0
+        return 2
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 0 {
+        if section == 1 {
             return "Complete"
         } else {
             return "Incomplete"
@@ -46,8 +52,10 @@ class PollListViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
+            print(incompletePolls.count)
             return incompletePolls.count
         } else {
+            print(completePolls.count)
             return completePolls.count
         }
     }
@@ -55,17 +63,28 @@ class PollListViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("pollCell") as! PollTableViewCell
+        
+        let poll = completePolls[indexPath.row]
+        
+        cell.votingStatusImageView.image = UIImage(named: "complete")
+        cell.pollNameLabel.text = poll.title
+        cell.numberOfMembersLabel.text = "\(poll.members.count)"
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "HH-mm"
+        cell.timerRemainingLabel.text = formatter.stringFromDate(poll.endDate)
+        
+        
         return cell
     }
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
