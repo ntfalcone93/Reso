@@ -16,4 +16,12 @@ class CommentsTableViewCell: UITableViewCell {
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var userCommentLabel: UILabel!
     
+    
+    // MARK: - Function
+    
+    func updateWithComment(comment: Comment, user: User) {
+        userNameLabel.text = "\(user.firstName) \(user.lastName)"
+        userCommentLabel.text = comment.text
+        
+    }
 }
