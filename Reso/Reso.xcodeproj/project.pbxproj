@@ -32,6 +32,30 @@
 		8BDF5C821D52A9ED009C15EB /* PollDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDF5C811D52A9ED009C15EB /* PollDetailViewController.swift */; };
 		8BDF5C831D52A9ED009C15EB /* PollDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDF5C811D52A9ED009C15EB /* PollDetailViewController.swift */; };
 		8BDF5C841D52A9ED009C15EB /* PollDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDF5C811D52A9ED009C15EB /* PollDetailViewController.swift */; };
+		8BF880CD1D5528E600C648E7 /* CommentsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA5CC801D52D57200EF21FF /* CommentsTableViewCell.swift */; };
+		8BF880D21D5528E600C648E7 /* CommentsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA5CC801D52D57200EF21FF /* CommentsTableViewCell.swift */; };
+		8BF880D31D55290C00C648E7 /* PollOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA5CC7C1D52D50200EF21FF /* PollOptionsViewController.swift */; };
+		8BF880D41D55290C00C648E7 /* PollOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA5CC7C1D52D50200EF21FF /* PollOptionsViewController.swift */; };
+		8BF880D51D55290F00C648E7 /* PollResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA5CC7E1D52D53800EF21FF /* PollResultsViewController.swift */; };
+		8BF880D61D55290F00C648E7 /* PollResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA5CC7E1D52D53800EF21FF /* PollResultsViewController.swift */; };
+		8BF880D71D55291200C648E7 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B767B711D539F4300E8C35C /* ChartView.swift */; };
+		8BF880D81D55291200C648E7 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B767B711D539F4300E8C35C /* ChartView.swift */; };
+		8BF880D91D55296400C648E7 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD658CF1D51850E00D12159 /* Comment.swift */; };
+		8BF880DA1D55296500C648E7 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD658CF1D51850E00D12159 /* Comment.swift */; };
+		8BF880DB1D55296700C648E7 /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD658CD1D51511800D12159 /* Option.swift */; };
+		8BF880DC1D55296800C648E7 /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD658CD1D51511800D12159 /* Option.swift */; };
+		8BF880DD1D55296B00C648E7 /* Poll.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD658CB1D514E7200D12159 /* Poll.swift */; };
+		8BF880DE1D55296B00C648E7 /* Poll.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD658CB1D514E7200D12159 /* Poll.swift */; };
+		8BF880DF1D55296E00C648E7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD658C91D51424500D12159 /* User.swift */; };
+		8BF880E01D55296E00C648E7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD658C91D51424500D12159 /* User.swift */; };
+		8BF880E11D55297200C648E7 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F7CB621D5140E30036B3C3 /* UserController.swift */; };
+		8BF880E21D55297200C648E7 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F7CB621D5140E30036B3C3 /* UserController.swift */; };
+		8BF880E31D55297500C648E7 /* FirebaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F7CB611D5140E30036B3C3 /* FirebaseController.swift */; };
+		8BF880E41D55297500C648E7 /* FirebaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F7CB611D5140E30036B3C3 /* FirebaseController.swift */; };
+		8BF880E51D55297C00C648E7 /* PollCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDED6A3E1D52AA5400BC80DD /* PollCreateViewController.swift */; };
+		8BF880E61D55297C00C648E7 /* PollCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDED6A3E1D52AA5400BC80DD /* PollCreateViewController.swift */; };
+		8BF880E71D55299F00C648E7 /* Detail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 027E55491D5283350010DC7F /* Detail.storyboard */; };
+		8BF880E81D55299F00C648E7 /* Detail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 027E55491D5283350010DC7F /* Detail.storyboard */; };
 		9A4BDCE98A24FE148114102B /* Pods_ResoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A014E9CE4D6FF84929223A11 /* Pods_ResoUITests.framework */; };
 		DDD658CA1D51424500D12159 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD658C91D51424500D12159 /* User.swift */; };
 		DDD658CC1D514E7200D12159 /* Poll.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD658CB1D514E7200D12159 /* Poll.swift */; };
@@ -513,6 +537,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				02C816951D4FF6DE00A82AD3 /* GoogleService-Info.plist in Resources */,
+				8BF880E71D55299F00C648E7 /* Detail.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -521,6 +546,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				02C816961D4FF6DF00A82AD3 /* GoogleService-Info.plist in Resources */,
+				8BF880E81D55299F00C648E7 /* Detail.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -674,8 +700,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BF880E31D55297500C648E7 /* FirebaseController.swift in Sources */,
+				8BF880DB1D55296700C648E7 /* Option.swift in Sources */,
+				8BF880D51D55290F00C648E7 /* PollResultsViewController.swift in Sources */,
+				8BF880D31D55290C00C648E7 /* PollOptionsViewController.swift in Sources */,
+				8BF880E11D55297200C648E7 /* UserController.swift in Sources */,
 				8BDF5C831D52A9ED009C15EB /* PollDetailViewController.swift in Sources */,
+				8BF880E51D55297C00C648E7 /* PollCreateViewController.swift in Sources */,
+				8BF880DD1D55296B00C648E7 /* Poll.swift in Sources */,
+				8BF880D91D55296400C648E7 /* Comment.swift in Sources */,
+				8BF880CD1D5528E600C648E7 /* CommentsTableViewCell.swift in Sources */,
 				02C8167B1D4FF64700A82AD3 /* ResoTests.swift in Sources */,
+				8BF880DF1D55296E00C648E7 /* User.swift in Sources */,
+				8BF880D71D55291200C648E7 /* ChartView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -683,8 +720,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BF880E41D55297500C648E7 /* FirebaseController.swift in Sources */,
+				8BF880DC1D55296800C648E7 /* Option.swift in Sources */,
+				8BF880D61D55290F00C648E7 /* PollResultsViewController.swift in Sources */,
+				8BF880D41D55290C00C648E7 /* PollOptionsViewController.swift in Sources */,
+				8BF880E21D55297200C648E7 /* UserController.swift in Sources */,
 				8BDF5C841D52A9ED009C15EB /* PollDetailViewController.swift in Sources */,
+				8BF880E61D55297C00C648E7 /* PollCreateViewController.swift in Sources */,
+				8BF880DE1D55296B00C648E7 /* Poll.swift in Sources */,
+				8BF880DA1D55296500C648E7 /* Comment.swift in Sources */,
+				8BF880D21D5528E600C648E7 /* CommentsTableViewCell.swift in Sources */,
 				02C816861D4FF64700A82AD3 /* ResoUITests.swift in Sources */,
+				8BF880E01D55296E00C648E7 /* User.swift in Sources */,
+				8BF880D81D55291200C648E7 /* ChartView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
