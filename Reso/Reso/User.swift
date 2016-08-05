@@ -18,22 +18,27 @@ struct User: FirebaseType {
     
     var firstName: String
     var lastName: String
-    var fullName: String
     var photoUrl: String
     var identifier: String?
+    
+    var fullName: String {
+        guard let lastInitial = lastName.characters.first else {
+            return firstName
+        }
+        return firstName + String(lastInitial)
+    }
     
     var endpoint: String {
         return "users"
     }
     
     var dictionaryCopy: [String : AnyObject] {
-        return [kFirstName: firstName, kLastName: lastName, kFullName: fullName, kPhotoUrl: photoUrl]
+        return [kFirstName: firstName, kLastName: lastName, kPhotoUrl: photoUrl]
     }
     
-    init(firstName: String, lastName: String, fullName: String, photoUrl: String, identifier: String) {
+    init(firstName: String, lastName: String, photoUrl: String, identifier: String) {
         self.firstName = firstName
         self.lastName = lastName
-        self.fullName = fullName
         self.photoUrl = photoUrl
         self.identifier = identifier
     }
@@ -42,13 +47,11 @@ struct User: FirebaseType {
     init?(dictionary: [String: AnyObject], identifier: String) {
         guard let firstName = dictionary[kFirstName] as? String,
             let lastName = dictionary[kLastName] as? String,
-            let fullName = dictionary[kFullName] as? String,
             let photoUrl = dictionary[kPhotoUrl] as? String else {
                 return nil
         }
         self.firstName = firstName
         self.lastName = lastName
-        self.fullName = fullName
         self.photoUrl = photoUrl
         self.identifier = identifier
     }
