@@ -22,15 +22,15 @@ class LoginSignupViewController: UIViewController {
     @IBOutlet weak var LastNameLabel: UILabel!
     
     @IBOutlet weak var lastNameTextField: UITextField!
-
+    
     @IBOutlet weak var loginButtonOutlet: UIButton!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -55,26 +55,24 @@ class LoginSignupViewController: UIViewController {
     @IBAction func signUpButtonTapped(sender: AnyObject) {
         
         guard let firstName = firstNameTextField.text, lastName = lastNameTextField.text, email = emailTextField.text, password = passwordTextField.text else { return }
-
-        UserController.createUser("\(firstName) \(lastName)", email: email, password: password) { (user) in
+        // TODO: Have nathan help with photo url
+        UserController.createUser(firstName, lastName: lastName, photoUrl: "", email: email, password: password) { (user) in
             guard user != nil else {
-                
-                print("unable to create User")
+                // Present error
                 return
             }
-            let vc = PollListViewController()
-            self.navigationController?.pushViewController(vc, animated: true)
+            self.dismissViewControllerAnimated(true, completion: nil)
         }
     }
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
