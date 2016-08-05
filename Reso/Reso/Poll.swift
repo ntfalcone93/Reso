@@ -20,7 +20,7 @@ struct Poll: FirebaseType {
     
     var title: String
     var options: [Option]
-    var members: [String]
+    var memberIds: [String]
     var isPrivate: Bool
     var creationDate: NSDate
     var endDate: NSDate
@@ -37,14 +37,22 @@ struct Poll: FirebaseType {
     }
     
     var dictionaryCopy: [String : AnyObject] {
-        return [kTitle: title, kOptions: options.map{ $0.dictionaryCopy }, kMembers: members.map{ [$0 : true] }, kIsPrivate: isPrivate, kCreationDate: creationDate.timeIntervalSince1970, kEndDate: endDate.timeIntervalSince1970]
+        
+        var optionDict = [String: AnyObject]()
+        for option in options {
+            if let optionId = option.identifier {
+                optionDict.updateValue(option.dictionaryCopy, forKey: optionId)
+            }
+        }
+        
+        return [kTitle: title, kOptions: optionDict, kMembers: memberIds.map{ $0 }.toDic(), kIsPrivate: isPrivate, kCreationDate: creationDate.timeIntervalSince1970, kEndDate: endDate.timeIntervalSince1970]
     }
     
-    init(title: String, options: [Option], members: [String], isPrivate: Bool, endDate: NSDate) {
+    init(title: String, options: [Option], memberIds: [String], isPrivate: Bool, endDate: NSDate) {
         
         self.title = title
         self.options = options
-        self.members = members
+        self.memberIds = memberIds
         self.isPrivate = isPrivate
         self.creationDate = NSDate()
         self.endDate = endDate
@@ -62,7 +70,7 @@ struct Poll: FirebaseType {
         }
         self.title = title
         self.options = options.flatMap{ Option(dictionary: $1, identifier: $0) }
-        self.members = Array(membersDicts.keys)
+        self.memberIds = Array(membersDicts.keys)
         self.isPrivate = isPrivate
         self.creationDate = NSDate(timeIntervalSince1970: creationDate)
         self.endDate = NSDate(timeIntervalSince1970: endDate)
@@ -71,3 +79,20 @@ struct Poll: FirebaseType {
 }
 
 
+// MARK: - Equatable
+
+extension Poll: Equatable { }
+
+func ==(lhs: Poll, rhs: Poll) -> Bool {
+    return lhs.identifier == rhs.identifier && lhs.title == rhs.title
+}
+
+extension Array {
+    func toDic() -> [String : AnyObject] {
+        var dicToReturn = [String : AnyObject]()
+        for item in self {
+            dicToReturn.updateValue(true, forKey: String(item))
+        }
+        return dicToReturn
+    }
+}

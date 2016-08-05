@@ -14,17 +14,27 @@ class UserController {
     static let currentUserKey = "currentUser"
     static let currentUserIdKey = "currentUserIdentifier"
     
+//    var currentUserId = "currentUser" // TODO: replace with actual current user id
+    
     static let shared = UserController()
     
+    // TODO: Uncomment when we have a user object
     var currentUser = UserController.loadFromDefaults()
     
-    static func createUser(name: String, email: String, password: String, completion: (user: User?) -> Void) {
+    var currentUserId: String {
+        guard let currentUser = currentUser, currentUserId = currentUser.identifier else {
+            fatalError("Could not retrieve current user id")
+        }
+        return currentUserId
+    }
+    
+    static func createUser(firstName: String, lastName: String, photoUrl: String, email: String, password: String, completion: (user: User?) -> Void) {
         FIRAuth.auth()?.createUserWithEmail(email, password: password, completion: { (user, error) in
             if let error = error {
                 print("There was error while creating user: \(error.localizedDescription)")
                 completion(user: nil)
             } else if let firebaseUser = user {
-                var user = User(firstName: name, lastName: name, fullName: name, photoUrl: "hey", identifier: firebaseUser.uid)
+                var user = User(firstName: firstName, lastName: lastName, photoUrl: photoUrl, identifier: firebaseUser.uid)
                 user.save()
                 UserController.shared.currentUser = user
                 UserController.saveUserInDefaults(user)
