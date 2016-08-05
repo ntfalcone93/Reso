@@ -12,8 +12,8 @@ class PollListViewController: UIViewController, UITableViewDataSource, UITableVi
     
     var privatePolls: [Poll] = []
     var publicPolls: [Poll] = []
-//    var incompletePolls: [Poll] = [Poll(title: "what movie should we go to", options: [], members: ["parker","sean","patrick","nate"], isPrivate: false, endDate: NSDate(timeIntervalSinceNow: 24)), Poll(title: "which vacatio shoudld we go on?", options: [], members: ["parker","sean","patrick","nate", "josh", "justin", "alan"], isPrivate: true, endDate: NSDate(timeIntervalSinceNow: 900))]
-//    var completePolls: [Poll] = [Poll(title: "who is your favorite super hero?", options: [], members: ["parker","sean","patrick"], isPrivate: true, endDate: NSDate(timeIntervalSinceNow: 24)), Poll(title: "should I buy the Jordan's or the LeBrons?", options: [], members: ["parker","sean","patrick","nate", "josh", "justin", "alan", "mason", "Tyler", "Jordan", "jake"], isPrivate: false, endDate: NSDate(timeIntervalSinceNow: 400000))]
+    var incompletePolls: [Poll] = [Poll(title: "what movie should we go to", options: [], members: ["parker","sean","patrick","nate"], isPrivate: false, endDate: NSDate(timeIntervalSinceNow: 24)), Poll(title: "which vacatio shoudld we go on?", options: [], members: ["parker","sean","patrick","nate", "josh", "justin", "alan"], isPrivate: true, endDate: NSDate(timeIntervalSinceNow: 900))]
+    var completePolls: [Poll] = [Poll(title: "who is your favorite super hero?", options: [], members: ["parker","sean","patrick"], isPrivate: true, endDate: NSDate(timeIntervalSinceNow: 24)), Poll(title: "should I buy the Jordan's or the LeBrons?", options: [], members: ["parker","sean","patrick","nate", "josh", "justin", "alan", "mason", "Tyler", "Jordan", "jake"], isPrivate: false, endDate: NSDate(timeIntervalSinceNow: 400000))]
     var user: User?
     
     @IBOutlet weak var tableView: UITableView!
@@ -52,15 +52,26 @@ class PollListViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return 0
+            print(incompletePolls.count)
+            return incompletePolls.count
         } else {
-            return 0
+            print(completePolls.count)
+            return completePolls.count
         }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("pollCell") as! PollTableViewCell
+        
+        let poll = completePolls[indexPath.row]
+        
+        cell.votingStatusImageView.image = UIImage(named: "complete")
+        cell.pollNameLabel.text = poll.title
+        cell.numberOfMembersLabel.text = "\(poll.members.count)"
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "HH-mm"
+        cell.timerRemainingLabel.text = formatter.stringFromDate(poll.endDate)
         
         
         return cell
