@@ -96,40 +96,51 @@
                                                 <rect key="frame" x="60" y="0.0" width="480" height="240"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sgx-mQ-hCb">
-                                                        <rect key="frame" x="0.0" y="0.0" width="480" height="35"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="480" height="27"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="adk-Jv-DEU">
-                                                        <rect key="frame" x="0.0" y="35" width="480" height="34"/>
+                                                        <rect key="frame" x="0.0" y="27" width="480" height="27"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ukm-Bf-Pbq">
-                                                        <rect key="frame" x="0.0" y="69" width="480" height="34"/>
+                                                        <rect key="frame" x="0.0" y="54" width="480" height="27"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ne6-b9-sMa">
-                                                        <rect key="frame" x="0.0" y="103" width="480" height="34"/>
+                                                        <rect key="frame" x="0.0" y="80" width="480" height="27"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Unt-vC-Le0">
-                                                        <rect key="frame" x="0.0" y="137" width="480" height="35"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Unt-vC-Le0">
+                                                        <rect key="frame" x="0.0" y="107" width="480" height="27"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Eju-x0-T9W">
-                                                        <rect key="frame" x="0.0" y="172" width="480" height="34"/>
+                                                        <rect key="frame" x="0.0" y="134" width="480" height="27"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TKd-5T-1Mu">
+                                                        <rect key="frame" x="0.0" y="160" width="480" height="27"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" red="0.92477964739999996" green="0.92477964739999996" blue="0.92477964739999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dwC-KU-X4h">
+                                                        <rect key="frame" x="0.0" y="187" width="480" height="27"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nNN-s2-Ygp">
-                                                        <rect key="frame" x="0.0" y="206" width="480" height="34"/>
+                                                        <rect key="frame" x="0.0" y="214" width="480" height="27"/>
                                                         <state key="normal" title="Login">
                                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
@@ -200,9 +211,13 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="LastNameLabel" destination="TKd-5T-1Mu" id="S77-EU-mPc"/>
                         <outlet property="emailTextField" destination="adk-Jv-DEU" id="GWt-Nc-kEc"/>
+                        <outlet property="firstNameLabel" destination="Unt-vC-Le0" id="mra-iJ-6Mx"/>
+                        <outlet property="firstNameTextField" destination="Eju-x0-T9W" id="mZ0-X8-tTx"/>
+                        <outlet property="lastNameTextField" destination="dwC-KU-X4h" id="XXK-Gg-wjc"/>
+                        <outlet property="loginButtonOutlet" destination="nNN-s2-Ygp" id="h2h-RQ-4xr"/>
                         <outlet property="passwordTextField" destination="ne6-b9-sMa" id="qKv-mH-WMs"/>
-                        <outlet property="usernameTextField" destination="Eju-x0-T9W" id="cOI-rp-AuR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Xx-oj-eNx" userLabel="First Responder" sceneMemberID="firstResponder"/>
