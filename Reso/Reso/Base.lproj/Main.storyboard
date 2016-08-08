@@ -14,7 +14,7 @@
                 <viewControllerPlaceholder storyboardName="CreatePoll" id="fnD-mL-WMG" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vbR-FZ-wzp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1541.5" y="-81"/>
+            <point key="canvasLocation" x="1098.5" y="556"/>
         </scene>
         <!--Poll List View Controller-->
         <scene sceneID="IPW-Nc-rzG">
@@ -136,7 +136,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="600" height="63"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0ZP-Nm-jbx" id="VmU-EP-qVS">
-                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="63"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="62.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q7J-TQ-puZ">
@@ -270,6 +270,7 @@
                                                     <outlet property="pollNameLabel" destination="zSx-6G-45y" id="8D5-Wy-rHV"/>
                                                     <outlet property="timerRemainingLabel" destination="vMO-Vk-uIV" id="UAW-Fk-L2v"/>
                                                     <outlet property="votingStatusImageView" destination="CGg-0C-z1V" id="DsC-0T-8vF"/>
+                                                    <segue destination="5eg-ux-XjQ" kind="show" identifier="ToPollDetail" id="B3J-dR-hY0"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -299,8 +300,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="lpq-Lo-yTE"/>
                     <connections>
-                        <outlet property="privatePublicSegmentedControl" destination="YRn-pX-5Yq" id="9YK-yQ-1p1"/>
+                        <outlet property="pollSegmentController" destination="YRn-pX-5Yq" id="tWl-FA-SJU"/>
                         <outlet property="tableView" destination="6Qx-Va-vDR" id="gWk-o9-hYz"/>
+                        <segue destination="ghK-wA-seZ" kind="presentation" identifier="toLogin" id="5ra-nn-NK0"/>
+                        <segue destination="fnD-mL-WMG" kind="presentation" identifier="toCreatePoll" id="Tu5-Hj-7z6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cDl-Xa-TFk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -313,7 +316,7 @@
                 <viewControllerPlaceholder storyboardName="Login" id="ghK-wA-seZ" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p8V-D5-c5X" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1499.5" y="397"/>
+            <point key="canvasLocation" x="1104.5" y="-275"/>
         </scene>
         <!--Detail-->
         <scene sceneID="FSc-j9-bFA">
@@ -321,7 +324,7 @@
                 <viewControllerPlaceholder storyboardName="Detail" id="5eg-ux-XjQ" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nPC-Pb-EhX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1517" y="126"/>
+            <point key="canvasLocation" x="1540" y="219"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="72S-UV-GTv">
