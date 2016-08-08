@@ -10,8 +10,17 @@ import UIKit
 
 class PollOptionsViewController: UIViewController {
     
+    var poll: Poll?
+   
+    var options: [Option] {
+        guard let poll = poll else {
+            return []
+        }
+        return poll.options
+    }
+    
     // MARK: - IBOutlets
-
+    
     // MARK: Buttons
     @IBOutlet weak var questionOneButton: UIButton!
     @IBOutlet weak var questionTwoButton: UIButton!
@@ -28,17 +37,81 @@ class PollOptionsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupButtonsWithOptions()
 
+        
     }
+    
+    func setupButtonsWithOptions() {
+        if options.count == 2 {
+            
+            questionOneLabel.text = "\(options[0].name)"
+            questionTwoLabel.text = "\(options[1].name)"
 
-    // MARK: - IBActions
-    // MARK: Button Tapped
-
-    @IBAction func buttonTapped(sender: UIButton) {
-        if sender == questionOneButton {
-            // record fishing
+            questionThreeButton.hidden = true
+            questionThreeLabel.hidden = true
+            questionFourButton.hidden = true
+            questionFourLabel.hidden = true
+            
+        } else if options.count == 3 {
+            
+            questionOneLabel.text = "\(options[0].name)"
+            questionTwoLabel.text = "\(options[1].name)"
+            questionThreeLabel.text = "\(options[2].name)"
+        
+            questionFourButton.hidden = true
+            questionFourLabel.hidden = true
+        
+        } else if options.count == 4 {
+            
+            questionOneLabel.text = "\(options[0].name)"
+            questionTwoLabel.text = "\(options[1].name)"
+            questionThreeLabel.text = "\(options[2].name)"
+            questionFourLabel.text = "\(options[3].name)"
+            
+        } else {
+            return
         }
     }
+    
+    // MARK: - IBActions
+    // MARK: Button Tapped
+    
+    @IBAction func buttonTapped(sender: UIButton) {
+        switch sender.tag {
+            
+        
+        case 0:
+            guard options.count >= 1 else {
+                return
+            }
+            print("Button 1 pressed 👍")
+
+            
+        case 1:
+            guard options.count >= 2 else {
+                return
+            }
+            print("Button 2 pressed 👍")
+            
+        case 2:
+            guard options.count >= 3 else {
+                return
+            }
+            print("Button 3 pressed 👍")
+            
+        case 3:
+            guard options.count >= 4 else {
+                return
+            }
+            print("Button 4 pressed 👍")
+            
+        default:
+            break
+        }
+        performSegueWithIdentifier("toResultsSegue", sender: nil)
+    }
+    
     
     @IBAction func buttonTouchDown(sender: UIButton) {
         sender.layer.borderWidth = 2.0
@@ -53,17 +126,11 @@ class PollOptionsViewController: UIViewController {
         sender.backgroundColor = UIColor(CGColor: cgColor)
     }
     
-    
-    
     // MARK: - Navigation
-
+    
     @IBAction func unwindToOptions(segue: UIStoryboardSegue) { }
-    /*
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        
     }
-    */
-
 }
