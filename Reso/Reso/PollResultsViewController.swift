@@ -21,7 +21,7 @@ class PollResultsViewController: UIViewController {
         super.viewDidLoad()
         
         let options = ["White water rafting", "Papa johns", "Harmons", "Sushi"]
-        let votes = [2.0, 5.0, 7.0, 0.0]
+        let votes = [3.0, 5.0, 7.0, 0.0]
         
         pieChartView.usePercentValuesEnabled = true
         

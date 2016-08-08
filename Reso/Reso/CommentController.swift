@@ -24,7 +24,10 @@ class CommentController {
             completion(comments: [])
             return
         }
-        FirebaseController.ref.child("comments").queryOrderedByChild("pollId").queryEqualToValue(pollId).observeEventType(.Value, withBlock: { (data) in
+        
+        FirebaseController.ref.child("comments").queryOrderedByChild("pollID").queryEqualToValue(pollId).observeEventType(.Value, withBlock: { (data) in
+            
+            print(data.value!)
             guard let commentDicts = data.value as? [String: [String: AnyObject]] else {
                 completion(comments: [])
                 return

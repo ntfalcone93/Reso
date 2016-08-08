@@ -22,6 +22,5 @@ class CommentsTableViewCell: UITableViewCell {
     func updateWithComment(comment: Comment, user: User) {
         userNameLabel.text = "\(user.firstName) \(user.lastName)"
         userCommentLabel.text = comment.text
-        
     }
 }
