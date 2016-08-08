@@ -300,7 +300,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="lpq-Lo-yTE"/>
                     <connections>
-                        <outlet property="privatePublicSegmentedControl" destination="YRn-pX-5Yq" id="9YK-yQ-1p1"/>
+                        <outlet property="pollSegmentController" destination="YRn-pX-5Yq" id="tWl-FA-SJU"/>
                         <outlet property="tableView" destination="6Qx-Va-vDR" id="gWk-o9-hYz"/>
                         <segue destination="ghK-wA-seZ" kind="presentation" identifier="toLogin" id="5ra-nn-NK0"/>
                         <segue destination="fnD-mL-WMG" kind="presentation" identifier="toCreatePoll" id="Tu5-Hj-7z6"/>

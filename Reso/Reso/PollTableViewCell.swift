@@ -20,18 +20,11 @@ class PollTableViewCell: UITableViewCell {
     
     @IBOutlet weak var timerRemainingLabel: UILabel!
     
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-        
-        
+    func updateWithPoll(poll: Poll) {
+        pollNameLabel.text = poll.title
+        // TODO: Replace with corresponding images
+        votingStatusImageView.image = poll.hasVoted ? UIImage(named: "complete") : UIImage(named: "incomplete")
+        numberOfMembersLabel.text = "\(poll.memberIds.count)"
+        timerRemainingLabel.text = "\(poll.timeRemaining)"
     }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
 }

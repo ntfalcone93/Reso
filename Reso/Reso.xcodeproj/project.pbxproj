@@ -263,8 +263,8 @@
 		02F7CB5F1D51406E0036B3C3 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				8BA5CC801D52D57200EF21FF /* CommentsTableViewCell.swift */,
 				AC3396411D53005E00B8928E /* PollTableViewCell.swift */,
+				8BA5CC801D52D57200EF21FF /* CommentsTableViewCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";

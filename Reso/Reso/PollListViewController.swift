@@ -10,15 +10,27 @@ import UIKit
 
 class PollListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    var privatePolls: [Poll] = []
-    var publicPolls: [Poll] = []
-//    var incompletePolls: [Poll] = [Poll(title: "what movie should we go to", options: [], members: ["parker","sean","patrick","nate"], isPrivate: false, endDate: NSDate(timeIntervalSinceNow: 24)), Poll(title: "which vacatio shoudld we go on?", options: [], members: ["parker","sean","patrick","nate", "josh", "justin", "alan"], isPrivate: true, endDate: NSDate(timeIntervalSinceNow: 900))]
-//    var completePolls: [Poll] = [Poll(title: "who is your favorite super hero?", options: [], members: ["parker","sean","patrick"], isPrivate: true, endDate: NSDate(timeIntervalSinceNow: 24)), Poll(title: "should I buy the Jordan's or the LeBrons?", options: [], members: ["parker","sean","patrick","nate", "josh", "justin", "alan", "mason", "Tyler", "Jordan", "jake"], isPrivate: false, endDate: NSDate(timeIntervalSinceNow: 400000))]
-    var user: User?
+    var polls: [Poll] = []
+    
+    var completedPolls: [Poll] {
+        return polls.filter { $0.isComplete }
+    }
+    
+    var incompletePolls: [Poll] {
+        return polls.filter { !$0.isComplete }
+    }
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var pollSegmentController: UISegmentedControl!
     
-    @IBOutlet weak var privatePublicSegmentedControl: UISegmentedControl!
+    var pollSegment: PollType {
+        switch pollSegmentController.selectedSegmentIndex {
+        case 0:
+            return .Private
+        default:
+            return .Public
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,17 +40,35 @@ class PollListViewController: UIViewController, UITableViewDataSource, UITableVi
             performSegueWithIdentifier("toLogin", sender: self)
             return
         }
+        
+        // TESTING: Works great
+        //        let option1 = Option(name: "Helping students")
+        //        let option2 = Option(name: "Patrick's computer")
+        //        let option3 = Option(name: "Helping students beyond his paid time")
+        //        let option4 = Option(name: "Losing in ping pong")
+        //
+        //        let timeInterval = NSTimeInterval(floatLiteral: 1231231233.123)
+        //        PollController.create("How to annoy Nathan", options: [option1, option2, option3, option4], memberIds: [UserController.shared.currentUserId], isPrivate: true, endDate: NSDate(timeIntervalSinceNow: timeInterval))
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        guard UserController.shared.currentUser != nil else {
+            return
+        }
+        observePolls()
+    }
+    
+    func observePolls() {
+        PollController.observePolls(pollSegment) { (polls) in
+            self.polls = polls.sort { $0.endDate.timeIntervalSince1970 < $1.endDate.timeIntervalSince1970 }
+            self.tableView.reloadData()
+        }
     }
     
     @IBAction func segmentedContolButtonTapped(sender: AnyObject) {
-        if privatePublicSegmentedControl.selectedSegmentIndex == 0 {
-            
-        }
+        observePolls()
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -46,18 +76,18 @@ class PollListViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 1 {
-            return "Complete"
-        } else {
+        if section == 0 {
             return "Incomplete"
+        } else {
+            return "Complete"
         }
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return 0
+            return incompletePolls.count
         } else {
-            return 0
+            return completedPolls.count
         }
     }
     
@@ -65,6 +95,9 @@ class PollListViewController: UIViewController, UITableViewDataSource, UITableVi
         
         let cell = tableView.dequeueReusableCellWithIdentifier("pollCell") as! PollTableViewCell
         
+        let poll = indexPath.section == 0 ? incompletePolls[indexPath.row] : completedPolls[indexPath.row]
+        
+        cell.updateWithPoll(poll)
         
         return cell
     }

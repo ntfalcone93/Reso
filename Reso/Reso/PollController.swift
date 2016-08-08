@@ -10,8 +10,8 @@ import Foundation
 import FirebaseDatabase
 
 enum PollType {
-    case Public
     case Private
+    case Public
 }
 
 class PollController {
@@ -30,8 +30,10 @@ class PollController {
         var newPoll = Poll(title: title, options: options, memberIds: memberIds, isPrivate: isPrivate, endDate: endDate)
         newPoll.save()
         
-        memberIds.forEach { (id) in
-            savePollToUsersPolls(newPoll, userId: id)
+        if isPrivate {
+            memberIds.forEach { (id) in
+                savePollToUsersPolls(newPoll, userId: id)
+            }
         }
     }
     
@@ -131,7 +133,7 @@ class PollController {
             print(count)
             completion(user: users)
         }
-
+        
     }
 }
 
