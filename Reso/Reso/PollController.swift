@@ -7,21 +7,53 @@
 //
 
 import Foundation
+import FirebaseDatabase
 
 enum PollType {
-    case Public
     case Private
+    case Public
 }
 
 class PollController {
     
+    private static var usersPollKey = "usersPolls"
+    
+    static var pollRef: FIRDatabaseReference {
+        return FirebaseController.ref.child(Poll.key)
+    }
+    
+    static var usersPollRef: FIRDatabaseReference {
+        return FirebaseController.ref.child(usersPollKey)
+    }
+    
     static func create(title: String, options: [Option], memberIds: [String], isPrivate: Bool, endDate: NSDate) {
         var newPoll = Poll(title: title, options: options, memberIds: memberIds, isPrivate: isPrivate, endDate: endDate)
         newPoll.save()
+        
+        if isPrivate {
+            memberIds.forEach { (id) in
+                savePollToUsersPolls(newPoll, userId: id)
+            }
+        }
     }
     
-    func delete(poll: Poll) {
+    static func savePollToUsersPolls(poll: Poll, userId: String) {
+        guard let pollId = poll.identifier else {
+            return
+        }
+        usersPollRef.child(userId).child(pollId).setValue(true)
+    }
+    
+    static func delete(poll: Poll) {
+        guard let pollId = poll.identifier else {
+            poll.delete()
+            return
+        }
+        poll.memberIds.forEach { (id) in
+            usersPollRef.child(id).child(pollId).removeValue()
+        }
         poll.delete()
+        
     }
     
     
@@ -30,8 +62,7 @@ class PollController {
         case .Private:
             // We need to observe the poll that belong to the current user
             let currentUserId = UserController.shared.currentUserId
-            let ref = FirebaseController.ref.child("usersPolls").child(currentUserId)
-            ref.observeEventType(.Value, withBlock: { (data) in
+            usersPollRef.child(currentUserId).observeEventType(.Value, withBlock: { (data) in
                 guard let pollDict = data.value as? [String: AnyObject] else {
                     completion(polls: [])
                     return
@@ -54,7 +85,7 @@ class PollController {
             })
         case .Public:
             // If its public then we will observe only the polls that are public
-            let ref = FirebaseController.ref.child("polls").queryOrderedByChild("isPrivate").queryEqualToValue(false)
+            let ref = FirebaseController.ref.child(Poll.key).queryOrderedByChild("isPrivate").queryEqualToValue(false).queryLimitedToLast(20)
             ref.observeEventType(.Value, withBlock: { (data) in
                 guard let pollDicts = data.value as? [String: [String: AnyObject]] else {
                     completion(polls: [])
@@ -66,9 +97,8 @@ class PollController {
         }
     }
     
-    
     static func fetchPollWithIdentifier(identifier: String, completion: (poll: Poll?) -> Void) {
-        let ref = FirebaseController.ref.child("polls").child(identifier)
+        let ref = FirebaseController.ref.child(Poll.key).child(identifier)
         ref.observeSingleEventOfType(.Value, withBlock:  { (data) in
             guard let pollDict = data.value as? [String: AnyObject] else {
                 completion(poll: nil)
@@ -79,20 +109,31 @@ class PollController {
         })
     }
     
-    
-    static func vote(option: Option) {                                                                          ///ref poll identifier
-    
-    
-    
+    static func vote(poll: Poll, option: Option) {
+        guard let pollId = poll.identifier else {
+            return
+        }
+        pollRef.child(pollId).child(Option.key).child(option.identifier).child(Option.voteKey).child(UserController.shared.currentUserId).setValue(true)
     }
     
-    
-                                                                                                                ///fetch members(users) using poll ID
     func fetchUsersForPoll(poll: Poll, completion: (user: [User]) -> Void) {
-   
-//    FirebaseController.ref.child("polls").child(identifier).
+        var users = [User]()
+        let group = dispatch_group_create()
+        var count = 0
+        poll.memberIds.forEach { (id) in
+            dispatch_group_enter(group)
+            UserController.fetchUserForIdentifier(id, completion: { (user) in
+                if let user = user {
+                    users.append(user)
+                }
+                dispatch_group_leave(group)
+            })
+        }
+        dispatch_group_notify(group, dispatch_get_main_queue()) {
+            print(count)
+            completion(user: users)
+        }
+        
     }
-    
-    
 }
 

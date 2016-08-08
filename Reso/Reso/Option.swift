@@ -11,12 +11,14 @@ import Foundation
 
 struct Option {
     
+    static let key = "options"
+    static let voteKey = "votes"
     private let kName = "name"
     private let kVotes = "votes"
     
     var name: String
     var votes: [String]
-    var identifier: String?
+    var identifier: String
 
     
     var dictionaryCopy: [String : AnyObject]{
@@ -39,5 +41,6 @@ struct Option {
         } else {
             self.votes = []
         }
+        self.identifier = identifier
     }
 }
