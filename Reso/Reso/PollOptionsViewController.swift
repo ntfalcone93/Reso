@@ -79,17 +79,33 @@ class PollOptionsViewController: UIViewController {
     
     @IBAction func buttonTapped(sender: UIButton) {
         switch sender.tag {
+            
+        
         case 0:
             guard options.count >= 1 else {
                 return
             }
+            print("Button 1 pressed 👍")
+
             
         case 1:
-            break
+            guard options.count >= 2 else {
+                return
+            }
+            print("Button 2 pressed 👍")
+            
         case 2:
-            break
+            guard options.count >= 3 else {
+                return
+            }
+            print("Button 3 pressed 👍")
+            
         case 3:
-            break
+            guard options.count >= 4 else {
+                return
+            }
+            print("Button 4 pressed 👍")
+            
         default:
             break
         }
