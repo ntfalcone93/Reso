@@ -76,12 +76,7 @@ class PollDetailViewController: UIViewController, UITextFieldDelegate {
     
     
     // MARK: - Helper functions
-    
-    func setupKeyboardNotifications() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: self.view.window)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: self.view.window)
-    }
-    
+
     func fetchUsersForPoll(poll: Poll) {
         
     }
@@ -99,6 +94,11 @@ class PollDetailViewController: UIViewController, UITextFieldDelegate {
 
 extension PollDetailViewController {
     // MARK: - Keyboard translation & scroll
+    
+    func setupKeyboardNotifications() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: self.view.window)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: self.view.window)
+    }
     
     func keyboardWillShow(sender: NSNotification) {
         guard let userInfo: [NSObject: AnyObject] = sender.userInfo,
