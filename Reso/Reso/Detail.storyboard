@@ -123,6 +123,9 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="530" height="24"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="GtN-Or-DJp" id="jaR-7C-QMY"/>
+                                                        </connections>
                                                     </textField>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Isn-oT-v5m" userLabel="sendButton">
                                                         <rect key="frame" x="538" y="0.0" width="46" height="24"/>

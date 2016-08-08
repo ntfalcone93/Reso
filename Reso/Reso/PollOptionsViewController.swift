@@ -10,8 +10,11 @@ import UIKit
 
 class PollOptionsViewController: UIViewController {
     
+    
+    var options = [Option]()
+    
     // MARK: - IBOutlets
-
+    
     // MARK: Buttons
     @IBOutlet weak var questionOneButton: UIButton!
     @IBOutlet weak var questionTwoButton: UIButton!
@@ -28,18 +31,28 @@ class PollOptionsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
+        
     }
-
+    
     // MARK: - IBActions
     // MARK: Button Tapped
-
+    
     @IBAction func buttonTapped(sender: UIButton) {
-        if sender == questionOneButton {
-            // record fishing
+        switch sender.tag {
+        case 0:
+        //
+        case 1:
+        //
+        case 2:
+        //
+        case 3:
+        //
+        default:
+            break
         }
         performSegueWithIdentifier("toResultsSegue", sender: nil)
     }
+    
     
     @IBAction func buttonTouchDown(sender: UIButton) {
         sender.layer.borderWidth = 2.0
@@ -54,15 +67,11 @@ class PollOptionsViewController: UIViewController {
         sender.backgroundColor = UIColor(CGColor: cgColor)
     }
     
-    
-    
     // MARK: - Navigation
-
+    
     @IBAction func unwindToOptions(segue: UIStoryboardSegue) { }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
     }
-    
-
 }

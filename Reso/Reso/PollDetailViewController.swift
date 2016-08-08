@@ -25,17 +25,16 @@ class PollDetailViewController: UIViewController, UITextFieldDelegate {
         
         setupKeyboardNotifications()
         
-        let option = Option(name: "True")
-        let option1 = Option(name: "False")
-        self.poll = Poll(title: "Star Wars or Star TreK?", options: [option, option1], memberIds: ["turkeydumpling567", "googlehacks7823"], isPrivate: true, endDate: NSDate().dateByAddingTimeInterval(1500))
-        self.poll?.identifier = "turkeyJones007"
+        hideKeyboardWhenTappedAround()
+
+        mockData()
         
         if let poll = poll {
             fetchUsersForPoll(poll)
         }
+        
+        
     }
-    
-    
     
     // MARK: - IBActions
     
@@ -45,7 +44,6 @@ class PollDetailViewController: UIViewController, UITextFieldDelegate {
         if let commentText = commentTextField.text, let currentUserID = user.identifier, poll = self.poll, pollID = poll.identifier {
             CommentController.create(commentText, senderId: currentUserID, pollId: pollID)
             updateComments(poll)
-//            dismissViewControllerAnimated(true, completion: nil)
         } else {
              let alertController = UIAlertController(title: "Missing Information", message: "You did not type any text.", preferredStyle: .Alert)
             alertController.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: nil))
@@ -56,7 +54,6 @@ class PollDetailViewController: UIViewController, UITextFieldDelegate {
     
     func updateComments(pollID: Poll) {
         CommentController.observeCommentsOnPoll(pollID, completion: { (comments) in
-            print("COMMENTS COUNT: --______------> ....... (\(comments.count))")
             self.comments = comments
             self.tableView.reloadData()
         })
@@ -70,6 +67,14 @@ class PollDetailViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
+    func mockData() {
+        let option = Option(name: "True")
+        let option1 = Option(name: "False")
+        self.poll = Poll(title: "Star Wars or Star TreK?", options: [option, option1], memberIds: ["turkeydumpling567", "googlehacks7823"], isPrivate: true, endDate: NSDate().dateByAddingTimeInterval(1500))
+        self.poll?.identifier = "turkeyJones007"
+    }
+    
+    
     // MARK: - Helper functions
     
     func setupKeyboardNotifications() {
@@ -80,17 +85,6 @@ class PollDetailViewController: UIViewController, UITextFieldDelegate {
     func fetchUsersForPoll(poll: Poll) {
         
     }
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }
 
 extension PollDetailViewController {
@@ -115,6 +109,15 @@ extension PollDetailViewController {
         guard let userInfo: [NSObject: AnyObject] = sender.userInfo,
             keyboardSize: CGSize = userInfo[UIKeyboardFrameBeginUserInfoKey]?.CGRectValue.size else { return }
         self.view.frame.origin.y  += keyboardSize.height
+    }
+    
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(PollDetailViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
     }
 }
 
