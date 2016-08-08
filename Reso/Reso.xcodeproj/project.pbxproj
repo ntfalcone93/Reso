@@ -7,6 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02632C521D5943E1007C082E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02C8166E1D4FF64700A82AD3 /* LaunchScreen.storyboard */; };
+		02632C531D5943E3007C082E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02C8166E1D4FF64700A82AD3 /* LaunchScreen.storyboard */; };
+		02632C541D5943E6007C082E /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 027E55471D52832A0010DC7F /* Login.storyboard */; };
+		02632C551D5943E7007C082E /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 027E55471D52832A0010DC7F /* Login.storyboard */; };
+		02632C561D5943EC007C082E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02C816691D4FF64700A82AD3 /* Main.storyboard */; };
+		02632C571D5943ED007C082E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02C816691D4FF64700A82AD3 /* Main.storyboard */; };
+		02632C581D5943F2007C082E /* CreatePoll.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 027E554B1D52833F0010DC7F /* CreatePoll.storyboard */; };
+		02632C591D5943F2007C082E /* CreatePoll.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 027E554B1D52833F0010DC7F /* CreatePoll.storyboard */; };
+		02632C5A1D5943FA007C082E /* LoginSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3396431D530D5500B8928E /* LoginSignupViewController.swift */; };
+		02632C5B1D5943FB007C082E /* LoginSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3396431D530D5500B8928E /* LoginSignupViewController.swift */; };
+		02632C5C1D5943FE007C082E /* PollListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC33963F1D52FFFF00B8928E /* PollListViewController.swift */; };
+		02632C5D1D5943FE007C082E /* PollListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC33963F1D52FFFF00B8928E /* PollListViewController.swift */; };
+		02632C5E1D59440B007C082E /* PollTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3396411D53005E00B8928E /* PollTableViewCell.swift */; };
+		02632C5F1D59440C007C082E /* PollTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3396411D53005E00B8928E /* PollTableViewCell.swift */; };
+		02632C601D594416007C082E /* PollController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0BE34B1D53A21B0013C723 /* PollController.swift */; };
+		02632C611D594417007C082E /* PollController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0BE34B1D53A21B0013C723 /* PollController.swift */; };
+		02632C621D59442C007C082E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C816651D4FF64700A82AD3 /* AppDelegate.swift */; };
+		02632C631D59442C007C082E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C816651D4FF64700A82AD3 /* AppDelegate.swift */; };
+		02632C641D59442F007C082E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02C8166C1D4FF64700A82AD3 /* Assets.xcassets */; };
+		02632C651D594430007C082E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02C8166C1D4FF64700A82AD3 /* Assets.xcassets */; };
 		027E55481D52832A0010DC7F /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 027E55471D52832A0010DC7F /* Login.storyboard */; };
 		027E554A1D5283350010DC7F /* Detail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 027E55491D5283350010DC7F /* Detail.storyboard */; };
 		027E554C1D52833F0010DC7F /* CreatePoll.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 027E554B1D52833F0010DC7F /* CreatePoll.storyboard */; };
@@ -469,6 +489,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02632C541D5943E6007C082E /* Login.storyboard in Resources */,
+				02632C581D5943F2007C082E /* CreatePoll.storyboard in Resources */,
+				02632C561D5943EC007C082E /* Main.storyboard in Resources */,
+				02632C521D5943E1007C082E /* LaunchScreen.storyboard in Resources */,
+				02632C641D59442F007C082E /* Assets.xcassets in Resources */,
 				02C816951D4FF6DE00A82AD3 /* GoogleService-Info.plist in Resources */,
 				8BF880E71D55299F00C648E7 /* Detail.storyboard in Resources */,
 			);
@@ -478,6 +503,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02632C551D5943E7007C082E /* Login.storyboard in Resources */,
+				02632C591D5943F2007C082E /* CreatePoll.storyboard in Resources */,
+				02632C571D5943ED007C082E /* Main.storyboard in Resources */,
+				02632C531D5943E3007C082E /* LaunchScreen.storyboard in Resources */,
+				02632C651D594430007C082E /* Assets.xcassets in Resources */,
 				02C816961D4FF6DF00A82AD3 /* GoogleService-Info.plist in Resources */,
 				8BF880E81D55299F00C648E7 /* Detail.storyboard in Resources */,
 			);
@@ -638,7 +668,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02632C601D594416007C082E /* PollController.swift in Sources */,
 				8BF880E31D55297500C648E7 /* FirebaseController.swift in Sources */,
+				02632C621D59442C007C082E /* AppDelegate.swift in Sources */,
 				8BF880DB1D55296700C648E7 /* Option.swift in Sources */,
 				8BF880D51D55290F00C648E7 /* PollResultsViewController.swift in Sources */,
 				8BF880D31D55290C00C648E7 /* PollOptionsViewController.swift in Sources */,
@@ -647,10 +679,13 @@
 				8BF880E51D55297C00C648E7 /* PollCreateViewController.swift in Sources */,
 				8BF880F01D5531A000C648E7 /* CommentController.swift in Sources */,
 				8BF880DD1D55296B00C648E7 /* Poll.swift in Sources */,
+				02632C5C1D5943FE007C082E /* PollListViewController.swift in Sources */,
+				02632C5E1D59440B007C082E /* PollTableViewCell.swift in Sources */,
 				8BF880D91D55296400C648E7 /* Comment.swift in Sources */,
 				8BF880CD1D5528E600C648E7 /* CommentsTableViewCell.swift in Sources */,
 				02C8167B1D4FF64700A82AD3 /* ResoTests.swift in Sources */,
 				8BF880DF1D55296E00C648E7 /* User.swift in Sources */,
+				02632C5A1D5943FA007C082E /* LoginSignupViewController.swift in Sources */,
 				8BF880D71D55291200C648E7 /* ChartView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -659,7 +694,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02632C611D594417007C082E /* PollController.swift in Sources */,
 				8BF880E41D55297500C648E7 /* FirebaseController.swift in Sources */,
+				02632C631D59442C007C082E /* AppDelegate.swift in Sources */,
 				8BF880DC1D55296800C648E7 /* Option.swift in Sources */,
 				8BF880D61D55290F00C648E7 /* PollResultsViewController.swift in Sources */,
 				8BF880D41D55290C00C648E7 /* PollOptionsViewController.swift in Sources */,
@@ -668,10 +705,13 @@
 				8BF880E61D55297C00C648E7 /* PollCreateViewController.swift in Sources */,
 				8BF880F51D5531A000C648E7 /* CommentController.swift in Sources */,
 				8BF880DE1D55296B00C648E7 /* Poll.swift in Sources */,
+				02632C5D1D5943FE007C082E /* PollListViewController.swift in Sources */,
+				02632C5F1D59440C007C082E /* PollTableViewCell.swift in Sources */,
 				8BF880DA1D55296500C648E7 /* Comment.swift in Sources */,
 				8BF880D21D5528E600C648E7 /* CommentsTableViewCell.swift in Sources */,
 				02C816861D4FF64700A82AD3 /* ResoUITests.swift in Sources */,
 				8BF880E01D55296E00C648E7 /* User.swift in Sources */,
+				02632C5B1D5943FB007C082E /* LoginSignupViewController.swift in Sources */,
 				8BF880D81D55291200C648E7 /* ChartView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

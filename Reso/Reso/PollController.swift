@@ -119,7 +119,6 @@ class PollController {
     func fetchUsersForPoll(poll: Poll, completion: (user: [User]) -> Void) {
         var users = [User]()
         let group = dispatch_group_create()
-        var count = 0
         poll.memberIds.forEach { (id) in
             dispatch_group_enter(group)
             UserController.fetchUserForIdentifier(id, completion: { (user) in
@@ -130,7 +129,6 @@ class PollController {
             })
         }
         dispatch_group_notify(group, dispatch_get_main_queue()) {
-            print(count)
             completion(user: users)
         }
         
