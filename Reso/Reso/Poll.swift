@@ -10,6 +10,7 @@ import Foundation
 
 struct Poll: FirebaseType {
     
+    static let key = "polls"
     private let kTitle = "title"
     private let kOptions = "options"
     private let kMembers = "members"
@@ -26,25 +27,33 @@ struct Poll: FirebaseType {
     var endDate: NSDate
     var identifier: String?
     
-    //    var hasVoted {
-    //    }
-    //
-    //    var timeRemaining {
-    //    }
+    var hasVoted: Bool {
+        for option in options {
+            if option.votes.contains(UserController.shared.currentUserId) {
+                return true
+            }
+        }
+        return false
+    }
+    
+    var timeRemaining: NSTimeInterval {
+        return endDate.timeIntervalSince1970 - NSDate().timeIntervalSince1970
+    }
+    
+    var isComplete: Bool {
+        return NSDate().timeIntervalSince1970 >= endDate.timeIntervalSince1970
+    }
     
     var endpoint: String {
-        return "polls"
+        return Poll.key
     }
     
     var dictionaryCopy: [String : AnyObject] {
         
         var optionDict = [String: AnyObject]()
-        for option in options {
-            if let optionId = option.identifier {
-                optionDict.updateValue(option.dictionaryCopy, forKey: optionId)
-            }
+        options.forEach { (option) in
+            optionDict.updateValue(option.dictionaryCopy, forKey: option.identifier)
         }
-        
         return [kTitle: title, kOptions: optionDict, kMembers: memberIds.map{ $0 }.toDic(), kIsPrivate: isPrivate, kCreationDate: creationDate.timeIntervalSince1970, kEndDate: endDate.timeIntervalSince1970]
     }
     
