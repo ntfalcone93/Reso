@@ -10,6 +10,7 @@ import Foundation
 
 struct Poll: FirebaseType {
     
+    static let key = "polls"
     private let kTitle = "title"
     private let kOptions = "options"
     private let kMembers = "members"
@@ -33,7 +34,7 @@ struct Poll: FirebaseType {
     //    }
     
     var endpoint: String {
-        return "polls"
+        return Poll.key
     }
     
     var dictionaryCopy: [String : AnyObject] {

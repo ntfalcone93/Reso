@@ -24,7 +24,10 @@ class PollListViewController: UIViewController, UITableViewDataSource, UITableVi
         super.viewDidLoad()
         
         
-        
+        guard UserController.shared.currentUser != nil else {
+            performSegueWithIdentifier("toLogin", sender: self)
+            return
+        }
     }
     
     override func didReceiveMemoryWarning() {

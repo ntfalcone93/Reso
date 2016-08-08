@@ -272,12 +272,12 @@
 		02F7CB601D5140910036B3C3 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				DDED6A3E1D52AA5400BC80DD /* PollCreateViewController.swift */,
-				8BA5CC7E1D52D53800EF21FF /* PollResultsViewController.swift */,
-				8BA5CC7C1D52D50200EF21FF /* PollOptionsViewController.swift */,
-				8BDF5C811D52A9ED009C15EB /* PollDetailViewController.swift */,
 				AC3396431D530D5500B8928E /* LoginSignupViewController.swift */,
 				AC33963F1D52FFFF00B8928E /* PollListViewController.swift */,
+				DDED6A3E1D52AA5400BC80DD /* PollCreateViewController.swift */,
+				8BDF5C811D52A9ED009C15EB /* PollDetailViewController.swift */,
+				8BA5CC7C1D52D50200EF21FF /* PollOptionsViewController.swift */,
+				8BA5CC7E1D52D53800EF21FF /* PollResultsViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
