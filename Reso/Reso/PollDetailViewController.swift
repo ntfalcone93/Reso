@@ -85,6 +85,16 @@ class PollDetailViewController: UIViewController, UITextFieldDelegate {
     func fetchUsersForPoll(poll: Poll) {
         
     }
+    
+    // MARK: - Navigation 
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "optionsSegue" {
+            if let pollOptionsVC = segue.destinationViewController as? PollOptionsViewController {
+                pollOptionsVC.poll = poll
+            }
+        }
+    }
 }
 
 extension PollDetailViewController {

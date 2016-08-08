@@ -10,8 +10,14 @@ import UIKit
 
 class PollOptionsViewController: UIViewController {
     
-    
-    var options = [Option]()
+    var poll: Poll?
+   
+    var options: [Option] {
+        guard let poll = poll else {
+            return []
+        }
+        return poll.options
+    }
     
     // MARK: - IBOutlets
     
@@ -31,7 +37,41 @@ class PollOptionsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupButtonsWithOptions()
+
         
+    }
+    
+    func setupButtonsWithOptions() {
+        if options.count == 2 {
+            
+            questionOneLabel.text = "\(options[0].name)"
+            questionTwoLabel.text = "\(options[1].name)"
+
+            questionThreeButton.hidden = true
+            questionThreeLabel.hidden = true
+            questionFourButton.hidden = true
+            questionFourLabel.hidden = true
+            
+        } else if options.count == 3 {
+            
+            questionOneLabel.text = "\(options[0].name)"
+            questionTwoLabel.text = "\(options[1].name)"
+            questionThreeLabel.text = "\(options[2].name)"
+        
+            questionFourButton.hidden = true
+            questionFourLabel.hidden = true
+        
+        } else if options.count == 4 {
+            
+            questionOneLabel.text = "\(options[0].name)"
+            questionTwoLabel.text = "\(options[1].name)"
+            questionThreeLabel.text = "\(options[2].name)"
+            questionFourLabel.text = "\(options[3].name)"
+            
+        } else {
+            return
+        }
     }
     
     // MARK: - IBActions
@@ -40,13 +80,16 @@ class PollOptionsViewController: UIViewController {
     @IBAction func buttonTapped(sender: UIButton) {
         switch sender.tag {
         case 0:
-        //
+            guard options.count >= 1 else {
+                return
+            }
+            
         case 1:
-        //
+            break
         case 2:
-        //
+            break
         case 3:
-        //
+            break
         default:
             break
         }
