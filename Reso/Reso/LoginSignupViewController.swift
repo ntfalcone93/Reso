@@ -28,7 +28,11 @@ class LoginSignupViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
+        emailTextField.attributedPlaceholder = NSAttributedString(string:"Email", attributes:[NSForegroundColorAttributeName: UIColor.whiteColor().colorWithAlphaComponent(0.5)])
+        emailTextField.layer.borderColor = UIColor.whiteColor().CGColor
+        
+        passwordTextField.attributedPlaceholder = NSAttributedString(string:"password", attributes:[NSForegroundColorAttributeName: UIColor.whiteColor().colorWithAlphaComponent(0.5)])
+        emailTextField.layer.borderColor = UIColor.whiteColor().CGColor
     }
     
     @IBAction func selectImageTapped(sender: AnyObject) {
@@ -50,7 +54,7 @@ class LoginSignupViewController: UIViewController {
         case .Create:
             guard let firstName = firstNameTextField.text, lastName = lastNameTextField.text else { return }
             UserController.createUser(firstName, lastName: lastName, photoUrl: "", email: email, password: password, completion: { (user) in
-                    // TODO: Present an alert saying that we weren't able to create an account
+                // TODO: Present an alert saying that we weren't able to create an account
                 guard user != nil else {
                     return
                 }
@@ -85,23 +89,23 @@ class LoginSignupViewController: UIViewController {
 extension LoginSignupViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
-//        guard let data = UIImageJPEGRepresentation(image, 0.8) else {
-//            return
-//        }
-//        let storageRef = FIRStorage.storage().reference()
-//        
-//        let userImageRef = storageRef.child("users/image.jpg")
-//        
-//        userImageRef.putData(data, metadata: nil) { (metadata, error) in
-//            guard error == nil else {
-//                print(error?.localizedDescription)
-//                return
-//            }
-//            guard let metadata = metadata else {
-//                return
-//            }
-//            self.userPhotoUrl = metadata.downloadURL()?.absoluteString
-//        }
+        //        guard let data = UIImageJPEGRepresentation(image, 0.8) else {
+        //            return
+        //        }
+        //        let storageRef = FIRStorage.storage().reference()
+        //
+        //        let userImageRef = storageRef.child("users/image.jpg")
+        //
+        //        userImageRef.putData(data, metadata: nil) { (metadata, error) in
+        //            guard error == nil else {
+        //                print(error?.localizedDescription)
+        //                return
+        //            }
+        //            guard let metadata = metadata else {
+        //                return
+        //            }
+        //            self.userPhotoUrl = metadata.downloadURL()?.absoluteString
+        //        }
         dismissViewControllerAnimated(true, completion: nil)
     }
 }
