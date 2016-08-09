@@ -26,14 +26,14 @@ class PollDetailViewController: UIViewController, UITextFieldDelegate {
         setupKeyboardNotifications()
         
         hideKeyboardWhenTappedAround()
-
-        mockData()
         
         if let poll = poll {
             fetchUsersForPoll(poll)
         }
         
-        
+        self.navigationController?.navigationBar.topItem?.title = "Poll Detail"
+        UINavigationBar.appearance().backgroundColor = UIColor.clearColor()
+        UINavigationBar.appearance().tintColor = UIColor.blackColor()
     }
     
     // MARK: - IBActions
@@ -67,14 +67,6 @@ class PollDetailViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
-    func mockData() {
-        let option = Option(name: "True")
-        let option1 = Option(name: "False")
-        self.poll = Poll(title: "Star Wars or Star TreK?", options: [option, option1], memberIds: ["turkeydumpling567", "googlehacks7823"], isPrivate: true, endDate: NSDate().dateByAddingTimeInterval(1500))
-        self.poll?.identifier = "turkeyJones007"
-    }
-    
-    
     // MARK: - Helper functions
 
     func fetchUsersForPoll(poll: Poll) {
@@ -85,8 +77,9 @@ class PollDetailViewController: UIViewController, UITextFieldDelegate {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "optionsSegue" {
+            
             if let pollOptionsVC = segue.destinationViewController as? PollOptionsViewController {
-                pollOptionsVC.poll = poll
+                pollOptionsVC.poll = self.poll
             }
         }
     }

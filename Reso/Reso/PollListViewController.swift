@@ -12,6 +12,8 @@ class PollListViewController: UIViewController, UITableViewDataSource, UITableVi
     
     var polls: [Poll] = []
     
+    var selectedIndexPath: NSIndexPath!
+    
     var completedPolls: [Poll] {
         return polls.filter { $0.isComplete }
     }
@@ -102,14 +104,26 @@ class PollListViewController: UIViewController, UITableViewDataSource, UITableVi
         return cell
     }
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.selectedIndexPath = indexPath
+        self.performSegueWithIdentifier("toResultSegue", sender: nil)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "toResultSegue" {
+            
+            var poll: Poll!
+            
+            if selectedIndexPath.section == 0 {
+                poll = incompletePolls[selectedIndexPath.row]
+            } else {
+                poll = completedPolls[selectedIndexPath.row]
+            }
+            
+            if let pollOptionsVC = segue.destinationViewController as? PollDetailViewController {
+                pollOptionsVC.poll = poll
+            }
+        }
+    }
     
 }

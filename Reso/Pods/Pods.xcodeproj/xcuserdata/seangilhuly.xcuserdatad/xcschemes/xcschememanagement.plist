@@ -4,10 +4,15 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Charts.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>Pods-Reso.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<key>Pods-ResoTests.xcscheme</key>
 		<dict>
@@ -27,12 +32,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>366616583083F7F91D0DB554A23A6168</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>7DD3FAB39F8E07D55381D42EE40FD749</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>B665FD12DE8C82DD5112B81336DDD458</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C6828C2508515BC0428D6BDAA1292DC9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
