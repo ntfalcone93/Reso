@@ -26,7 +26,8 @@ class PollController {
         return FirebaseController.ref.child(usersPollKey)
     }
     
-    static func create(title: String, options: [Option], memberIds: [String], isPrivate: Bool, endDate: NSDate) {
+    static func create(title: String, options: [Option], memberIds: [String], pollType: PollType, endDate: NSDate) {
+        let isPrivate = pollType == .Private ? true : false
         var newPoll = Poll(title: title, options: options, memberIds: memberIds, isPrivate: isPrivate, endDate: endDate)
         newPoll.save()
         
