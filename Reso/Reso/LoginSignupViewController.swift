@@ -8,12 +8,14 @@
 
 import UIKit
 
+
 enum AccountType {
     case Existing
     case Create
 }
 
-class LoginSignupViewController: UIViewController {
+class LoginSignupViewController: UIViewController //,UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning 
+{
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -31,15 +33,46 @@ class LoginSignupViewController: UIViewController {
         emailTextField.attributedPlaceholder = NSAttributedString(string:"Email", attributes:[NSForegroundColorAttributeName: UIColor.whiteColor().colorWithAlphaComponent(0.5)])
         emailTextField.layer.borderColor = UIColor.whiteColor().CGColor
         
-        passwordTextField.attributedPlaceholder = NSAttributedString(string:"password", attributes:[NSForegroundColorAttributeName: UIColor.whiteColor().colorWithAlphaComponent(0.5)])
-        emailTextField.layer.borderColor = UIColor.whiteColor().CGColor
+        passwordTextField.attributedPlaceholder = NSAttributedString(string:"Password", attributes:[NSForegroundColorAttributeName: UIColor.whiteColor().colorWithAlphaComponent(0.5)])
+        passwordTextField.layer.borderColor = UIColor.whiteColor().CGColor
+        
+        firstNameTextField.attributedPlaceholder = NSAttributedString(string:"First name", attributes:[NSForegroundColorAttributeName: UIColor.whiteColor().colorWithAlphaComponent(0.5)])
+        firstNameTextField.layer.borderColor = UIColor.whiteColor().CGColor
+        
+        lastNameTextField.attributedPlaceholder = NSAttributedString(string:"Last name", attributes:[NSForegroundColorAttributeName: UIColor.whiteColor().colorWithAlphaComponent(0.5)])
+        lastNameTextField.layer.borderColor = UIColor.whiteColor().CGColor
+        
     }
     
     @IBAction func selectImageTapped(sender: AnyObject) {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         presentViewController(imagePicker, animated: true, completion: nil)
+        
     }
+    
+//    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+//        self.dismissViewControllerAnimated(true, completion: nil)
+//        self.dismissViewControllerAnimated(true, completion: nil)
+//    }
+//    
+//    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+//    
+//    }
+//    
+//    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+//        
+//    }
+//    
+//    func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
+//        
+//    }
+//    
+//    func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
+//        
+//    }
+    
+    
     
     @IBAction func loginButtonTapped(sender: AnyObject) {
         guard let email = emailTextField.text, password = passwordTextField.text else { return }
@@ -59,7 +92,12 @@ class LoginSignupViewController: UIViewController {
                 guard user != nil else {
                     return
                 }
+                print(user?.photoUrl)
+                if user?.photoUrl == "" {
+                    self.loginAlert("", message: "Would you like to add a profile picture?")
+                } else {
                 self.dismissViewControllerAnimated(true, completion: nil)
+                }
             })
         }
     }
@@ -85,6 +123,19 @@ class LoginSignupViewController: UIViewController {
         }
         accountType = accountType == .Existing ? .Create : .Existing
     }
+    
+    func loginAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        let okAction = UIAlertAction(title: "Ok", style: .Default) { (okAction) in
+            self.selectImageTapped(self)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Default) { (cancelAction) in
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        presentViewController(alert, animated: true, completion: nil)
+    }
 }
 
 extension LoginSignupViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -107,6 +158,7 @@ extension LoginSignupViewController: UIImagePickerControllerDelegate, UINavigati
         //            }
         //            self.userPhotoUrl = metadata.downloadURL()?.absoluteString
         //        }
-        dismissViewControllerAnimated(true, completion: nil)
+        
+        //dismissViewControllerAnimated(true, completion: nil)
     }
 }
