@@ -14,7 +14,7 @@
                 <viewControllerPlaceholder storyboardName="CreatePoll" id="fnD-mL-WMG" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vbR-FZ-wzp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1098.5" y="556"/>
+            <point key="canvasLocation" x="1104.5" y="581"/>
         </scene>
         <!--Poll List View Controller-->
         <scene sceneID="IPW-Nc-rzG">
@@ -136,7 +136,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="600" height="63"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0ZP-Nm-jbx" id="VmU-EP-qVS">
-                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="62.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="63"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q7J-TQ-puZ">
@@ -298,12 +298,17 @@
                             <constraint firstItem="RvZ-DF-B5d" firstAttribute="leading" secondItem="QY6-L1-gBM" secondAttribute="leading" id="kdK-pk-fYi"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="lpq-Lo-yTE"/>
+                    <navigationItem key="navigationItem" id="lpq-Lo-yTE">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="f1L-Hy-p2l">
+                            <connections>
+                                <segue destination="fnD-mL-WMG" kind="presentation" id="9ZX-8f-u4F"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="pollSegmentController" destination="YRn-pX-5Yq" id="tWl-FA-SJU"/>
                         <outlet property="tableView" destination="6Qx-Va-vDR" id="gWk-o9-hYz"/>
                         <segue destination="ghK-wA-seZ" kind="presentation" identifier="toLogin" id="5ra-nn-NK0"/>
-                        <segue destination="fnD-mL-WMG" kind="presentation" identifier="toCreatePoll" id="Tu5-Hj-7z6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cDl-Xa-TFk" userLabel="First Responder" sceneMemberID="firstResponder"/>

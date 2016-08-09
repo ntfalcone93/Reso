@@ -6,7 +6,6 @@
 //  Copyright © 2016 ResoPolling. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 struct User: FirebaseType {
@@ -19,9 +18,10 @@ struct User: FirebaseType {
     var firstName: String
     var lastName: String
     var photoUrl: String
+    var photo: UIImage?
     var identifier: String?
     
-    var fullName: String {
+    var discreetName: String {
         guard let lastInitial = lastName.characters.first else {
             return firstName
         }

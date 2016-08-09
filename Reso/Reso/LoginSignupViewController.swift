@@ -50,6 +50,7 @@ class LoginSignupViewController: UIViewController {
                     // TODO: Present an alert saying that we weren't able to login an account
                     return
                 }
+                self.dismissViewControllerAnimated(true, completion: nil)
             })
         case .Create:
             guard let firstName = firstNameTextField.text, lastName = lastNameTextField.text else { return }
