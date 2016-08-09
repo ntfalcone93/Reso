@@ -136,7 +136,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="600" height="63"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0ZP-Nm-jbx" id="VmU-EP-qVS">
-                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="62.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="63"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q7J-TQ-puZ">
@@ -270,7 +270,6 @@
                                                     <outlet property="pollNameLabel" destination="zSx-6G-45y" id="8D5-Wy-rHV"/>
                                                     <outlet property="timerRemainingLabel" destination="vMO-Vk-uIV" id="UAW-Fk-L2v"/>
                                                     <outlet property="votingStatusImageView" destination="CGg-0C-z1V" id="DsC-0T-8vF"/>
-                                                    <segue destination="5eg-ux-XjQ" kind="show" identifier="ToPollDetail" id="B3J-dR-hY0"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -304,6 +303,7 @@
                         <outlet property="tableView" destination="6Qx-Va-vDR" id="gWk-o9-hYz"/>
                         <segue destination="ghK-wA-seZ" kind="presentation" identifier="toLogin" id="5ra-nn-NK0"/>
                         <segue destination="fnD-mL-WMG" kind="presentation" identifier="toCreatePoll" id="Tu5-Hj-7z6"/>
+                        <segue destination="5eg-ux-XjQ" kind="show" identifier="toResultSegue" id="qNg-9r-5MI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cDl-Xa-TFk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -324,7 +324,7 @@
                 <viewControllerPlaceholder storyboardName="Detail" id="5eg-ux-XjQ" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nPC-Pb-EhX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1540" y="219"/>
+            <point key="canvasLocation" x="1667" y="198"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="72S-UV-GTv">

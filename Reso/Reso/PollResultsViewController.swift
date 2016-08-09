@@ -20,13 +20,29 @@ class PollResultsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let options = ["White water rafting", "Papa johns", "Harmons", "Sushi"]
-        let votes = [3.0, 5.0, 7.0, 0.0]
+        //let votes = [options[0].count, options[1].count, options[2].count, opions[3].count]
         
         pieChartView.usePercentValuesEnabled = true
         
-        setChart(options, values: votes)
+        setChart(buildChartNames(), values: buildChartData())
         
+    }
+    
+    func buildChartNames() -> [String] {
+        var chartNames: [String] = []
+        
+        for option in options {
+            chartNames.append(option.name)
+        }
+        return chartNames
+    }
+    
+    func buildChartData() -> [Double] {
+        var chartData: [Double] = []
+        for option in options {
+            chartData.append(Double(option.votes.count))
+        }
+        return chartData
     }
     
     func setChart(dataPoints: [String], values: [Double]) {
