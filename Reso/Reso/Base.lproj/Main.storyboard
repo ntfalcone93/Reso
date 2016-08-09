@@ -303,7 +303,7 @@
                         <outlet property="tableView" destination="6Qx-Va-vDR" id="gWk-o9-hYz"/>
                         <segue destination="ghK-wA-seZ" kind="presentation" identifier="toLogin" id="5ra-nn-NK0"/>
                         <segue destination="fnD-mL-WMG" kind="presentation" identifier="toCreatePoll" id="Tu5-Hj-7z6"/>
-                        <segue destination="5eg-ux-XjQ" kind="show" identifier="toResultSegue" id="qNg-9r-5MI"/>
+                        <segue destination="5eg-ux-XjQ" kind="show" identifier="toOptionsSegue" id="qNg-9r-5MI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cDl-Xa-TFk" userLabel="First Responder" sceneMemberID="firstResponder"/>

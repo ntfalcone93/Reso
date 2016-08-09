@@ -106,11 +106,11 @@ class PollListViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.selectedIndexPath = indexPath
-        self.performSegueWithIdentifier("toResultSegue", sender: nil)
+        self.performSegueWithIdentifier("toOptionsSegue", sender: nil)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "toResultSegue" {
+        if segue.identifier == "toOptionsSegue" {
             
             var poll: Poll!
             
