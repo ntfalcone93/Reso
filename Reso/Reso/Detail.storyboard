@@ -32,9 +32,7 @@
                                         <containerView key="tableHeaderView" opaque="NO" contentMode="scaleToFill" id="P75-eo-8R7" userLabel="Poll Options Container View">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <connections>
-                                                <segue destination="Xpp-ej-Omo" kind="embed" identifier="optionsSegue" id="SwY-a2-jER"/>
-                                            </connections>
+                                            <color key="backgroundColor" red="0.1764705882" green="0.1843137255" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                         </containerView>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="commentCell" rowHeight="60" id="bSe-xC-faS" customClass="CommentsTableViewCell" customModule="Reso" customModuleProvider="target">
@@ -160,7 +158,7 @@
         <!--Poll Results View Controller-->
         <scene sceneID="rzC-4M-JPr">
             <objects>
-                <viewController modalTransitionStyle="flipHorizontal" modalPresentationStyle="currentContext" id="bVC-cF-G80" customClass="PollResultsViewController" customModule="Reso" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PollResultsVC" modalTransitionStyle="flipHorizontal" modalPresentationStyle="currentContext" id="bVC-cF-G80" customClass="PollResultsViewController" customModule="Reso" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3YH-jc-JN6"/>
                         <viewControllerLayoutGuide type="bottom" id="4ES-Tb-Pm7"/>
@@ -170,7 +168,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7IW-9H-QRw" customClass="PieChartView" customModule="Charts">
-                                <rect key="frame" x="153" y="3" width="295" height="295"/>
+                                <rect key="frame" x="153" y="2" width="295" height="295"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="295" id="AE4-kG-PP9"/>
@@ -197,7 +195,7 @@
         <!--Poll Options View Controller-->
         <scene sceneID="RER-cx-vyQ">
             <objects>
-                <viewController definesPresentationContext="YES" id="Xpp-ej-Omo" customClass="PollOptionsViewController" customModule="Reso" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PollOptionsVC" definesPresentationContext="YES" id="Xpp-ej-Omo" customClass="PollOptionsViewController" customModule="Reso" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="XnW-oP-AaM"/>
                         <viewControllerLayoutGuide type="bottom" id="tul-E5-UIZ"/>
@@ -257,7 +255,7 @@
                                         <rect key="frame" x="0.0" y="123" width="560" height="54"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hQR-jc-gAO" userLabel="questionOneButton">
-                                                <rect key="frame" x="0.0" y="0.0" width="54" height="54"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="53" height="54"/>
                                                 <color key="backgroundColor" red="0.98039215686274506" green="0.88235294117647056" blue="0.25098039215686274" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="hQR-jc-gAO" secondAttribute="height" multiplier="1:1" id="gMc-gA-bn6"/>
@@ -354,6 +352,8 @@
                             <constraint firstItem="9Y2-oP-h9k" firstAttribute="top" secondItem="qrh-O1-YQc" secondAttribute="topMargin" id="w4i-9W-4jq"/>
                         </constraints>
                     </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="600" height="300"/>
                     <connections>
                         <outlet property="questionFourButton" destination="xOd-w8-tdG" id="cZK-ta-9iS"/>
                         <outlet property="questionFourLabel" destination="iij-VJ-qbq" id="cdU-Qv-K9m"/>
@@ -369,7 +369,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fMN-kP-efn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="445" y="1061"/>
+            <point key="canvasLocation" x="498" y="1061"/>
         </scene>
     </scenes>
     <resources>
