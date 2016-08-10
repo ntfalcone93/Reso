@@ -31,8 +31,14 @@ class PollCreateTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //        view.backgroundColor = UIColor(patternImage: UIImage(named: "ResoBackground")!)
+        tableView.backgroundView = UIImageView(image: UIImage(named: "ResoBackground"))
+        //self.navigationController!.view.backgroundColor = UIColor.clearColor()
     }
+    
+    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        cell.backgroundColor = UIColor.clearColor()
+    }
+    
     
     func createOptions() {
         if let option1Cell = option1Cell, name = option1Cell.textField.text {
@@ -165,6 +171,10 @@ extension PollCreateTableViewController {
     }
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        //change background color of header
+        optionHeaderCell?.backgroundColor = UIColor.clearColor()
+        
         switch section {
         case 0:
             return nil
@@ -186,7 +196,6 @@ extension PollCreateTableViewController {
             return headerCell.contentView
         }
     }
-    
     
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         switch section {
@@ -229,6 +238,6 @@ extension PollCreateTableViewController: HeaderCellDelegate {
 extension PollCreateTableViewController: AddMemberCellDelegate {
     
     func addMembers() {
-//        performSegueWithIdentifier("toAddMembers", sender: self)
+      //performSegueWithIdentifier("toAddMembers", sender: self)
     }
 }

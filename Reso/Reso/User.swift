@@ -28,6 +28,10 @@ struct User: FirebaseType {
         return firstName + String(lastInitial)
     }
     
+    var fullName: String {
+        return firstName + " " + lastName
+    }
+    
     var endpoint: String {
         return "users"
     }
