@@ -106,24 +106,21 @@ class PollListViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.selectedIndexPath = indexPath
-        self.performSegueWithIdentifier("toOptionsSegue", sender: nil)
+        self.performSegueWithIdentifier("toPollDetail", sender: nil)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "toOptionsSegue" {
+        if segue.identifier == "toPollDetail" {
             
-            var poll: Poll!
-            
-            if selectedIndexPath.section == 0 {
-                poll = incompletePolls[selectedIndexPath.row]
-            } else {
-                poll = completedPolls[selectedIndexPath.row]
+            guard let indexPath = tableView.indexPathForSelectedRow,
+                pollOptionsVC = segue.destinationViewController as? PollDetailViewController else {
+                    return
             }
-            
-            if let pollOptionsVC = segue.destinationViewController as? PollDetailViewController {
-                pollOptionsVC.poll = poll
+            if indexPath.section == 0 {
+                pollOptionsVC.poll = incompletePolls[indexPath.row]
+            } else {
+                pollOptionsVC.poll = completedPolls[indexPath.row]
             }
         }
     }
-    
 }

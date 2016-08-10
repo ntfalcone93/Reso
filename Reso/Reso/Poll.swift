@@ -83,6 +83,7 @@ struct Poll: FirebaseType {
         self.isPrivate = isPrivate
         self.creationDate = NSDate(timeIntervalSince1970: creationDate)
         self.endDate = NSDate(timeIntervalSince1970: endDate)
+        self.identifier = identifier
     }
     
 }

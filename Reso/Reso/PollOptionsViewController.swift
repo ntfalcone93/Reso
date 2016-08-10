@@ -39,10 +39,20 @@ class PollOptionsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(poll!)
         setupButtonsWithOptions()
-        
-        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        checkIfCurrentUserVoted()
+    }
+    
+    func checkIfCurrentUserVoted() {
+        poll?.options.forEach({ (option) in
+            if option.votes.contains(UserController.shared.currentUserId) {
+                self.performSegueWithIdentifier("toResultsSegue", sender: nil)
+            }
+        })
     }
     
     func setupButtonsWithOptions() {
@@ -84,28 +94,32 @@ class PollOptionsViewController: UIViewController {
     // MARK: Button Tapped
     
     @IBAction func buttonTapped(sender: UIButton) {
+        guard let poll = poll else { return }
         switch sender.tag {
-            
         case 0:
             guard options.count >= 1 else {
                 return
             }
-            
+            let option = options[0]
+            PollController.vote(poll, option: option)
         case 1:
             guard options.count >= 2 else {
                 return
             }
-
+            let option = options[1]
+            PollController.vote(poll, option: option)
         case 2:
             guard options.count >= 3 else {
                 return
             }
-
+            let option = options[2]
+            PollController.vote(poll, option: option)
         case 3:
             guard options.count >= 4 else {
                 return
             }
-            
+            let option = options[3]
+            PollController.vote(poll, option: option)
         default:
             break
         }
@@ -130,7 +144,7 @@ class PollOptionsViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "toResultsSegue" {
             if let pollResultsVC = segue.destinationViewController as? PollResultsViewController {
-                pollResultsVC.options = self.options
+                pollResultsVC.poll = poll
             }
         }
     }

@@ -39,6 +39,8 @@ class PollDetailViewController: UIViewController, UITextFieldDelegate {
     // MARK: - IBActions
     
     @IBAction func sendButtonTapped(sender: AnyObject) {
+        
+        // TODO: Get rid of mock data
         let user = User(firstName: "Frank", lastName: "Billbong", photoUrl: "", identifier: "456A-78SR-TWV7-U23O")
         
         if let commentText = commentTextField.text, let currentUserID = user.identifier, poll = self.poll, pollID = poll.identifier {
@@ -63,7 +65,6 @@ class PollDetailViewController: UIViewController, UITextFieldDelegate {
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         commentTextField.resignFirstResponder()
-        commentTextField.text = ""
         return true
     }
     
@@ -134,6 +135,8 @@ extension PollDetailViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCellWithIdentifier("commentCell", forIndexPath: indexPath) as? CommentsTableViewCell ?? CommentsTableViewCell()
         
         let comment = comments[indexPath.row]
+        
+        // TODO: Get rid of mock data
         let user = User(firstName: "Justin", lastName: "Smith", photoUrl: "", identifier: "resdtsd1123")
         cell.updateWithComment(comment, user: user)
         
