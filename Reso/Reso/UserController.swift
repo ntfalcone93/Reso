@@ -107,6 +107,9 @@ class UserController {
                 downloadUrl = metadata.downloadURL(),
                 userId = user.identifier else { return }
             userRef.child(userId).child("photoUrl").setValue(downloadUrl.absoluteString)
+            print(downloadUrl.absoluteString)
+            print("hey")
         }
     }
+    
 }
