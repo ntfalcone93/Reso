@@ -10,6 +10,7 @@ import UIKit
 
 struct User: FirebaseType {
     
+    static let userKey = "users"
     private let kFirstName = "firstName"
     private let kLastName = "lastName"
     private let kFullName = "fullName"
@@ -17,7 +18,7 @@ struct User: FirebaseType {
     
     var firstName: String
     var lastName: String
-    var photoUrl: String
+    var photoUrl: String?
     var photo: UIImage?
     var identifier: String?
     
@@ -33,17 +34,17 @@ struct User: FirebaseType {
     }
     
     var endpoint: String {
-        return "users"
+        return User.userKey
     }
     
     var dictionaryCopy: [String : AnyObject] {
-        return [kFirstName: firstName, kLastName: lastName, kPhotoUrl: photoUrl]
+        return [kFirstName: firstName, kLastName: lastName]
     }
     
-    init(firstName: String, lastName: String, photoUrl: String, identifier: String) {
+    init(firstName: String, lastName: String, identifier: String) {
         self.firstName = firstName
         self.lastName = lastName
-        self.photoUrl = photoUrl
+        self.photoUrl = nil
         self.identifier = identifier
     }
     

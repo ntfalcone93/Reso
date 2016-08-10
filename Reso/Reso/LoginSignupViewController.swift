@@ -14,7 +14,7 @@ enum AccountType {
     case Create
 }
 
-class LoginSignupViewController: UIViewController //,UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning 
+class LoginSignupViewController: UIViewController //,UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning
 {
     
     @IBOutlet weak var emailTextField: UITextField!
@@ -24,6 +24,7 @@ class LoginSignupViewController: UIViewController //,UIViewControllerTransitioni
     @IBOutlet weak var loginButtonOutlet: UIButton!
     @IBOutlet weak var accountButton: UIButton!
     @IBOutlet weak var imagePickerView: UIView!
+    @IBOutlet weak var defaultProfileImage: UIImageView!
     
     var accountType: AccountType = .Existing
     
@@ -51,26 +52,26 @@ class LoginSignupViewController: UIViewController //,UIViewControllerTransitioni
         
     }
     
-//    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-//        self.dismissViewControllerAnimated(true, completion: nil)
-//        self.dismissViewControllerAnimated(true, completion: nil)
-//    }
-//    
-//    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-//    
-//    }
-//    
-//    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-//        
-//    }
-//    
-//    func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
-//        
-//    }
-//    
-//    func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
-//        
-//    }
+    //    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+    //        self.dismissViewControllerAnimated(true, completion: nil)
+    //        self.dismissViewControllerAnimated(true, completion: nil)
+    //    }
+    //
+    //    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    //
+    //    }
+    //
+    //    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    //
+    //    }
+    //
+    //    func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
+    //
+    //    }
+    //
+    //    func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
+    //
+    //    }
     
     
     
@@ -86,18 +87,17 @@ class LoginSignupViewController: UIViewController //,UIViewControllerTransitioni
                 self.dismissViewControllerAnimated(true, completion: nil)
             })
         case .Create:
-            guard let firstName = firstNameTextField.text, lastName = lastNameTextField.text else { return }
-            UserController.createUser(firstName, lastName: lastName, photoUrl: "", email: email, password: password, completion: { (user) in
+            guard let firstName = firstNameTextField.text, lastName = lastNameTextField.text, image = defaultProfileImage.image else { return }
+            
+            
+            UserController.createUser(firstName, lastName: lastName, image: image, email: email, password: password, completion: { (user) in
+                
+               
                 // TODO: Present an alert saying that we weren't able to create an account
                 guard user != nil else {
                     return
                 }
-                print(user?.photoUrl)
-                if user?.photoUrl == "" {
-                    self.loginAlert("", message: "Would you like to add a profile picture?")
-                } else {
-                self.dismissViewControllerAnimated(true, completion: nil)
-                }
+                    self.dismissViewControllerAnimated(true, completion: nil)
             })
         }
     }
@@ -141,24 +141,14 @@ class LoginSignupViewController: UIViewController //,UIViewControllerTransitioni
 extension LoginSignupViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
-        //        guard let data = UIImageJPEGRepresentation(image, 0.8) else {
-        //            return
-        //        }
-        //        let storageRef = FIRStorage.storage().reference()
-        //
-        //        let userImageRef = storageRef.child("users/image.jpg")
-        //
-        //        userImageRef.putData(data, metadata: nil) { (metadata, error) in
-        //            guard error == nil else {
-        //                print(error?.localizedDescription)
-        //                return
-        //            }
-        //            guard let metadata = metadata else {
-        //                return
-        //            }
-        //            self.userPhotoUrl = metadata.downloadURL()?.absoluteString
-        //        }
         
-        //dismissViewControllerAnimated(true, completion: nil)
+        defaultProfileImage.image = image
+        dismissViewControllerAnimated(true, completion: nil)
+}
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        print("user cancelled image")
+        dismissViewControllerAnimated(true, completion: nil)
     }
+    
 }

@@ -18,6 +18,10 @@ class UserController {
     
     static let shared = UserController()
     
+    static var userRef: FIRDatabaseReference {
+        return FirebaseController.ref.child(User.userKey)
+    }
+    
     // TODO: Uncomment when we have a user object
     var currentUser = UserController.loadFromDefaults()
     
@@ -32,16 +36,17 @@ class UserController {
         return currentUserId
     }
     
-    static func createUser(firstName: String, lastName: String, photoUrl: String, email: String, password: String, completion: (user: User?) -> Void) {
+    static func createUser(firstName: String, lastName: String, image: UIImage, email: String, password: String, completion: (user: User?) -> Void) {
         FIRAuth.auth()?.createUserWithEmail(email, password: password, completion: { (user, error) in
             if let error = error {
                 print("There was error while creating user: \(error.localizedDescription)")
                 completion(user: nil)
             } else if let firebaseUser = user {
-                var user = User(firstName: firstName, lastName: lastName, photoUrl: photoUrl, identifier: firebaseUser.uid)
+                var user = User(firstName: firstName, lastName: lastName, identifier: firebaseUser.uid)
                 user.save()
                 UserController.shared.currentUser = user
                 UserController.saveUserInDefaults(user)
+                saveUsersPhoto(image, user: user)
                 completion(user: user)
             } else {
                 completion(user: nil)
@@ -103,5 +108,20 @@ class UserController {
             return nil
         }
         return user
+    }
+    
+    private static func saveUsersPhoto(photo: UIImage, user: User) {
+        guard let photoData = UIImageJPEGRepresentation(photo, 0.8) else { return }
+        let newKey = FirebaseController.ref.childByAutoId().key
+        FirebaseController.storageRef.child(User.userKey).child(newKey).putData(photoData, metadata: nil) { (metadata, error) in
+            guard error == nil else {
+                print("Error: \(error?.localizedDescription)")
+                return
+            }
+            guard let metadata = metadata,
+                downloadUrl = metadata.downloadURL(),
+                userId = user.identifier else { return }
+            userRef.child(userId).child("photoUrl").setValue(downloadUrl.absoluteString)
+        }
     }
 }
