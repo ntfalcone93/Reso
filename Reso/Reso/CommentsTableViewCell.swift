@@ -23,4 +23,8 @@ class CommentsTableViewCell: UITableViewCell {
         userNameLabel.text = "\(user.firstName) \(user.lastName)"
         userCommentLabel.text = comment.text
     }
+    
+    func updateCell(comment: Comment) {
+        userCommentLabel.text = comment.text
+    }
 }

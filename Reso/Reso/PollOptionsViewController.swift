@@ -42,19 +42,6 @@ class PollOptionsViewController: UIViewController {
         setupButtonsWithOptions()
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        checkIfCurrentUserVoted()
-    }
-    
-    func checkIfCurrentUserVoted() {
-        poll?.options.forEach({ (option) in
-            if option.votes.contains(UserController.shared.currentUserId) {
-                self.performSegueWithIdentifier("toResultsSegue", sender: nil)
-            }
-        })
-    }
-    
     func setupButtonsWithOptions() {
         
         questionLabel.text = poll?.title
