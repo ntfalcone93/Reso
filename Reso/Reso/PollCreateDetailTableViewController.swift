@@ -17,18 +17,11 @@ enum MemberType {
 
 class PollCreateDetailTableViewController: UITableViewController, UISearchBarDelegate {
     
-    //TO DO
-    //Segmented controller, Search and Friends Added, friends added: search bar = .hidden
-    //fetch all users, exclude current user
-    //Search names- filter, use lowercase  string.lowercase... remove current user from search
-    //swipe to delete on friend list
-    //func didSelectRow - get user indexpath[row], append user to array
-    //*Detach listeners
-    //*dispatch group create needed??
+    //swipe to delete needed on 'Added' tableview??
+    
     
     
     //MARK: - Outlets
-    
     @IBOutlet weak var memberSegmentController: UISegmentedControl!
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -49,10 +42,8 @@ class PollCreateDetailTableViewController: UITableViewController, UISearchBarDel
         super.viewDidLoad()
         
         tableView.backgroundView = UIImageView(image: UIImage(named: "ResoBackground"))
-        
         fetchAllUsers()
     }
-    
     
     func fetchAllUsers(){
         UserController.fetchAllUsers { (users) in
@@ -78,7 +69,6 @@ class PollCreateDetailTableViewController: UITableViewController, UISearchBarDel
         selectedMembers.append(user)
         filterSelectedUsers()
         tableView.reloadData()
-        
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
@@ -97,10 +87,8 @@ class PollCreateDetailTableViewController: UITableViewController, UISearchBarDel
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        
         guard let searchName = searchBar.text else { return }
         searchBar.resignFirstResponder()
-        //fetch users by name
     }
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
@@ -110,11 +98,14 @@ class PollCreateDetailTableViewController: UITableViewController, UISearchBarDel
     
     @IBAction func DoneButtonTapped(sender: AnyObject) {
         
+        navigationController?.popViewControllerAnimated(true)
     }
     
-    
-    
     // MARK: - Table view data source
+    
+    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        cell.backgroundColor = UIColor.clearColor()
+    }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return memberType == .Searched ? filteredUsers.count : selectedMembers.count

@@ -320,6 +320,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Done" id="f1e-ev-n3h">
                             <connections>
                                 <action selector="DoneButtonTapped:" destination="QqT-yz-G3A" id="Yqv-IH-wcU"/>
+                                <segue destination="btj-NG-Qkk" kind="unwind" identifier="unwindToCreatePoll" unwindAction="unwindToOptions:" id="xIq-kF-ej2"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -329,6 +330,7 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vpv-Kd-TJi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="btj-NG-Qkk" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2503" y="876"/>
         </scene>

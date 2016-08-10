@@ -25,6 +25,8 @@ class PollCreateTableViewController: UITableViewController {
     // Header cells
     var optionHeaderCell: HeaderTableViewCell?
     
+    var selectedMembers = [User]()
+    
     @IBOutlet var datePicker: UIDatePicker!
     @IBOutlet var datePickerView: UIView!
     
@@ -38,7 +40,6 @@ class PollCreateTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         cell.backgroundColor = UIColor.clearColor()
     }
-    
     
     func createOptions() {
         if let option1Cell = option1Cell, name = option1Cell.textField.text {
