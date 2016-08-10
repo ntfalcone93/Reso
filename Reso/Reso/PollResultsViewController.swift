@@ -11,7 +11,12 @@ import Charts
 
 class PollResultsViewController: UIViewController {
     
-    var options = [Option]()
+    var options = [Option]() {
+        didSet {
+            setChart(buildChartNames(), values: buildChartData())
+        }
+    }
+    var poll: Poll?
     
     // MARK: - IBOutlet
     
@@ -20,12 +25,16 @@ class PollResultsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //let votes = [options[0].count, options[1].count, options[2].count, opions[3].count]
-        
         pieChartView.usePercentValuesEnabled = true
         
-        setChart(buildChartNames(), values: buildChartData())
-        
+        observeOptions()
+    }
+    
+    func observeOptions() {
+        guard let poll = poll else { return }
+        PollController.observeOptions(poll) { (options) in
+            self.options = options
+        }
     }
     
     func buildChartNames() -> [String] {
@@ -87,6 +96,7 @@ class PollResultsViewController: UIViewController {
         
         pieChartView.centerText = ""
         pieChartView.highlighter = nil
+        
         
     }
 }
