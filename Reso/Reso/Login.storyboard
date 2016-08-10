@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Qly-fy-qFA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Qly-fy-qFA">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -61,7 +61,7 @@
                                         </constraints>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vBp-r3-jQh">
                                         <rect key="frame" x="0.0" y="100" width="500" height="30"/>
@@ -156,6 +156,7 @@
                     </view>
                     <connections>
                         <outlet property="accountButton" destination="vL6-XL-l8X" id="A0u-2c-M2A"/>
+                        <outlet property="defaultProfileImage" destination="qCH-Wj-vy4" id="W2N-eR-avx"/>
                         <outlet property="emailTextField" destination="b6A-7s-0Re" id="a2J-c3-EKb"/>
                         <outlet property="firstNameTextField" destination="Pwa-gE-nED" id="e4U-B0-SBb"/>
                         <outlet property="imagePickerView" destination="0X7-e4-b2B" id="eia-rH-aJy"/>
