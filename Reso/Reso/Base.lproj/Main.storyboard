@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3US-xB-3bB">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3US-xB-3bB">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -14,7 +14,7 @@
                 <viewControllerPlaceholder storyboardName="CreatePoll" id="fnD-mL-WMG" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vbR-FZ-wzp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1104.5" y="581"/>
+            <point key="canvasLocation" x="1104.5" y="609"/>
         </scene>
         <!--Poll List View Controller-->
         <scene sceneID="IPW-Nc-rzG">
@@ -309,7 +309,7 @@
                         <outlet property="tableView" destination="6Qx-Va-vDR" id="gWk-o9-hYz"/>
                         <segue destination="ghK-wA-seZ" kind="presentation" identifier="toLogin" id="5ra-nn-NK0"/>
                         <segue destination="fnD-mL-WMG" kind="presentation" identifier="toCreatePoll" id="Tu5-Hj-7z6"/>
-                        <segue destination="5eg-ux-XjQ" kind="show" identifier="toOptionsSegue" id="qNg-9r-5MI"/>
+                        <segue destination="5eg-ux-XjQ" kind="show" identifier="toPollDetail" id="qNg-9r-5MI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cDl-Xa-TFk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -356,4 +356,7 @@
         <image name="complete" width="1200" height="1200"/>
         <image name="defaultProfileImage" width="300" height="300"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Tu5-Hj-7z6"/>
+    </inferredMetricsTieBreakers>
 </document>
