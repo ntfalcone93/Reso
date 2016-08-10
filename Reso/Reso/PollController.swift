@@ -110,11 +110,26 @@ class PollController {
         })
     }
     
+    static func observeOptions(poll: Poll, completion: (options: [Option]) -> Void) {
+        guard let pollId = poll.identifier else {
+            completion(options: [])
+            return
+        }
+        pollRef.child(pollId).child(Option.key).observeEventType(.Value, withBlock:  { (data) in
+            guard let optionDicts = data.value as? [String: [String: AnyObject]] else {
+                completion(options: [])
+                return
+            }
+            let options = optionDicts.flatMap { Option(dictionary: $1, identifier: $0) }
+            completion(options: options)
+        })
+    }
+    
     static func vote(poll: Poll, option: Option) {
         guard let pollId = poll.identifier else {
             return
         }
-        pollRef.child(pollId).child(Option.key).child(option.identifier).child(Option.voteKey).child(UserController.shared.currentUserId).setValue(true)
+        pollRef.child(pollId).child(Option.key).child(option.identifier).child(Option.voteKey).updateChildValues([UserController.shared.currentUserId : true])
     }
     
     func fetchUsersForPoll(poll: Poll, completion: (user: [User]) -> Void) {
