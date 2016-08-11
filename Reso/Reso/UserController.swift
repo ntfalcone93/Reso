@@ -14,15 +14,12 @@ class UserController {
     static let currentUserKey = "currentUser"
     static let currentUserIdKey = "currentUserIdentifier"
     
-//    var currentUserId = "currentUser" // TODO: replace with actual current user id
-    
     static let shared = UserController()
     
     static var userRef: FIRDatabaseReference {
         return FirebaseController.ref.child(User.userKey)
     }
     
-    // TODO: Uncomment when we have a user object
     var currentUser = UserController.loadFromDefaults()
     
     static var userRef: FIRDatabaseReference {
@@ -31,7 +28,7 @@ class UserController {
     
     var currentUserId: String {
         guard let currentUser = currentUser, currentUserId = currentUser.identifier else {
-            fatalError("Could not retrieve current user id")
+            return ""
         }
         return currentUserId
     }
@@ -122,6 +119,9 @@ class UserController {
                 downloadUrl = metadata.downloadURL(),
                 userId = user.identifier else { return }
             userRef.child(userId).child("photoUrl").setValue(downloadUrl.absoluteString)
+            print(downloadUrl.absoluteString)
+            print("hey")
         }
     }
+    
 }

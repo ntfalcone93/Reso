@@ -51,13 +51,12 @@ struct User: FirebaseType {
     
     init?(dictionary: [String: AnyObject], identifier: String) {
         guard let firstName = dictionary[kFirstName] as? String,
-            let lastName = dictionary[kLastName] as? String,
-            let photoUrl = dictionary[kPhotoUrl] as? String else {
+            let lastName = dictionary[kLastName] as? String else {
                 return nil
         }
         self.firstName = firstName
         self.lastName = lastName
-        self.photoUrl = photoUrl
+        self.photoUrl = dictionary[kPhotoUrl] as? String ?? nil
         self.identifier = identifier
     }
 }
