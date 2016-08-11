@@ -31,15 +31,22 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="AqR-m5-EkZ">
                                                 <rect key="frame" x="0.0" y="0.0" width="600" height="554"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P1u-Fc-6WI">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P1u-Fc-6WI" userLabel="Containers View">
                                                         <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
                                                         <subviews>
                                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K7r-Pc-CFZ" userLabel="Poll Options Container View">
                                                                 <rect key="frame" x="600" y="0.0" width="0.0" height="300"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                                <connections>
+                                                                    <segue destination="Xpp-ej-Omo" kind="embed" id="NM0-2x-D07"/>
+                                                                </connections>
                                                             </containerView>
-                                                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fNm-LM-4jq">
+                                                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fNm-LM-4jq" userLabel="Poll Results Container View">
                                                                 <rect key="frame" x="600" y="0.0" width="0.0" height="300"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                                <connections>
+                                                                    <segue destination="bVC-cF-G80" kind="embed" id="1aq-qh-Lwv"/>
+                                                                </connections>
                                                             </containerView>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -427,7 +434,6 @@
                         <outlet property="questionThreeLabel" destination="wgg-j8-Ef0" id="frA-cl-a0N"/>
                         <outlet property="questionTwoButton" destination="hQR-jc-gAO" id="sHH-9q-1Gd"/>
                         <outlet property="questionTwoLabel" destination="7yJ-hu-jbG" id="Kpg-Vm-koS"/>
-                        <segue destination="bVC-cF-G80" kind="presentation" identifier="toResultsSegue" modalTransitionStyle="flipHorizontal" id="NV3-HX-zrO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fMN-kP-efn" userLabel="First Responder" sceneMemberID="firstResponder"/>
