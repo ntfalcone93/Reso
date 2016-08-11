@@ -12,7 +12,6 @@ class PollListViewController: UIViewController, UITableViewDataSource, UITableVi
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var pollSegmentController: UISegmentedControl!
-    @IBOutlet weak var rightNavigationBarButtonItem: UIBarButtonItem!
     
     
     var polls: [Poll] = []
@@ -39,11 +38,13 @@ class PollListViewController: UIViewController, UITableViewDataSource, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         guard UserController.shared.currentUser != nil else {
             performSegueWithIdentifier("toLogin", sender: self)
             return
         }
-        setupLeftNavItem()
+       // setupLeftNavItem()
+        setupSegmentedController()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -67,6 +68,10 @@ class PollListViewController: UIViewController, UITableViewDataSource, UITableVi
         let barButton = UIBarButtonItem(customView: rightNavButton)
         self.navigationItem.leftBarButtonItem = barButton
         
+    }
+    
+    func setupSegmentedController() {
+        pollSegmentController.layer.borderColor = MyColors.myLightGreenColor().CGColor
     }
     
     func logoutAlert() {
