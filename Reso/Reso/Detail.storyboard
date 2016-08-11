@@ -26,10 +26,10 @@
                                 <rect key="frame" x="0.0" y="20" width="600" height="534"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cJM-fM-j46" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="554"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="AqR-m5-EkZ">
-                                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="600" height="554"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P1u-Fc-6WI">
                                                         <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
@@ -42,7 +42,7 @@
                                                                 <rect key="frame" x="600" y="0.0" width="0.0" height="300"/>
                                                             </containerView>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="300" id="PWa-NV-kLE"/>
                                                             <constraint firstItem="K7r-Pc-CFZ" firstAttribute="top" secondItem="P1u-Fc-6WI" secondAttribute="top" id="SQD-Je-QP6"/>
@@ -55,7 +55,7 @@
                                                         </constraints>
                                                     </view>
                                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1c2-f3-oE9" userLabel="Comments Table View">
-                                                        <rect key="frame" x="0.0" y="300" width="600" height="300"/>
+                                                        <rect key="frame" x="0.0" y="300" width="600" height="254"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="46" id="QEQ-s2-mKl"/>
@@ -66,7 +66,7 @@
                                                                 <rect key="frame" x="0.0" y="28" width="600" height="60"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="POM-rK-0XO" id="Sg1-Gy-Hx0">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="59.5"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
                                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iXw-9L-wyS" userLabel="userPhotoImageView">
@@ -128,7 +128,7 @@
                                                 </subviews>
                                             </stackView>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="AqR-m5-EkZ" secondAttribute="trailing" id="ONb-Uj-azn"/>
                                             <constraint firstItem="AqR-m5-EkZ" firstAttribute="leading" secondItem="cJM-fM-j46" secondAttribute="leading" id="Zkm-yo-xQA"/>
@@ -137,6 +137,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="cJM-fM-j46" secondAttribute="trailing" id="A1l-v9-Qaf"/>
                                     <constraint firstItem="cJM-fM-j46" firstAttribute="top" secondItem="uz6-ku-F8R" secondAttribute="top" id="BDY-Lo-3tg"/>
@@ -198,7 +199,7 @@
                             <constraint firstItem="o7t-w1-Wqa" firstAttribute="top" secondItem="uz6-ku-F8R" secondAttribute="bottom" id="CdY-hH-aU8"/>
                             <constraint firstAttribute="trailing" secondItem="B5C-oP-gaM" secondAttribute="trailing" id="F6B-ws-eIO"/>
                             <constraint firstItem="L9w-r5-LRY" firstAttribute="top" secondItem="vOR-Jy-but" secondAttribute="bottom" constant="-20" id="MYJ-fI-Vay"/>
-                            <constraint firstItem="cJM-fM-j46" firstAttribute="height" secondItem="ADm-mp-Oho" secondAttribute="height" id="Pfi-rB-WRt"/>
+                            <constraint firstItem="cJM-fM-j46" firstAttribute="height" secondItem="ADm-mp-Oho" secondAttribute="height" constant="-46" id="Pfi-rB-WRt"/>
                             <constraint firstItem="o7t-w1-Wqa" firstAttribute="top" secondItem="L9w-r5-LRY" secondAttribute="bottom" id="RoT-7P-DOe"/>
                             <constraint firstItem="B5C-oP-gaM" firstAttribute="top" secondItem="uz6-ku-F8R" secondAttribute="bottom" id="S8s-MK-Kue"/>
                             <constraint firstItem="uz6-ku-F8R" firstAttribute="top" secondItem="vOR-Jy-but" secondAttribute="bottom" id="TBS-03-dxY"/>

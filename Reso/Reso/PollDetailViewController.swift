@@ -76,30 +76,30 @@ class PollDetailViewController: UIViewController, UITextFieldDelegate {
     
     func setupContainerView() {
         
-        if checkIfCurrentUserVoted() {
-            let storyboard = UIStoryboard(name: "Detail", bundle: nil)
-            if let pollResultsVC = storyboard.instantiateViewControllerWithIdentifier("PollResultsVC") as? PollResultsViewController {
-                pollResultsVC.poll = poll
-                optionsContainerView.addSubview(pollResultsVC.view)
-
-                let yConstraint = NSLayoutConstraint(item: pollResultsVC.pieChartView, attribute: .CenterY, relatedBy: .Equal, toItem: optionsContainerView, attribute: .CenterY, multiplier: 1.0, constant: 0)
-                let xConstraint = NSLayoutConstraint(item: pollResultsVC.pieChartView, attribute: .CenterX, relatedBy: .Equal, toItem: optionsContainerView, attribute: .CenterX, multiplier: 1.0, constant: 0)
-                optionsContainerView.addConstraints([yConstraint, xConstraint])
-            }
-        } else {
-            let storyboard = UIStoryboard(name: "Detail", bundle: nil)
-            if let pollOptionsVC = storyboard.instantiateViewControllerWithIdentifier("PollOptionsVC") as? PollOptionsViewController {
-                pollOptionsVC.poll = self.poll
-                optionsContainerView.addSubview(pollOptionsVC.view)
-                self.willMoveToParentViewController(pollOptionsVC)
-                self.addChildViewController(pollOptionsVC)
-                pollOptionsVC.didMoveToParentViewController(self)
-                
-                let yConstraint = NSLayoutConstraint(item: pollOptionsVC.view, attribute: .CenterY, relatedBy: .Equal, toItem: optionsContainerView, attribute: .CenterY, multiplier: 1.0, constant: 0)
-                let xConstraint = NSLayoutConstraint(item: pollOptionsVC.view, attribute: .CenterX, relatedBy: .Equal, toItem: optionsContainerView, attribute: .CenterX, multiplier: 1.0, constant: 0)
-                optionsContainerView.addConstraints([yConstraint, xConstraint])
-            }
-        }
+//        if checkIfCurrentUserVoted() {
+//            let storyboard = UIStoryboard(name: "Detail", bundle: nil)
+//            if let pollResultsVC = storyboard.instantiateViewControllerWithIdentifier("PollResultsVC") as? PollResultsViewController {
+//                pollResultsVC.poll = poll
+//                optionsContainerView.addSubview(pollResultsVC.view)
+//
+//                let yConstraint = NSLayoutConstraint(item: pollResultsVC.pieChartView, attribute: .CenterY, relatedBy: .Equal, toItem: optionsContainerView, attribute: .CenterY, multiplier: 1.0, constant: 0)
+//                let xConstraint = NSLayoutConstraint(item: pollResultsVC.pieChartView, attribute: .CenterX, relatedBy: .Equal, toItem: optionsContainerView, attribute: .CenterX, multiplier: 1.0, constant: 0)
+//                optionsContainerView.addConstraints([yConstraint, xConstraint])
+//            }
+//        } else {
+//            let storyboard = UIStoryboard(name: "Detail", bundle: nil)
+//            if let pollOptionsVC = storyboard.instantiateViewControllerWithIdentifier("PollOptionsVC") as? PollOptionsViewController {
+//                pollOptionsVC.poll = self.poll
+//                optionsContainerView.addSubview(pollOptionsVC.view)
+//                self.willMoveToParentViewController(pollOptionsVC)
+//                self.addChildViewController(pollOptionsVC)
+//                pollOptionsVC.didMoveToParentViewController(self)
+//                
+//                let yConstraint = NSLayoutConstraint(item: pollOptionsVC.view, attribute: .CenterY, relatedBy: .Equal, toItem: optionsContainerView, attribute: .CenterY, multiplier: 1.0, constant: 0)
+//                let xConstraint = NSLayoutConstraint(item: pollOptionsVC.view, attribute: .CenterX, relatedBy: .Equal, toItem: optionsContainerView, attribute: .CenterX, multiplier: 1.0, constant: 0)
+//                optionsContainerView.addConstraints([yConstraint, xConstraint])
+//            }
+//        }
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
