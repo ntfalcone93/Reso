@@ -97,6 +97,5 @@ class PollResultsViewController: UIViewController {
         pieChartView.centerText = ""
         pieChartView.highlighter = nil
         
-        
     }
 }

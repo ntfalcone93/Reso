@@ -35,17 +35,17 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
                                                         <subviews>
                                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K7r-Pc-CFZ" userLabel="Poll Options Container View">
-                                                                <rect key="frame" x="600" y="0.0" width="0.0" height="300"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                 <connections>
-                                                                    <segue destination="Xpp-ej-Omo" kind="embed" id="NM0-2x-D07"/>
+                                                                    <segue destination="Xpp-ej-Omo" kind="embed" identifier="toOptionsSegue" id="NM0-2x-D07"/>
                                                                 </connections>
                                                             </containerView>
-                                                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fNm-LM-4jq" userLabel="Poll Results Container View">
-                                                                <rect key="frame" x="600" y="0.0" width="0.0" height="300"/>
+                                                            <containerView opaque="NO" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fNm-LM-4jq" userLabel="Poll Results Container View">
+                                                                <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                 <connections>
-                                                                    <segue destination="bVC-cF-G80" kind="embed" id="1aq-qh-Lwv"/>
+                                                                    <segue destination="bVC-cF-G80" kind="embed" identifier="toResultsSegue" id="1aq-qh-Lwv"/>
                                                                 </connections>
                                                             </containerView>
                                                         </subviews>
@@ -56,10 +56,19 @@
                                                             <constraint firstItem="fNm-LM-4jq" firstAttribute="top" secondItem="P1u-Fc-6WI" secondAttribute="top" id="ShV-oS-5W4"/>
                                                             <constraint firstItem="fNm-LM-4jq" firstAttribute="leading" secondItem="K7r-Pc-CFZ" secondAttribute="trailing" id="aBX-Ht-0Xo"/>
                                                             <constraint firstAttribute="bottom" secondItem="fNm-LM-4jq" secondAttribute="bottom" id="bBC-6O-zg7"/>
+                                                            <constraint firstItem="fNm-LM-4jq" firstAttribute="leading" secondItem="P1u-Fc-6WI" secondAttribute="leading" id="eio-gC-BfD"/>
                                                             <constraint firstAttribute="trailing" secondItem="K7r-Pc-CFZ" secondAttribute="trailing" id="evj-BU-Yd7"/>
                                                             <constraint firstItem="K7r-Pc-CFZ" firstAttribute="leading" secondItem="fNm-LM-4jq" secondAttribute="trailing" id="hBj-cF-4hi"/>
                                                             <constraint firstAttribute="bottom" secondItem="K7r-Pc-CFZ" secondAttribute="bottom" id="ihm-JL-2JG"/>
+                                                            <constraint firstItem="K7r-Pc-CFZ" firstAttribute="leading" secondItem="P1u-Fc-6WI" secondAttribute="leading" id="odX-jU-moO"/>
+                                                            <constraint firstAttribute="trailing" secondItem="fNm-LM-4jq" secondAttribute="trailing" id="rqE-uM-nW1"/>
                                                         </constraints>
+                                                        <variation key="default">
+                                                            <mask key="constraints">
+                                                                <exclude reference="hBj-cF-4hi"/>
+                                                                <exclude reference="aBX-Ht-0Xo"/>
+                                                            </mask>
+                                                        </variation>
                                                     </view>
                                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1c2-f3-oE9" userLabel="Comments Table View">
                                                         <rect key="frame" x="0.0" y="300" width="600" height="254"/>
@@ -199,11 +208,9 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="L9w-r5-LRY" secondAttribute="trailing" constant="-20" id="54t-oL-k2s"/>
-                            <constraint firstItem="o7t-w1-Wqa" firstAttribute="top" secondItem="L9w-r5-LRY" secondAttribute="bottom" id="5JA-3h-YMw"/>
                             <constraint firstItem="o7t-w1-Wqa" firstAttribute="top" secondItem="B5C-oP-gaM" secondAttribute="bottom" id="5My-kZ-2Ej"/>
                             <constraint firstItem="uz6-ku-F8R" firstAttribute="leading" secondItem="ADm-mp-Oho" secondAttribute="leading" id="5OC-2j-pNt"/>
                             <constraint firstAttribute="trailing" secondItem="uz6-ku-F8R" secondAttribute="trailing" id="ABl-So-bbN"/>
-                            <constraint firstItem="o7t-w1-Wqa" firstAttribute="top" secondItem="uz6-ku-F8R" secondAttribute="bottom" id="CdY-hH-aU8"/>
                             <constraint firstAttribute="trailing" secondItem="B5C-oP-gaM" secondAttribute="trailing" id="F6B-ws-eIO"/>
                             <constraint firstItem="L9w-r5-LRY" firstAttribute="top" secondItem="vOR-Jy-but" secondAttribute="bottom" constant="-20" id="MYJ-fI-Vay"/>
                             <constraint firstItem="cJM-fM-j46" firstAttribute="height" secondItem="ADm-mp-Oho" secondAttribute="height" constant="-46" id="Pfi-rB-WRt"/>
@@ -214,13 +221,13 @@
                             <constraint firstItem="L9w-r5-LRY" firstAttribute="leading" secondItem="ADm-mp-Oho" secondAttribute="leadingMargin" constant="-20" id="ff9-zq-iXx"/>
                             <constraint firstItem="cJM-fM-j46" firstAttribute="width" secondItem="ADm-mp-Oho" secondAttribute="width" id="p8v-LZ-vIT"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="5JA-3h-YMw"/>
-                                <exclude reference="CdY-hH-aU8"/>
-                            </mask>
-                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="commentTextField" destination="72P-FE-ea7" id="ebA-dV-J01"/>
+                        <outlet property="pollOptionsContainerView" destination="K7r-Pc-CFZ" id="mw9-zr-ak0"/>
+                        <outlet property="pollResultsContainerView" destination="fNm-LM-4jq" id="k3n-Lh-rZ6"/>
+                        <outlet property="tableView" destination="1c2-f3-oE9" id="D3T-sO-U5S"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mpx-YU-L9f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -260,7 +267,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AXi-MJ-sKi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1166" y="1061"/>
+            <point key="canvasLocation" x="1053" y="1083"/>
         </scene>
         <!--Poll Options View Controller-->
         <scene sceneID="RER-cx-vyQ">
@@ -301,11 +308,6 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="Y05-4o-mmE" secondAttribute="height" multiplier="1:1" id="ko0-l5-gN9"/>
                                                 </constraints>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="22"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="buttonTapped:" destination="Xpp-ej-Omo" eventType="touchUpInside" id="QPS-Gx-1t8"/>
                                                     <action selector="buttonTouchCancelled:" destination="Xpp-ej-Omo" eventType="touchDragExit" id="kJQ-Y1-4Gg"/>
@@ -330,11 +332,6 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="hQR-jc-gAO" secondAttribute="height" multiplier="1:1" id="gMc-gA-bn6"/>
                                                 </constraints>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="22"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="buttonTapped:" destination="Xpp-ej-Omo" eventType="touchUpInside" id="8P4-4j-nZM"/>
                                                     <action selector="buttonTouchCancelled:" destination="Xpp-ej-Omo" eventType="touchDragExit" id="mwd-oF-zsj"/>
@@ -359,11 +356,6 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="JN7-3v-Dzf" secondAttribute="height" multiplier="1:1" id="ZUX-3e-jBN"/>
                                                 </constraints>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="22"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="buttonTapped:" destination="Xpp-ej-Omo" eventType="touchUpInside" id="uOS-QB-CSH"/>
                                                     <action selector="buttonTouchCancelled:" destination="Xpp-ej-Omo" eventType="touchDragExit" id="ABz-A0-Bfo"/>
@@ -388,11 +380,6 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="xOd-w8-tdG" secondAttribute="height" multiplier="1:1" id="0pY-3p-DVW"/>
                                                 </constraints>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="22"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="buttonTapped:" destination="Xpp-ej-Omo" eventType="touchUpInside" id="l3o-CM-4Fj"/>
                                                     <action selector="buttonTouchCancelled:" destination="Xpp-ej-Omo" eventType="touchDragExit" id="uxS-cv-7G0"/>
@@ -434,11 +421,15 @@
                         <outlet property="questionThreeLabel" destination="wgg-j8-Ef0" id="frA-cl-a0N"/>
                         <outlet property="questionTwoButton" destination="hQR-jc-gAO" id="sHH-9q-1Gd"/>
                         <outlet property="questionTwoLabel" destination="7yJ-hu-jbG" id="Kpg-Vm-koS"/>
+                        <outletCollection property="buttonCollection" destination="Y05-4o-mmE" collectionClass="NSMutableArray" id="KJK-2F-KQY"/>
+                        <outletCollection property="buttonCollection" destination="hQR-jc-gAO" collectionClass="NSMutableArray" id="Ftr-sk-Lce"/>
+                        <outletCollection property="buttonCollection" destination="JN7-3v-Dzf" collectionClass="NSMutableArray" id="88h-fJ-ISe"/>
+                        <outletCollection property="buttonCollection" destination="xOd-w8-tdG" collectionClass="NSMutableArray" id="TYR-ct-Gn4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fMN-kP-efn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="498" y="1061"/>
+            <point key="canvasLocation" x="392" y="1083"/>
         </scene>
     </scenes>
     <resources>

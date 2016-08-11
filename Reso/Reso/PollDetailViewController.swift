@@ -8,17 +8,29 @@
 
 import UIKit
 
-class PollDetailViewController: UIViewController, UITextFieldDelegate {
+enum PollDetail {
+    case Options
+    case Results
+}
+
+class PollDetailViewController: UIViewController, UITextFieldDelegate, ChangeAlphaWhenButtonTapped {
     
     var comments: [Comment] = []
     var poll: Poll?
     var users = [User]()
     
+    var pollDetail: PollDetail {
+        guard let poll = poll else { return .Options }
+        return poll.hasVoted == false ? .Options : .Results
+    }
+    
     // MARK: - IBOutlets
     
     @IBOutlet weak var commentTextField: UITextField!
-    @IBOutlet weak var optionsContainerView: UIView!
     @IBOutlet weak var tableView: UITableView!
+    
+    @IBOutlet weak var pollOptionsContainerView: UIView!
+    @IBOutlet weak var pollResultsContainerView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,15 +39,9 @@ class PollDetailViewController: UIViewController, UITextFieldDelegate {
         
         hideKeyboardWhenTappedAround()
         
-        setupContainerView()
+        self.pollOptionsContainerView.alpha = self.pollDetail == .Options ? 1 : 0
+        self.pollResultsContainerView.alpha = self.pollDetail == .Options ? 0 : 1
         
-        if let poll = poll {
-            fetchUsersForPoll(poll)
-        }
-        
-        self.navigationController?.navigationBar.topItem?.title = "Poll Detail"
-        UINavigationBar.appearance().backgroundColor = UIColor.clearColor()
-        UINavigationBar.appearance().tintColor = UIColor.blackColor()
     }
     
     // MARK: - IBActions
@@ -54,8 +60,14 @@ class PollDetailViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    
     // MARK: - Functions
+    
+    func changeAlpha() {
+        UIView.animateWithDuration(0.5) { 
+            self.pollOptionsContainerView.alpha = self.pollDetail == .Options ? 0 : 1
+            self.pollResultsContainerView.alpha = self.pollDetail == .Options ? 1 : 0
+        }
+    }
     
     func updateComments(pollID: Poll) {
         CommentController.observeCommentsOnPoll(pollID, completion: { (comments) in
@@ -74,52 +86,22 @@ class PollDetailViewController: UIViewController, UITextFieldDelegate {
         return false
     }
     
-    func setupContainerView() {
-        
-//        if checkIfCurrentUserVoted() {
-//            let storyboard = UIStoryboard(name: "Detail", bundle: nil)
-//            if let pollResultsVC = storyboard.instantiateViewControllerWithIdentifier("PollResultsVC") as? PollResultsViewController {
-//                pollResultsVC.poll = poll
-//                optionsContainerView.addSubview(pollResultsVC.view)
-//
-//                let yConstraint = NSLayoutConstraint(item: pollResultsVC.pieChartView, attribute: .CenterY, relatedBy: .Equal, toItem: optionsContainerView, attribute: .CenterY, multiplier: 1.0, constant: 0)
-//                let xConstraint = NSLayoutConstraint(item: pollResultsVC.pieChartView, attribute: .CenterX, relatedBy: .Equal, toItem: optionsContainerView, attribute: .CenterX, multiplier: 1.0, constant: 0)
-//                optionsContainerView.addConstraints([yConstraint, xConstraint])
-//            }
-//        } else {
-//            let storyboard = UIStoryboard(name: "Detail", bundle: nil)
-//            if let pollOptionsVC = storyboard.instantiateViewControllerWithIdentifier("PollOptionsVC") as? PollOptionsViewController {
-//                pollOptionsVC.poll = self.poll
-//                optionsContainerView.addSubview(pollOptionsVC.view)
-//                self.willMoveToParentViewController(pollOptionsVC)
-//                self.addChildViewController(pollOptionsVC)
-//                pollOptionsVC.didMoveToParentViewController(self)
-//                
-//                let yConstraint = NSLayoutConstraint(item: pollOptionsVC.view, attribute: .CenterY, relatedBy: .Equal, toItem: optionsContainerView, attribute: .CenterY, multiplier: 1.0, constant: 0)
-//                let xConstraint = NSLayoutConstraint(item: pollOptionsVC.view, attribute: .CenterX, relatedBy: .Equal, toItem: optionsContainerView, attribute: .CenterX, multiplier: 1.0, constant: 0)
-//                optionsContainerView.addConstraints([yConstraint, xConstraint])
-//            }
-//        }
-    }
-    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         commentTextField.resignFirstResponder()
         return true
-    }
-    
-    // MARK: - Helper functions
-    
-    func fetchUsersForPoll(poll: Poll) {
-        
     }
     
     // MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "toOptionsSegue" {
-            
-            if let pollOptionsVC = segue.destinationViewController as? PollOptionsViewController {
-                pollOptionsVC.poll = self.poll
+            if let pollOptionsViewController = segue.destinationViewController as? PollOptionsViewController {
+                pollOptionsViewController.poll = self.poll
+                pollOptionsViewController.delegate = self
+            }
+        } else if segue.identifier == "toResultsSegue" {
+            if let pollResultsViewController = segue.destinationViewController as? PollResultsViewController {
+                pollResultsViewController.poll = poll
             }
         }
     }
