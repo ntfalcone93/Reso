@@ -11,7 +11,7 @@ import UIKit
 class PollOptionsViewController: UIViewController {
     
     var poll: Poll?
-   
+    
     var options: [Option] {
         guard let poll = poll else {
             return []
@@ -20,6 +20,8 @@ class PollOptionsViewController: UIViewController {
     }
     
     // MARK: - IBOutlets
+    // MARK: - Question
+    @IBOutlet weak var questionLabel: UILabel!
     
     // MARK: Buttons
     @IBOutlet weak var questionOneButton: UIButton!
@@ -38,16 +40,17 @@ class PollOptionsViewController: UIViewController {
         super.viewDidLoad()
         
         setupButtonsWithOptions()
-
-        
     }
     
     func setupButtonsWithOptions() {
+        
+        questionLabel.text = poll?.title
+        
         if options.count == 2 {
             
-            questionOneLabel.text = "\(options[0].name)"
-            questionTwoLabel.text = "\(options[1].name)"
-
+            questionOneLabel.text = options[0].name
+            questionTwoLabel.text = options[1].name
+            
             questionThreeButton.hidden = true
             questionThreeLabel.hidden = true
             questionFourButton.hidden = true
@@ -55,19 +58,19 @@ class PollOptionsViewController: UIViewController {
             
         } else if options.count == 3 {
             
-            questionOneLabel.text = "\(options[0].name)"
-            questionTwoLabel.text = "\(options[1].name)"
-            questionThreeLabel.text = "\(options[2].name)"
-        
+            questionOneLabel.text = options[0].name
+            questionTwoLabel.text = options[1].name
+            questionThreeLabel.text = options[2].name
+            
             questionFourButton.hidden = true
             questionFourLabel.hidden = true
-        
+            
         } else if options.count == 4 {
             
-            questionOneLabel.text = "\(options[0].name)"
-            questionTwoLabel.text = "\(options[1].name)"
-            questionThreeLabel.text = "\(options[2].name)"
-            questionFourLabel.text = "\(options[3].name)"
+            questionOneLabel.text = options[0].name
+            questionTwoLabel.text = options[1].name
+            questionThreeLabel.text = options[2].name
+            questionFourLabel.text = options[3].name
             
         } else {
             return
@@ -78,34 +81,32 @@ class PollOptionsViewController: UIViewController {
     // MARK: Button Tapped
     
     @IBAction func buttonTapped(sender: UIButton) {
+        guard let poll = poll else { return }
         switch sender.tag {
-            
-        
         case 0:
             guard options.count >= 1 else {
                 return
             }
-            print("Button 1 pressed 👍")
-
-            
+            let option = options[0]
+            PollController.vote(poll, option: option)
         case 1:
             guard options.count >= 2 else {
                 return
             }
-            print("Button 2 pressed 👍")
-            
+            let option = options[1]
+            PollController.vote(poll, option: option)
         case 2:
             guard options.count >= 3 else {
                 return
             }
-            print("Button 3 pressed 👍")
-            
+            let option = options[2]
+            PollController.vote(poll, option: option)
         case 3:
             guard options.count >= 4 else {
                 return
             }
-            print("Button 4 pressed 👍")
-            
+            let option = options[3]
+            PollController.vote(poll, option: option)
         default:
             break
         }
@@ -127,10 +128,11 @@ class PollOptionsViewController: UIViewController {
     }
     
     // MARK: - Navigation
-    
-    @IBAction func unwindToOptions(segue: UIStoryboardSegue) { }
-    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
+        if segue.identifier == "toResultsSegue" {
+            if let pollResultsVC = segue.destinationViewController as? PollResultsViewController {
+                pollResultsVC.poll = poll
+            }
+        }
     }
 }

@@ -26,31 +26,36 @@ class PollDetailViewController: UIViewController, UITextFieldDelegate {
         setupKeyboardNotifications()
         
         hideKeyboardWhenTappedAround()
-
-        mockData()
+        
+        setupContainerView()
         
         if let poll = poll {
             fetchUsersForPoll(poll)
         }
         
-        
+        self.navigationController?.navigationBar.topItem?.title = "Poll Detail"
+        UINavigationBar.appearance().backgroundColor = UIColor.clearColor()
+        UINavigationBar.appearance().tintColor = UIColor.blackColor()
     }
     
     // MARK: - IBActions
     
     @IBAction func sendButtonTapped(sender: AnyObject) {
-        let user = User(firstName: "Frank", lastName: "Billbong", identifier: "456A-78SR-TWV7-U23O")
+        guard let currentUser = UserController.shared.currentUser else { return }
         
-        if let commentText = commentTextField.text, let currentUserID = user.identifier, poll = self.poll, pollID = poll.identifier {
+        if let commentText = commentTextField.text, let currentUserID = currentUser.identifier, poll = self.poll, pollID = poll.identifier {
             CommentController.create(commentText, senderId: currentUserID, pollId: pollID)
             updateComments(poll)
         } else {
-             let alertController = UIAlertController(title: "Missing Information", message: "You did not type any text.", preferredStyle: .Alert)
+            let alertController = UIAlertController(title: "Missing Information", message: "You did not type any text.", preferredStyle: .Alert)
             alertController.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: nil))
             
             presentViewController(alertController, animated: true, completion: nil)
         }
     }
+    
+    
+    // MARK: - Functions
     
     func updateComments(pollID: Poll) {
         CommentController.observeCommentsOnPoll(pollID, completion: { (comments) in
@@ -59,34 +64,54 @@ class PollDetailViewController: UIViewController, UITextFieldDelegate {
         })
     }
     
-    // MARK: - Functions
+    func checkIfCurrentUserVoted() -> Bool {
+        guard let poll = poll else { return false }
+        for option in poll.options {
+            if option.votes.contains(UserController.shared.currentUserId) {
+                return true
+            }
+        }
+        return false
+    }
+    
+    func setupContainerView() {
+        
+        if checkIfCurrentUserVoted() {
+            let storyboard = UIStoryboard(name: "Detail", bundle: nil)
+            if let pollResultsVC = storyboard.instantiateViewControllerWithIdentifier("PollResultsVC") as? PollResultsViewController {
+                pollResultsVC.poll = poll
+                optionsContainerView.addSubview(pollResultsVC.view)
+                let yConstraint = NSLayoutConstraint(item: pollResultsVC.view, attribute: .CenterY, relatedBy: .Equal, toItem: optionsContainerView, attribute: .CenterY, multiplier: 1.0, constant: 0)
+                let xConstraint = NSLayoutConstraint(item: pollResultsVC.view, attribute: .CenterX, relatedBy: .Equal, toItem: optionsContainerView, attribute: .CenterX, multiplier: 1.0, constant: 0)
+                optionsContainerView.addConstraints([yConstraint, xConstraint])
+            }
+        } else {
+            let storyboard = UIStoryboard(name: "Detail", bundle: nil)
+            if let pollOptionsVC = storyboard.instantiateViewControllerWithIdentifier("PollOptionsVC") as? PollResultsViewController {
+                pollOptionsVC.poll = poll
+                optionsContainerView.addSubview(pollOptionsVC.view)
+            }
+        }
+    }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         commentTextField.resignFirstResponder()
-        commentTextField.text = ""
         return true
     }
     
-    func mockData() {
-        let option = Option(name: "True")
-        let option1 = Option(name: "False")
-        self.poll = Poll(title: "Star Wars or Star TreK?", options: [option, option1], memberIds: ["turkeydumpling567", "googlehacks7823"], isPrivate: true, endDate: NSDate().dateByAddingTimeInterval(1500))
-        self.poll?.identifier = "turkeyJones007"
-    }
-    
-    
     // MARK: - Helper functions
-
+    
     func fetchUsersForPoll(poll: Poll) {
         
     }
     
-    // MARK: - Navigation 
+    // MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "optionsSegue" {
+            
             if let pollOptionsVC = segue.destinationViewController as? PollOptionsViewController {
-                pollOptionsVC.poll = poll
+                pollOptionsVC.poll = self.poll
             }
         }
     }
@@ -141,8 +166,9 @@ extension PollDetailViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCellWithIdentifier("commentCell", forIndexPath: indexPath) as? CommentsTableViewCell ?? CommentsTableViewCell()
         
         let comment = comments[indexPath.row]
-        let user = User(firstName: "Justin", lastName: "Smith", identifier: "resdtsd1123")
-        cell.updateWithComment(comment, user: user)
+        
+//        let user = User
+        cell.updateCell(comment)
         
         return cell
     }
