@@ -29,6 +29,7 @@
                                                 <segment title="Private"/>
                                                 <segment title="Public"/>
                                             </segments>
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <connections>
                                                 <action selector="segmentChanged:" destination="4yi-JX-iUA" eventType="valueChanged" id="x8t-yf-qi7"/>
                                             </connections>
@@ -71,7 +72,7 @@
                                     <outlet property="textField" destination="DNz-cy-1Ll" id="VRq-zZ-Y75"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="headerCell" id="dlT-dh-aQy" customClass="HeaderTableViewCell" customModule="Reso" customModuleProvider="target">
+                            <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="headerCell" id="dlT-dh-aQy" customClass="HeaderTableViewCell" customModule="Reso" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="180" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dlT-dh-aQy" id="sIu-Xe-RIk">
@@ -91,7 +92,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Options:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VxA-dK-aJY">
                                             <rect key="frame" x="28" y="10" width="76" height="24"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p0w-bU-ogf">
@@ -113,7 +114,6 @@
                                         <constraint firstAttribute="bottomMargin" secondItem="zlf-q5-KA1" secondAttribute="bottom" id="xWa-88-0hw"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="addButton" destination="zlf-q5-KA1" id="3FU-nd-O8L"/>
                                     <outlet property="headerLabel" destination="VxA-dK-aJY" id="2gC-34-P3j"/>
@@ -132,7 +132,7 @@
                                                 <constraint firstAttribute="width" secondItem="4di-8P-vBq" secondAttribute="height" multiplier="1:1" id="Xj3-TW-cy5"/>
                                             </constraints>
                                         </imageView>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Option title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1vr-5n-u51">
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Option name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1vr-5n-u51">
                                             <rect key="frame" x="68" y="7" width="504" height="30"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
@@ -176,14 +176,14 @@
                                             <rect key="frame" x="15" y="0.0" width="570" height="44"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="addMemberCell" id="sjK-Yo-nO9" customClass="AddMemberTableViewCell" customModule="Reso" customModuleProvider="target">
+                            <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="addMemberCell" id="sjK-Yo-nO9" customClass="AddMemberTableViewCell" customModule="Reso" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="312" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sjK-Yo-nO9" id="1lg-2W-w0c">
@@ -191,10 +191,16 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JIs-3t-Hrm">
-                                            <rect key="frame" x="252" y="8" width="96" height="28"/>
-                                            <state key="normal" title="Add Members"/>
+                                            <rect key="frame" x="245" y="8" width="110" height="28"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="110" id="W24-X2-sdA"/>
+                                            </constraints>
+                                            <state key="normal" title="Add Members">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
                                             <connections>
                                                 <action selector="addMemberTapped:" destination="sjK-Yo-nO9" eventType="touchUpInside" id="CfS-lc-HuS"/>
+                                                <segue destination="QqT-yz-G3A" kind="show" identifier="toAddMembers" id="BLK-DX-toL"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -205,6 +211,9 @@
                                         <constraint firstItem="JIs-3t-Hrm" firstAttribute="centerX" secondItem="1lg-2W-w0c" secondAttribute="centerX" id="rgQ-TS-kKj"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="addMemberButton" destination="JIs-3t-Hrm" id="Zhc-uX-KUs"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -239,7 +248,7 @@
                             <subviews>
                                 <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5hg-R3-ymy">
                                     <rect key="frame" x="0.0" y="0.0" width="596" height="44"/>
-                                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                    <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="44" id="cEK-3Y-tVV"/>
                                     </constraints>
@@ -247,7 +256,7 @@
                                         <barButtonItem style="plain" systemItem="flexibleSpace" id="CLB-Ut-vCE"/>
                                         <barButtonItem title="Done" id="lfc-e9-2qe">
                                             <connections>
-                                                <action selector="pickerViewDoneButtonTapped:" destination="jmn-9Z-NcF" id="tgt-ha-6SW"/>
+                                                <action selector="datePickerDoneTapped:" destination="jmn-9Z-NcF" id="LPU-Fd-eU4"/>
                                             </connections>
                                         </barButtonItem>
                                     </items>
@@ -261,7 +270,7 @@
                             </subviews>
                         </stackView>
                     </subviews>
-                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="P7B-vv-uhH" secondAttribute="trailing" id="17n-6o-q7X"/>
                         <constraint firstItem="P7B-vv-uhH" firstAttribute="top" secondItem="yfS-08-JMJ" secondAttribute="top" id="6sK-Qr-zEb"/>
@@ -272,12 +281,73 @@
             </objects>
             <point key="canvasLocation" x="1790" y="876"/>
         </scene>
+        <!--Poll Create Detail Table View Controller-->
+        <scene sceneID="3Q3-xV-9N2">
+            <objects>
+                <tableViewController id="QqT-yz-G3A" customClass="PollCreateDetailTableViewController" customModule="Reso" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="e0I-G7-5mX">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="h6M-mj-5FB">
+                            <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="QqT-yz-G3A" id="uH2-kr-4jU"/>
+                            </connections>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="userCell" id="rL0-p8-UIH">
+                                <rect key="frame" x="0.0" y="136" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rL0-p8-UIH" id="lix-4e-ZWr">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="QqT-yz-G3A" id="Rea-AX-Az2"/>
+                            <outlet property="delegate" destination="QqT-yz-G3A" id="WGe-lJ-qwu"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="y5v-G3-WOi">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="Mqs-xa-kZ8">
+                            <rect key="frame" x="180" y="7" width="240" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Search"/>
+                                <segment title="Added Friends"/>
+                            </segments>
+                            <connections>
+                                <action selector="segmentChanged:" destination="QqT-yz-G3A" eventType="valueChanged" id="tg5-X4-cM2"/>
+                            </connections>
+                        </segmentedControl>
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="f1e-ev-n3h">
+                            <connections>
+                                <action selector="DoneButtonTapped:" destination="QqT-yz-G3A" id="Yqv-IH-wcU"/>
+                                <segue destination="btj-NG-Qkk" kind="unwind" identifier="unwindToCreatePoll" unwindAction="unwindToVC:" id="xIq-kF-ej2"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="memberSegmentController" destination="Mqs-xa-kZ8" id="qys-Xm-PMA"/>
+                        <outlet property="searchBar" destination="h6M-mj-5FB" id="l4R-dD-tVi"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vpv-Kd-TJi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="btj-NG-Qkk" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2503" y="876"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="HOV-OJ-r1m">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="APP-4N-ID8" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="jKv-Gc-Wnn">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" shadowImage="ResoBackground" backIndicatorImage="ResoBackground" id="jKv-Gc-Wnn">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -292,6 +362,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ResoBackground" width="414" height="736"/>
         <image name="incomplete" width="1200" height="1200"/>
     </resources>
 </document>

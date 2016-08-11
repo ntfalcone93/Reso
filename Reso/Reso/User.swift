@@ -26,7 +26,11 @@ struct User: FirebaseType {
         guard let lastInitial = lastName.characters.first else {
             return firstName
         }
-        return firstName + String(lastInitial)
+        return firstName + " " + String(lastInitial)
+    }
+    
+    var fullName: String {
+        return firstName + " " + lastName
     }
     
     var endpoint: String {
