@@ -25,10 +25,6 @@ class UserController {
     // TODO: Uncomment when we have a user object
     var currentUser = UserController.loadFromDefaults()
     
-    static var userRef: FIRDatabaseReference {
-        return FirebaseController.ref.child("users")
-    }
-    
     var currentUserId: String {
         guard let currentUser = currentUser, currentUserId = currentUser.identifier else {
             fatalError("Could not retrieve current user id")
