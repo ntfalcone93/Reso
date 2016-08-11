@@ -79,6 +79,17 @@ class UserController {
         })
     }
     
+    static func fetchAllUsers(completion: (users: [User]) -> Void) {
+        userRef.observeSingleEventOfType(.Value, withBlock: { (data) in
+            guard let userDicts = data.value as? [String: [String: AnyObject]] else {
+                completion(users: [])
+                return
+            }
+            let users = userDicts.flatMap { User(dictionary: $1, identifier: $0) }
+            completion(users: users)
+        })
+    }
+    
     private static func saveUserInDefaults(user: User) {
         NSUserDefaults.standardUserDefaults().setObject(user.dictionaryCopy, forKey: UserController.currentUserKey)
         NSUserDefaults.standardUserDefaults().setObject(user.identifier!, forKey: currentUserIdKey)
