@@ -81,15 +81,23 @@ class PollDetailViewController: UIViewController, UITextFieldDelegate {
             if let pollResultsVC = storyboard.instantiateViewControllerWithIdentifier("PollResultsVC") as? PollResultsViewController {
                 pollResultsVC.poll = poll
                 optionsContainerView.addSubview(pollResultsVC.view)
-                let yConstraint = NSLayoutConstraint(item: pollResultsVC.view, attribute: .CenterY, relatedBy: .Equal, toItem: optionsContainerView, attribute: .CenterY, multiplier: 1.0, constant: 0)
-                let xConstraint = NSLayoutConstraint(item: pollResultsVC.view, attribute: .CenterX, relatedBy: .Equal, toItem: optionsContainerView, attribute: .CenterX, multiplier: 1.0, constant: 0)
+
+                let yConstraint = NSLayoutConstraint(item: pollResultsVC.pieChartView, attribute: .CenterY, relatedBy: .Equal, toItem: optionsContainerView, attribute: .CenterY, multiplier: 1.0, constant: 0)
+                let xConstraint = NSLayoutConstraint(item: pollResultsVC.pieChartView, attribute: .CenterX, relatedBy: .Equal, toItem: optionsContainerView, attribute: .CenterX, multiplier: 1.0, constant: 0)
                 optionsContainerView.addConstraints([yConstraint, xConstraint])
             }
         } else {
             let storyboard = UIStoryboard(name: "Detail", bundle: nil)
-            if let pollOptionsVC = storyboard.instantiateViewControllerWithIdentifier("PollOptionsVC") as? PollResultsViewController {
-                pollOptionsVC.poll = poll
+            if let pollOptionsVC = storyboard.instantiateViewControllerWithIdentifier("PollOptionsVC") as? PollOptionsViewController {
+                pollOptionsVC.poll = self.poll
                 optionsContainerView.addSubview(pollOptionsVC.view)
+                self.willMoveToParentViewController(pollOptionsVC)
+                self.addChildViewController(pollOptionsVC)
+                pollOptionsVC.didMoveToParentViewController(self)
+                
+                let yConstraint = NSLayoutConstraint(item: pollOptionsVC.view, attribute: .CenterY, relatedBy: .Equal, toItem: optionsContainerView, attribute: .CenterY, multiplier: 1.0, constant: 0)
+                let xConstraint = NSLayoutConstraint(item: pollOptionsVC.view, attribute: .CenterX, relatedBy: .Equal, toItem: optionsContainerView, attribute: .CenterX, multiplier: 1.0, constant: 0)
+                optionsContainerView.addConstraints([yConstraint, xConstraint])
             }
         }
     }
@@ -108,7 +116,7 @@ class PollDetailViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "optionsSegue" {
+        if segue.identifier == "toOptionsSegue" {
             
             if let pollOptionsVC = segue.destinationViewController as? PollOptionsViewController {
                 pollOptionsVC.poll = self.poll
@@ -167,7 +175,7 @@ extension PollDetailViewController: UITableViewDataSource, UITableViewDelegate {
         
         let comment = comments[indexPath.row]
         
-//        let user = User
+        //        let user = User
         cell.updateCell(comment)
         
         return cell

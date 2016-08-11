@@ -32,7 +32,7 @@
                                         <containerView key="tableHeaderView" opaque="NO" contentMode="scaleToFill" id="P75-eo-8R7" userLabel="Poll Options Container View">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" red="0.1764705882" green="0.1843137255" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </containerView>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="commentCell" rowHeight="60" id="bSe-xC-faS" customClass="CommentsTableViewCell" customModule="Reso" customModuleProvider="target">
@@ -176,7 +176,6 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="7IW-9H-QRw" firstAttribute="centerY" secondItem="Seb-zY-Rsx" secondAttribute="centerY" id="eqj-ha-5ot"/>
                             <constraint firstItem="7IW-9H-QRw" firstAttribute="centerX" secondItem="Seb-zY-Rsx" secondAttribute="centerX" id="vvn-t7-FMQ"/>
