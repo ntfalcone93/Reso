@@ -25,8 +25,6 @@ class PollCreateTableViewController: UITableViewController {
     // Header cells
     var optionHeaderCell: HeaderTableViewCell?
     
-    var selectedMembers = [User]()
-    
     @IBOutlet var datePicker: UIDatePicker!
     @IBOutlet var datePickerView: UIView!
     
@@ -158,13 +156,10 @@ extension PollCreateTableViewController {
                 return addMemberCell
             default:
                 let memberCell = tableView.dequeueReusableCellWithIdentifier("memberCell", forIndexPath: indexPath)
-                if members.count > 1 {
-                    let member = members[indexPath.row]
-                    memberCell.textLabel?.text = member.discreetName
-                    memberCell.imageView?.image = member.photo
-                } else {
-                    memberCell.textLabel?.text = ""
-                }
+                
+                let member = members[indexPath.row - 1]
+                memberCell.textLabel?.text = member.discreetName
+                memberCell.imageView?.image = member.photo
                 
                 return memberCell
             }
@@ -172,9 +167,6 @@ extension PollCreateTableViewController {
     }
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
-        //change background color of header
-        optionHeaderCell?.backgroundColor = UIColor.clearColor()
         
         switch section {
         case 0:
@@ -186,6 +178,7 @@ extension PollCreateTableViewController {
             headerCell.delegate = self
             headerCell.headerType = .Option
             optionHeaderCell = headerCell
+            headerCell.backgroundColor = .clearColor()
             
             return headerCell
         default:
@@ -193,6 +186,7 @@ extension PollCreateTableViewController {
                 return HeaderTableViewCell()
             }
             headerCell.headerType = .Member
+            headerCell.contentView.backgroundColor = .clearColor()
             
             return headerCell.contentView
         }
@@ -206,6 +200,15 @@ extension PollCreateTableViewController {
             return 44
         }
     }
+    
+    @IBAction func unwindToVC(segue: UIStoryboardSegue) {
+        self.tableView.reloadData()
+        if let sourceViewController = segue.sourceViewController as? PollCreateDetailTableViewController {
+            members = sourceViewController.selectedMembers
+            tableView.reloadData()
+        }
+    }
+    
 }
 
 // MARK: - SegmentCellDelegate methods
@@ -239,6 +242,6 @@ extension PollCreateTableViewController: HeaderCellDelegate {
 extension PollCreateTableViewController: AddMemberCellDelegate {
     
     func addMembers() {
-      //performSegueWithIdentifier("toAddMembers", sender: self)
+        //performSegueWithIdentifier("toAddMembers", sender: self)
     }
 }

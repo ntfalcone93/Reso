@@ -320,7 +320,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Done" id="f1e-ev-n3h">
                             <connections>
                                 <action selector="DoneButtonTapped:" destination="QqT-yz-G3A" id="Yqv-IH-wcU"/>
-                                <segue destination="btj-NG-Qkk" kind="unwind" identifier="unwindToCreatePoll" unwindAction="unwindToOptions:" id="xIq-kF-ej2"/>
+                                <segue destination="btj-NG-Qkk" kind="unwind" identifier="unwindToCreatePoll" unwindAction="unwindToVC:" id="xIq-kF-ej2"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

@@ -22,10 +22,6 @@ class UserController {
     
     var currentUser = UserController.loadFromDefaults()
     
-    static var userRef: FIRDatabaseReference {
-        return FirebaseController.ref.child("users")
-    }
-    
     var currentUserId: String {
         guard let currentUser = currentUser, currentUserId = currentUser.identifier else {
             return ""
