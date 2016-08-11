@@ -14,7 +14,7 @@ class OptionTableViewCell: UITableViewCell {
     @IBOutlet weak var textField: UITextField!
 
     func setupCell(optionNumber: Int) {
-        optionImageView.image = UIImage(named: "Option \(index)")
+        optionImageView.image = UIImage(named: "Option \(optionNumber)")
         textField.placeholder = "Option title"
     }
 }
