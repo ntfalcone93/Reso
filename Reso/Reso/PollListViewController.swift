@@ -10,6 +10,11 @@ import UIKit
 
 class PollListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var pollSegmentController: UISegmentedControl!
+    @IBOutlet weak var rightNavigationBarButtonItem: UIBarButtonItem!
+    
+    
     var polls: [Poll] = []
     
     var selectedIndexPath: NSIndexPath!
@@ -21,9 +26,6 @@ class PollListViewController: UIViewController, UITableViewDataSource, UITableVi
     var incompletePolls: [Poll] {
         return polls.filter { !$0.isComplete }
     }
-    
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var pollSegmentController: UISegmentedControl!
     
     var pollSegment: PollType {
         switch pollSegmentController.selectedSegmentIndex {
@@ -37,20 +39,11 @@ class PollListViewController: UIViewController, UITableViewDataSource, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         guard UserController.shared.currentUser != nil else {
             performSegueWithIdentifier("toLogin", sender: self)
             return
         }
-        
-        // TESTING: Works great
-        //        let option1 = Option(name: "Helping students")
-        //        let option2 = Option(name: "Patrick's computer")
-        //        let option3 = Option(name: "Helping students beyond his paid time")
-        //        let option4 = Option(name: "Losing in ping pong")
-        //
-        //        let timeInterval = NSTimeInterval(floatLiteral: 1231231233.123)
-        //        PollController.create("How to annoy Nathan", options: [option1, option2, option3, option4], memberIds: [UserController.shared.currentUserId], isPrivate: true, endDate: NSDate(timeIntervalSinceNow: timeInterval))
+        setupLeftNavItem()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -60,6 +53,33 @@ class PollListViewController: UIViewController, UITableViewDataSource, UITableVi
             return
         }
         observePolls()
+    }
+    
+    func setupLeftNavItem() {
+        let rightNavButton = UIButton()
+        rightNavButton.setImage(UIImage(named: "defaultProfileImage"), forState: UIControlState.Normal)
+        rightNavButton.layer.borderWidth = 1
+        rightNavButton.layer.borderColor = UIColor.blackColor().CGColor
+        rightNavButton.clipsToBounds = true
+        rightNavButton.addTarget(self, action: #selector(PollListViewController.logoutAlert), forControlEvents: .TouchUpInside)
+        rightNavButton.frame = CGRectMake(0, 0, 30, 30)
+        rightNavButton.layer.cornerRadius = rightNavButton.frame.height / 2
+        let barButton = UIBarButtonItem(customView: rightNavButton)
+        self.navigationItem.leftBarButtonItem = barButton
+        
+    }
+    
+    func logoutAlert() {
+        
+        let alert = UIAlertController(title: "", message: "Are you sure that you want to log out?", preferredStyle: .Alert)
+        let logoutAction = UIAlertAction(title: "Logout", style: .Default) { (action) in
+            //FirebaseController.base.unauth()
+            //self.performSegueWithIdentifier("noUserLoggedIn", sender: nil)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Default, handler: nil)
+        alert.addAction(logoutAction)
+        alert.addAction(cancelAction)
+        presentViewController(alert, animated: true, completion: nil)
     }
     
     func observePolls() {
