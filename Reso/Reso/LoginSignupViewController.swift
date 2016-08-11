@@ -14,7 +14,7 @@ enum AccountType {
     case Create
 }
 
-class LoginSignupViewController: NSObject, UIViewController, UITextFieldDelegate //,UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning
+class LoginSignupViewController: UIViewController, UITextFieldDelegate //,UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning
 {
     
     @IBOutlet weak var emailTextField: UITextField!
@@ -34,18 +34,17 @@ class LoginSignupViewController: NSObject, UIViewController, UITextFieldDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        emailTextField.attributedPlaceholder = NSAttributedString(string:"Email", attributes:[NSForegroundColorAttributeName: UIColor.whiteColor().colorWithAlphaComponent(0.5)])
-        emailTextField.layer.borderColor = UIColor.whiteColor().CGColor
+        if firstNameTextField.hidden ==  false && lastNameTextField.hidden == false {
+            self.setBottomBorder(firstNameTextField)
+            self.setBottomBorder(lastNameTextField)
+        }
+        self.setBottomBorder(emailTextField)
+        self.setBottomBorder(passwordTextField)
         
-        passwordTextField.attributedPlaceholder = NSAttributedString(string:"Password", attributes:[NSForegroundColorAttributeName: UIColor.whiteColor().colorWithAlphaComponent(0.5)])
-        passwordTextField.layer.borderColor = UIColor.whiteColor().CGColor
-        
-        firstNameTextField.attributedPlaceholder = NSAttributedString(string:"First name", attributes:[NSForegroundColorAttributeName: UIColor.whiteColor().colorWithAlphaComponent(0.5)])
-        firstNameTextField.layer.borderColor = UIColor.whiteColor().CGColor
-        
-        lastNameTextField.attributedPlaceholder = NSAttributedString(string:"Last name", attributes:[NSForegroundColorAttributeName: UIColor.whiteColor().colorWithAlphaComponent(0.5)])
-        lastNameTextField.layer.borderColor = UIColor.whiteColor().CGColor
-        
+        emailTextField.attributedPlaceholder = NSAttributedString(string:"Email", attributes:[NSForegroundColorAttributeName: UIColor.whiteColor().colorWithAlphaComponent(1.0)])
+        passwordTextField.attributedPlaceholder = NSAttributedString(string:"Password", attributes:[NSForegroundColorAttributeName: UIColor.whiteColor().colorWithAlphaComponent(1.0)])
+        firstNameTextField.attributedPlaceholder = NSAttributedString(string:"First name", attributes:[NSForegroundColorAttributeName: UIColor.whiteColor().colorWithAlphaComponent(1.0)])
+        lastNameTextField.attributedPlaceholder = NSAttributedString(string:"Last name", attributes:[NSForegroundColorAttributeName: UIColor.whiteColor().colorWithAlphaComponent(1.0)])
         
         defaultProfileImage.layer.shadowColor = UIColor.blackColor().CGColor
         defaultProfileImage.layer.shadowRadius = 3.0
@@ -86,53 +85,53 @@ class LoginSignupViewController: NSObject, UIViewController, UITextFieldDelegate
     }
     
     
-//    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-//        
-//        let presentationAnimator = TransitionPresentationAimator()
-//        return presentationAnimator
-//        
-//    }
-//    
-//    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-//        
-//        let dismissalAnimator = TransitionDismissalAnimator()
-//        return dismissalAnimator
-//        
-//    }
-//    
-//    func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
-//        return 0.5
-//    }
-//    
-//    func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
-//        
-//        let fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)!
-//        let toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!
-//        let containerView = transitionContext.containerView()
-//        
-//        let animationDuration = self .transitionDuration(transitionContext)
-//        
-//        // take a snapshot of the detail ViewController so we can do whatever with it (cause it's only a view), and don't have to care about breaking constraints
-//        let snapshotView = toViewController.view.resizableSnapshotViewFromRect(toViewController.view.frame, afterScreenUpdates: true, withCapInsets: UIEdgeInsetsZero)
-//        snapshotView.transform = CGAffineTransformMakeScale(0.1, 0.1)
-//        snapshotView.center = fromViewController.view.center
-//        containerView.addSubview(snapshotView)
-//        
-//        // hide the detail view until the snapshot is being animated
-//        toViewController.view.alpha = 0.0
-//        containerView.addSubview(toViewController.view)
-//        
-//        UIView.animateWithDuration(animationDuration, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 20.0, options: [],
-//                                   animations: { () -> Void in
-//                                    snapshotView.transform = CGAffineTransformIdentity
-//            }, completion: { (finished) -> Void in
-//                snapshotView.removeFromSuperview()
-//                toViewController.view.alpha = 1.0
-//                transitionContext.completeTransition(finished)
-//        })
-//    }
-//        
-//    }
+    //    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    //
+    //        let presentationAnimator = TransitionPresentationAimator()
+    //        return presentationAnimator
+    //
+    //    }
+    //
+    //    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    //
+    //        let dismissalAnimator = TransitionDismissalAnimator()
+    //        return dismissalAnimator
+    //
+    //    }
+    //
+    //    func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
+    //        return 0.5
+    //    }
+    //
+    //    func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
+    //
+    //        let fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)!
+    //        let toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!
+    //        let containerView = transitionContext.containerView()
+    //
+    //        let animationDuration = self .transitionDuration(transitionContext)
+    //
+    //        // take a snapshot of the detail ViewController so we can do whatever with it (cause it's only a view), and don't have to care about breaking constraints
+    //        let snapshotView = toViewController.view.resizableSnapshotViewFromRect(toViewController.view.frame, afterScreenUpdates: true, withCapInsets: UIEdgeInsetsZero)
+    //        snapshotView.transform = CGAffineTransformMakeScale(0.1, 0.1)
+    //        snapshotView.center = fromViewController.view.center
+    //        containerView.addSubview(snapshotView)
+    //
+    //        // hide the detail view until the snapshot is being animated
+    //        toViewController.view.alpha = 0.0
+    //        containerView.addSubview(toViewController.view)
+    //
+    //        UIView.animateWithDuration(animationDuration, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 20.0, options: [],
+    //                                   animations: { () -> Void in
+    //                                    snapshotView.transform = CGAffineTransformIdentity
+    //            }, completion: { (finished) -> Void in
+    //                snapshotView.removeFromSuperview()
+    //                toViewController.view.alpha = 1.0
+    //                transitionContext.completeTransition(finished)
+    //        })
+    //    }
+    //
+    //    }
     
     
     
@@ -189,6 +188,8 @@ class LoginSignupViewController: NSObject, UIViewController, UITextFieldDelegate
             })
         case .Create:
             UIView.animateWithDuration(0.3, animations: {
+                self.setBottomBorder(self.firstNameTextField)
+                self.setBottomBorder(self.lastNameTextField)
                 self.firstNameTextField.hidden = true
                 self.lastNameTextField.hidden = true
                 self.imagePickerView.hidden = true
@@ -241,6 +242,16 @@ class LoginSignupViewController: NSObject, UIViewController, UITextFieldDelegate
         activityView.startAnimating()
     }
     
+    func setBottomBorder(textField: UITextField) {
+        let border = CALayer()
+        let width = CGFloat(1.0)
+        border.borderColor = UIColor.whiteColor().CGColor
+        border.frame = CGRect(x: 0, y: textField.frame.size.height - width, width:  textField.frame.size.width, height: textField.frame.size.height)
+        
+        border.borderWidth = width
+        textField.layer.addSublayer(border)
+        textField.layer.masksToBounds = true
+    }
     
 }
 
@@ -263,3 +274,4 @@ extension LoginSignupViewController: UIImagePickerControllerDelegate, UINavigati
     }
     
 }
+
