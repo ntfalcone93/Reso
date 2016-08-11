@@ -19,8 +19,6 @@ class PollCreateDetailTableViewController: UITableViewController, UISearchBarDel
     
     //swipe to delete needed on 'Added' tableview??
     
-    
-    
     //MARK: - Outlets
     @IBOutlet weak var memberSegmentController: UISegmentedControl!
     @IBOutlet weak var searchBar: UISearchBar!

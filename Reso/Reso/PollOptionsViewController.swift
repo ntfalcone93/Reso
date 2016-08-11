@@ -19,6 +19,8 @@ class PollOptionsViewController: UIViewController {
         return poll.options
     }
     
+    weak var delegate: ChangeAlphaWhenButtonTapped?
+    
     // MARK: - IBOutlets
     // MARK: - Question
     @IBOutlet weak var questionLabel: UILabel!
@@ -28,6 +30,7 @@ class PollOptionsViewController: UIViewController {
     @IBOutlet weak var questionTwoButton: UIButton!
     @IBOutlet weak var questionThreeButton: UIButton!
     @IBOutlet weak var questionFourButton: UIButton!
+    @IBOutlet var buttonCollection: [UIButton]!
     
     // MARK: Labels
     @IBOutlet weak var questionOneLabel: UILabel!
@@ -43,6 +46,10 @@ class PollOptionsViewController: UIViewController {
     }
     
     func setupButtonsWithOptions() {
+        
+        buttonCollection.forEach { (button) in
+            button.layer.cornerRadius = button.frame.height / 2
+        }
         
         questionLabel.text = poll?.title
         
@@ -110,7 +117,7 @@ class PollOptionsViewController: UIViewController {
         default:
             break
         }
-        performSegueWithIdentifier("toResultsSegue", sender: nil)
+        delegate?.changeAlpha()
     }
     
     
@@ -126,13 +133,8 @@ class PollOptionsViewController: UIViewController {
         guard let cgColor = sender.layer.borderColor else { return }
         sender.backgroundColor = UIColor(CGColor: cgColor)
     }
-    
-    // MARK: - Navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "toResultsSegue" {
-            if let pollResultsVC = segue.destinationViewController as? PollResultsViewController {
-                pollResultsVC.poll = poll
-            }
-        }
-    }
+}
+
+protocol ChangeAlphaWhenButtonTapped: class {
+    func changeAlpha()
 }
