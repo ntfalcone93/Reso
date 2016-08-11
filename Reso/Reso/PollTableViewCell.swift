@@ -25,6 +25,20 @@ class PollTableViewCell: UITableViewCell {
         // TODO: Replace with corresponding images
         votingStatusImageView.image = poll.hasVoted ? UIImage(named: "complete") : UIImage(named: "incomplete")
         numberOfMembersLabel.text = "\(poll.memberIds.count)"
-        timerRemainingLabel.text = "\(poll.timeRemaining)"
+        timerRemainingLabel.text = "\(stringFromTimeInterval(poll.timeRemaining))"
+        print(timerRemainingLabel.text)
+        
     }
+    
+    func stringFromTimeInterval(interval:NSTimeInterval) -> String {
+        
+        let ti = NSInteger(interval)
+        let secs = ti % 60
+        let hours = (ti / 60 / 60)
+        let minutes = (ti - (hours*60*60)) / 60
+        
+        
+        return String(format: "%0.2d: %0.2d: %0.2d",hours,minutes, secs)
+    }
+
 }
