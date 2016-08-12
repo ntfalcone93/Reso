@@ -42,6 +42,8 @@ class PollDetailViewController: UIViewController, UITextFieldDelegate, ChangeAlp
         self.pollOptionsContainerView.alpha = self.pollDetail == .Options ? 1 : 0
         self.pollResultsContainerView.alpha = self.pollDetail == .Options ? 0 : 1
         
+        tableView.allowsSelection = false
+
     }
     
     // MARK: - IBActions
@@ -58,6 +60,8 @@ class PollDetailViewController: UIViewController, UITextFieldDelegate, ChangeAlp
             
             presentViewController(alertController, animated: true, completion: nil)
         }
+        commentTextField.resignFirstResponder()
+        commentTextField.text = ""
     }
     
     // MARK: - Functions
@@ -88,6 +92,7 @@ class PollDetailViewController: UIViewController, UITextFieldDelegate, ChangeAlp
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         commentTextField.resignFirstResponder()
+        commentTextField.text = ""
         return true
     }
     
