@@ -9,8 +9,17 @@
 import UIKit
 
 class AddMemberTableViewCell: UITableViewCell {
-
+    
     weak var delegate: AddMemberCellDelegate?
+    
+    @IBOutlet weak var addMemberButton: UIButton!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        addMemberButton.layer.borderWidth = 2.0
+        addMemberButton.layer.borderColor = UIColor.whiteColor().CGColor
+        addMemberButton.layer.cornerRadius = 8
+    }
     
     @IBAction func addMemberTapped(sender: AnyObject) {
         delegate?.addMembers()

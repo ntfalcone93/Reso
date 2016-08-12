@@ -35,6 +35,7 @@
 		AC3396401D52FFFF00B8928E /* PollListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC33963F1D52FFFF00B8928E /* PollListViewController.swift */; };
 		AC3396421D53005E00B8928E /* PollTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3396411D53005E00B8928E /* PollTableViewCell.swift */; };
 		AC3396441D530D5500B8928E /* LoginSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3396431D530D5500B8928E /* LoginSignupViewController.swift */; };
+		AC4C999F1D5CF61500A788E2 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4C999E1D5CF61500A788E2 /* Colors.swift */; };
 		ACD2A8D51D53ECC700A567B5 /* CommentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD2A8D41D53ECC700A567B5 /* CommentController.swift */; };
 		DD0BE34C1D53A21B0013C723 /* PollController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0BE34B1D53A21B0013C723 /* PollController.swift */; };
 		DDD658CA1D51424500D12159 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD658C91D51424500D12159 /* User.swift */; };
@@ -94,6 +95,7 @@
 		AC33963F1D52FFFF00B8928E /* PollListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollListViewController.swift; sourceTree = "<group>"; };
 		AC3396411D53005E00B8928E /* PollTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollTableViewCell.swift; sourceTree = "<group>"; };
 		AC3396431D530D5500B8928E /* LoginSignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginSignupViewController.swift; sourceTree = "<group>"; };
+		AC4C999E1D5CF61500A788E2 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		ACD2A8D41D53ECC700A567B5 /* CommentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentController.swift; sourceTree = "<group>"; };
 		C85C9DE10777AFE73DD3F627 /* Pods_Reso.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Reso.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8098A586B1B4ECB8949D1E2 /* Pods-ResoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ResoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ResoTests/Pods-ResoTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				DDD658C91D51424500D12159 /* User.swift */,
+				AC4C999E1D5CF61500A788E2 /* Colors.swift */,
 				DDD658CB1D514E7200D12159 /* Poll.swift */,
 				DDD658CD1D51511800D12159 /* Option.swift */,
 				DDD658CF1D51850E00D12159 /* Comment.swift */,
@@ -421,6 +424,7 @@
 				02AD942F1D5BD7440046A739 /* ImageController.swift in Sources */,
 				AC3396441D530D5500B8928E /* LoginSignupViewController.swift in Sources */,
 				0239423A1D5A4B4E007BBB19 /* TextfieldTableViewCell.swift in Sources */,
+				AC4C999F1D5CF61500A788E2 /* Colors.swift in Sources */,
 				02C816661D4FF64700A82AD3 /* AppDelegate.swift in Sources */,
 				0239423E1D5A52A7007BBB19 /* OptionTableViewCell.swift in Sources */,
 				8BA5CC811D52D57200EF21FF /* CommentsTableViewCell.swift in Sources */,

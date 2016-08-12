@@ -32,7 +32,7 @@ class PollCreateTableViewController: UITableViewController {
         super.viewDidLoad()
         
         tableView.backgroundView = UIImageView(image: UIImage(named: "ResoBackground"))
-        //self.navigationController!.view.backgroundColor = UIColor.clearColor()
+        
     }
     
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -56,11 +56,23 @@ class PollCreateTableViewController: UITableViewController {
     
     // MARK: - IBActions
     
+    @IBAction func datePickerDoneTapped(sender: AnyObject) {
+        endDateTextFieldCell?.textField.text = "\(datePicker.date)"
+        endDateTextFieldCell?.textField.resignFirstResponder()
+    }
+    
     @IBAction func createPollTapped(sender: AnyObject) {
-        guard let title = titleTextFieldCell?.textField.text else {
+        guard let title = titleTextFieldCell?.textField.text where title.characters.count > 0 else {
+            presentTitleAlertController("You forgot a poll name.", message: "Please add it to the poll name field")
             return
         }
         createOptions()
+        
+        guard members.count > 0 else {
+            presentTitleAlertController("Please add some members", message: nil)
+            return
+        }
+        
         var memberIds = members.flatMap { $0.identifier }
         memberIds.append(UserController.shared.currentUserId)
         guard options.count >= 2 else {
@@ -73,10 +85,21 @@ class PollCreateTableViewController: UITableViewController {
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    @IBAction func pickerViewDoneButtonTapped(sender: AnyObject) {
-        endDateTextFieldCell?.textField.text = "\(datePicker.date)"
+    // MARK: - Alert Controller
+    
+    func presentTitleAlertController(title: String, message: String?){
+        
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        
+        let dismissAction = UIAlertAction(title: "Dismiss", style: .Cancel, handler: nil)
+        
+        alertController.addAction(dismissAction)
+        
+        presentViewController(alertController, animated: true, completion: nil)
+        
     }
 }
+
 
 // MARK: - Table view data source and delegate methods
 
@@ -109,7 +132,7 @@ extension PollCreateTableViewController {
             case 1:
                 let titleCell = tableView.dequeueReusableCellWithIdentifier("textfieldCell", forIndexPath: indexPath) as? TextfieldTableViewCell ?? TextfieldTableViewCell()
                 titleTextFieldCell = titleCell
-                titleCell.textField.placeholder = "Poll title"
+                titleCell.textField.placeholder = "Name of your Poll"
                 
                 return titleCell
             default:
@@ -208,7 +231,6 @@ extension PollCreateTableViewController {
             tableView.reloadData()
         }
     }
-    
 }
 
 // MARK: - SegmentCellDelegate methods
