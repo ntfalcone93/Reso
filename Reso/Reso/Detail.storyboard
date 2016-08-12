@@ -226,6 +226,7 @@
                         <outlet property="commentTextField" destination="72P-FE-ea7" id="ebA-dV-J01"/>
                         <outlet property="pollOptionsContainerView" destination="K7r-Pc-CFZ" id="mw9-zr-ak0"/>
                         <outlet property="pollResultsContainerView" destination="fNm-LM-4jq" id="k3n-Lh-rZ6"/>
+                        <outlet property="sendButton" destination="Kyb-Sy-UFh" id="Fy1-qV-EF0"/>
                         <outlet property="tableView" destination="1c2-f3-oE9" id="D3T-sO-U5S"/>
                     </connections>
                 </viewController>

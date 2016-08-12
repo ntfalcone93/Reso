@@ -29,6 +29,9 @@ class PollDetailViewController: UIViewController, UITextFieldDelegate, ChangeAlp
     @IBOutlet weak var commentTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var sendButton: UIButton!
+    
+    
     @IBOutlet weak var pollOptionsContainerView: UIView!
     @IBOutlet weak var pollResultsContainerView: UIView!
     
@@ -43,12 +46,23 @@ class PollDetailViewController: UIViewController, UITextFieldDelegate, ChangeAlp
         self.pollResultsContainerView.alpha = self.pollDetail == .Options ? 0 : 1
         
         tableView.allowsSelection = false
+        
+        commentTextField.delegate = self
+    
+        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        sendButton.enabled = false
 
     }
     
     // MARK: - IBActions
     
     @IBAction func sendButtonTapped(sender: AnyObject) {
+        
         guard let currentUser = UserController.shared.currentUser else { return }
         
         if let commentText = commentTextField.text, let currentUserID = currentUser.identifier, poll = self.poll, pollID = poll.identifier {
@@ -62,12 +76,14 @@ class PollDetailViewController: UIViewController, UITextFieldDelegate, ChangeAlp
         }
         commentTextField.resignFirstResponder()
         commentTextField.text = ""
+        sendButton.enabled = false
+        
     }
     
     // MARK: - Functions
     
     func changeAlpha() {
-        UIView.animateWithDuration(0.5) { 
+        UIView.animateWithDuration(0.5) {
             self.pollOptionsContainerView.alpha = self.pollDetail == .Options ? 0 : 1
             self.pollResultsContainerView.alpha = self.pollDetail == .Options ? 1 : 0
         }
@@ -90,12 +106,6 @@ class PollDetailViewController: UIViewController, UITextFieldDelegate, ChangeAlp
         return false
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        commentTextField.resignFirstResponder()
-        commentTextField.text = ""
-        return true
-    }
-    
     // MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -109,6 +119,36 @@ class PollDetailViewController: UIViewController, UITextFieldDelegate, ChangeAlp
                 pollResultsViewController.poll = poll
             }
         }
+    }
+}
+
+extension PollDetailViewController {
+    
+    // MARK: - TextField Delegate(s)
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        
+        if commentTextField.text?.characters.count > 0 {
+            sendButton.enabled = true
+        }
+        
+        return true
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        switch sendButton.enabled {
+        case commentTextField.text?.characters.count > 0 :
+            sendButton.enabled = true
+        case commentTextField.text!.isEmpty:
+            sendButton.enabled = false
+        default:
+            sendButton.enabled = false
+        }
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        commentTextField.resignFirstResponder()
+        return true
     }
 }
 
@@ -162,7 +202,6 @@ extension PollDetailViewController: UITableViewDataSource, UITableViewDelegate {
         
         let comment = comments[indexPath.row]
         
-        //        let user = User
         cell.updateCell(comment)
         
         return cell
