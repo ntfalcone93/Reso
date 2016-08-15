@@ -43,6 +43,8 @@ class PollOptionsViewController: UIViewController {
         super.viewDidLoad()
         
         setupButtonsWithOptions()
+        
+
     }
     
     func setupButtonsWithOptions() {
@@ -50,8 +52,8 @@ class PollOptionsViewController: UIViewController {
         buttonCollection.forEach { (button) in
             button.layer.cornerRadius = button.frame.height / 2
         }
-        
-        questionLabel.text = poll?.title
+        guard let poll = poll else { return }
+        questionLabel.text = "\(poll.title)?"
         
         if options.count == 2 {
             

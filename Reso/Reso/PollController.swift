@@ -132,7 +132,7 @@ class PollController {
         pollRef.child(pollId).child(Option.key).child(option.identifier).child(Option.voteKey).updateChildValues([UserController.shared.currentUserId : true])
     }
     
-    func fetchUsersForPoll(poll: Poll, completion: (user: [User]) -> Void) {
+    static func fetchUsersForPoll(poll: Poll, completion: (users: [User]) -> Void) {
         var users = [User]()
         let group = dispatch_group_create()
         poll.memberIds.forEach { (id) in

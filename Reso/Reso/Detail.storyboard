@@ -35,22 +35,34 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
                                                         <subviews>
                                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K7r-Pc-CFZ" userLabel="Poll Options Container View">
-                                                                <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="600" height="299"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                 <connections>
                                                                     <segue destination="Xpp-ej-Omo" kind="embed" identifier="toOptionsSegue" id="NM0-2x-D07"/>
                                                                 </connections>
                                                             </containerView>
                                                             <containerView opaque="NO" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fNm-LM-4jq" userLabel="Poll Results Container View">
-                                                                <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="600" height="299"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                 <connections>
                                                                     <segue destination="bVC-cF-G80" kind="embed" identifier="toResultsSegue" id="1aq-qh-Lwv"/>
                                                                 </connections>
                                                             </containerView>
+                                                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C1K-8y-CYI" userLabel="BlackLine View">
+                                                                <rect key="frame" x="0.0" y="299" width="600" height="1"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="1" id="pSm-si-LHc"/>
+                                                                </constraints>
+                                                            </webView>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <constraints>
+                                                            <constraint firstItem="C1K-8y-CYI" firstAttribute="leading" secondItem="P1u-Fc-6WI" secondAttribute="leading" id="2SW-qS-2qT"/>
+                                                            <constraint firstAttribute="trailing" secondItem="C1K-8y-CYI" secondAttribute="trailing" id="3VS-Rz-rPM"/>
+                                                            <constraint firstAttribute="bottom" secondItem="C1K-8y-CYI" secondAttribute="bottom" id="4BR-u2-79f"/>
+                                                            <constraint firstItem="C1K-8y-CYI" firstAttribute="top" secondItem="fNm-LM-4jq" secondAttribute="bottom" id="9Px-7J-ZMw"/>
+                                                            <constraint firstItem="C1K-8y-CYI" firstAttribute="top" secondItem="K7r-Pc-CFZ" secondAttribute="bottom" id="KyU-Uj-MP0"/>
                                                             <constraint firstAttribute="height" constant="300" id="PWa-NV-kLE"/>
                                                             <constraint firstItem="K7r-Pc-CFZ" firstAttribute="top" secondItem="P1u-Fc-6WI" secondAttribute="top" id="SQD-Je-QP6"/>
                                                             <constraint firstItem="fNm-LM-4jq" firstAttribute="top" secondItem="P1u-Fc-6WI" secondAttribute="top" id="ShV-oS-5W4"/>
@@ -66,7 +78,9 @@
                                                         <variation key="default">
                                                             <mask key="constraints">
                                                                 <exclude reference="hBj-cF-4hi"/>
+                                                                <exclude reference="ihm-JL-2JG"/>
                                                                 <exclude reference="aBX-Ht-0Xo"/>
+                                                                <exclude reference="bBC-6O-zg7"/>
                                                             </mask>
                                                         </variation>
                                                     </view>
@@ -294,7 +308,6 @@
                                                     <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <font key="NSFont" size="18" name="HelveticaNeue-Bold"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                    <integer key="NSUnderline" value="1"/>
                                                 </attributes>
                                             </fragment>
                                         </attributedString>

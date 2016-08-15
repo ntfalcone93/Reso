@@ -28,6 +28,11 @@ class PollResultsViewController: UIViewController {
         pieChartView.usePercentValuesEnabled = true
         
         observeOptions()
+        
+
+
+
+        
     }
     
     func observeOptions() {

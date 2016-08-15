@@ -48,7 +48,13 @@ class PollDetailViewController: UIViewController, UITextFieldDelegate, ChangeAlp
         tableView.allowsSelection = false
         
         commentTextField.delegate = self
-    
+        
+        self.navigationItem.title = "Poll Information"
+        self.navigationItem.leftBarButtonItem?.tintColor = .whiteColor()
+        
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 0.020, green: 0.643, blue: 0.753, alpha: 1.00)
+        
+        fetchComments()
         
     }
     
@@ -67,7 +73,6 @@ class PollDetailViewController: UIViewController, UITextFieldDelegate, ChangeAlp
         
         if let commentText = commentTextField.text, let currentUserID = currentUser.identifier, poll = self.poll, pollID = poll.identifier {
             CommentController.create(commentText, senderId: currentUserID, pollId: pollID)
-            updateComments(poll)
         } else {
             let alertController = UIAlertController(title: "Missing Information", message: "You did not type any text.", preferredStyle: .Alert)
             alertController.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: nil))
@@ -82,18 +87,20 @@ class PollDetailViewController: UIViewController, UITextFieldDelegate, ChangeAlp
     
     // MARK: - Functions
     
+    func fetchComments() {
+        guard let poll = poll else { return }
+        CommentController.observeCommentsOnPoll(poll) { (comments) in
+            self.comments = comments
+            self.tableView.reloadData()
+        }
+        
+    }
+    
     func changeAlpha() {
         UIView.animateWithDuration(0.5) {
             self.pollOptionsContainerView.alpha = self.pollDetail == .Options ? 0 : 1
             self.pollResultsContainerView.alpha = self.pollDetail == .Options ? 1 : 0
         }
-    }
-    
-    func updateComments(pollID: Poll) {
-        CommentController.observeCommentsOnPoll(pollID, completion: { (comments) in
-            self.comments = comments
-            self.tableView.reloadData()
-        })
     }
     
     func checkIfCurrentUserVoted() -> Bool {
@@ -104,6 +111,20 @@ class PollDetailViewController: UIViewController, UITextFieldDelegate, ChangeAlp
             }
         }
         return false
+    }
+    
+    // MARK: - Helper Function
+    
+    func fetchUsers() {
+        guard let poll = poll else { return }
+        PollController.fetchUsersForPoll(poll) { (users) in
+            self.users = users
+            self.tableView.reloadData()
+        }
+    }
+    
+    func userForID(userID: String) {
+        
     }
     
     // MARK: - Navigation
@@ -178,7 +199,7 @@ extension PollDetailViewController {
     func keyboardWillHide(sender: NSNotification) {
         guard let userInfo: [NSObject: AnyObject] = sender.userInfo,
             keyboardSize: CGSize = userInfo[UIKeyboardFrameBeginUserInfoKey]?.CGRectValue.size else { return }
-        self.view.frame.origin.y  += keyboardSize.height
+        self.view.frame.origin.y += keyboardSize.height
     }
     
     func hideKeyboardWhenTappedAround() {
