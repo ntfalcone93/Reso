@@ -20,6 +20,7 @@ class CommentsTableViewCell: UITableViewCell {
         userNameLabel.text = ""
         userCommentLabel.text = ""
     }
+    
     // MARK: - Function
     
     func updateWithComment(comment: Comment, user: User) {

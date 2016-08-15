@@ -241,7 +241,9 @@ extension PollDetailViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCellWithIdentifier("commentCell", forIndexPath: indexPath) as? CommentsTableViewCell ?? CommentsTableViewCell()
         
         let comment = comments[indexPath.row]
-        guard let user = userForID(comment.senderID) else { return CommentsTableViewCell() }
+        guard let user = userForID(comment.senderID) else {
+            return CommentsTableViewCell()
+        }
         
         cell.updateWithComment(comment, user: user)
         
