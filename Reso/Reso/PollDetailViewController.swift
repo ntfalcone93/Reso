@@ -38,6 +38,8 @@ class PollDetailViewController: UIViewController, UITextFieldDelegate, ChangeAlp
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         setupKeyboardNotifications()
         
         hideKeyboardWhenTappedAround()
@@ -50,12 +52,12 @@ class PollDetailViewController: UIViewController, UITextFieldDelegate, ChangeAlp
         commentTextField.delegate = self
         
         self.navigationItem.title = "Poll Information"
-        self.navigationItem.leftBarButtonItem?.tintColor = .whiteColor()
         
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 0.020, green: 0.643, blue: 0.753, alpha: 1.00)
         
         fetchComments()
         
+        fetchUsers()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -93,7 +95,6 @@ class PollDetailViewController: UIViewController, UITextFieldDelegate, ChangeAlp
             self.comments = comments
             self.tableView.reloadData()
         }
-        
     }
     
     func changeAlpha() {
@@ -120,11 +121,21 @@ class PollDetailViewController: UIViewController, UITextFieldDelegate, ChangeAlp
         PollController.fetchUsersForPoll(poll) { (users) in
             self.users = users
             self.tableView.reloadData()
+            PollController.fetchUsersPhotos(users, completion: { (users) in
+                self.users = users
+                self.tableView.reloadData()
+            })
         }
     }
     
-    func userForID(userID: String) {
-        
+    func userForID(userID: String) -> User? {
+        var userToReturn: User?
+        users.forEach { (user) in
+            if user.identifier == userID {
+                userToReturn = user
+            }
+        }
+        return userToReturn
     }
     
     // MARK: - Navigation
@@ -146,6 +157,14 @@ class PollDetailViewController: UIViewController, UITextFieldDelegate, ChangeAlp
 extension PollDetailViewController {
     
     // MARK: - TextField Delegate(s)
+    
+    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+
+        commentTextField.autocapitalizationType = .Sentences
+        commentTextField.autocorrectionType = .Yes
+        
+        return true
+    }
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         
@@ -222,9 +241,18 @@ extension PollDetailViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCellWithIdentifier("commentCell", forIndexPath: indexPath) as? CommentsTableViewCell ?? CommentsTableViewCell()
         
         let comment = comments[indexPath.row]
+        guard let user = userForID(comment.senderID) else { return CommentsTableViewCell() }
         
-        cell.updateCell(comment)
+        cell.updateWithComment(comment, user: user)
         
         return cell
     }
 }
+
+
+
+
+
+
+
+

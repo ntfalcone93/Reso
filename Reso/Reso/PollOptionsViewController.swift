@@ -6,6 +6,11 @@
 //  Copyright © 2016 ResoPolling. All rights reserved.
 //
 
+
+// Change button size
+// Chagne percentage color to black
+// get rid of results on bottom right
+
 import UIKit
 
 class PollOptionsViewController: UIViewController {
