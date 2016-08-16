@@ -46,16 +46,16 @@ class PollCreateTableViewController: UITableViewController {
     }
     
     func createOptions() {
-        if let option1Cell = option1Cell, name = option1Cell.textField.text {
+        if let option1Cell = option1Cell, name = option1Cell.textField.text where name.characters.count > 0 {
             options.append(Option(name: name))
         }
-        if let option2Cell = option2Cell, name = option2Cell.textField.text {
+        if let option2Cell = option2Cell, name = option2Cell.textField.text where name.characters.count > 0 {
             options.append(Option(name: name))
         }
-        if let option3Cell = option3Cell, name = option3Cell.textField.text {
+        if let option3Cell = option3Cell, name = option3Cell.textField.text where name.characters.count > 0 {
             options.append(Option(name: name))
         }
-        if let option4Cell = option4Cell, name = option4Cell.textField.text {
+        if let option4Cell = option4Cell, name = option4Cell.textField.text where name.characters.count > 0 {
             options.append(Option(name: name))
         }
     }
