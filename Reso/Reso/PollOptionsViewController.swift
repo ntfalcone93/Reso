@@ -95,7 +95,8 @@ class PollOptionsViewController: UIViewController {
     // MARK: Button Tapped
     
     @IBAction func buttonTapped(sender: UIButton) {
-        guard let poll = poll else { return }
+        guard var poll = poll else { return }
+        poll.options.sortInPlace { $0.identifier < $1.identifier }
         switch sender.tag {
         case 0:
             guard options.count >= 1 else {
