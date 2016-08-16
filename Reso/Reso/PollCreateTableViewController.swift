@@ -33,23 +33,29 @@ class PollCreateTableViewController: UITableViewController {
         
         tableView.backgroundView = UIImageView(image: UIImage(named: "ResoBackground"))
         
+        datePicker.date = defaultTimeInterval
     }
+    
+    
+    let defaultTimeInterval = NSDate(timeIntervalSinceNow: 86400)
+    let minTimeInterval = NSDate(timeIntervalSinceNow: 300)
+    
     
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         cell.backgroundColor = UIColor.clearColor()
     }
     
     func createOptions() {
-        if let option1Cell = option1Cell, name = option1Cell.textField.text {
+        if let option1Cell = option1Cell, name = option1Cell.textField.text where name.characters.count > 0 {
             options.append(Option(name: name))
         }
-        if let option2Cell = option2Cell, name = option2Cell.textField.text {
+        if let option2Cell = option2Cell, name = option2Cell.textField.text where name.characters.count > 0 {
             options.append(Option(name: name))
         }
-        if let option3Cell = option3Cell, name = option3Cell.textField.text {
+        if let option3Cell = option3Cell, name = option3Cell.textField.text where name.characters.count > 0 {
             options.append(Option(name: name))
         }
-        if let option4Cell = option4Cell, name = option4Cell.textField.text {
+        if let option4Cell = option4Cell, name = option4Cell.textField.text where name.characters.count > 0 {
             options.append(Option(name: name))
         }
     }
@@ -57,19 +63,24 @@ class PollCreateTableViewController: UITableViewController {
     // MARK: - IBActions
     
     @IBAction func datePickerDoneTapped(sender: AnyObject) {
-        endDateTextFieldCell?.textField.text = "\(datePicker.date)"
+        endDateTextFieldCell?.textField.text = datePicker.date.stringValue()
         endDateTextFieldCell?.textField.resignFirstResponder()
     }
     
     @IBAction func createPollTapped(sender: AnyObject) {
         guard let title = titleTextFieldCell?.textField.text where title.characters.count > 0 else {
-            presentTitleAlertController("You forgot a poll name.", message: "Please add it to the poll name field")
+            presentPollAlertController("You forgot a poll name.", message: "Please add it to the poll name field.")
             return
         }
-        createOptions()
+        
+        if option1Cell?.textField.text?.characters.count > 0 && option2Cell?.textField.text?.characters.count > 0 {
+            createOptions()
+        } else {
+            presentPollAlertController("Missing Information", message: "Please add at least two options to your poll.")
+        }
         
         guard members.count > 0 else {
-            presentTitleAlertController("Please add some members", message: nil)
+            presentPollAlertController("Missing Information", message: "Please add members to your poll.")
             return
         }
         
@@ -79,15 +90,21 @@ class PollCreateTableViewController: UITableViewController {
             return
         }
         PollController.create(title, options: options, memberIds: memberIds, pollType: pollType, endDate: datePicker.date)
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func cancelButtonTapped(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
     }
     
+    @IBAction func userTappedScreen(sender: AnyObject) {
+        self.titleTextFieldCell?.resignFirstResponder()
+        self.endDateTextFieldCell?.resignFirstResponder()
+    }
+    
     // MARK: - Alert Controller
     
-    func presentTitleAlertController(title: String, message: String?){
+    func presentPollAlertController(title: String, message: String?){
         
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         
@@ -97,6 +114,18 @@ class PollCreateTableViewController: UITableViewController {
         
         presentViewController(alertController, animated: true, completion: nil)
         
+    }
+    
+    //MARK: - Segue
+    
+    //pass added members to pollCreateDetail when user goes back to add additional members
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "toAddMembers" {
+            if let destinationVC = segue.destinationViewController as? PollCreateDetailTableViewController {
+                destinationVC.selectedMembers = members
+            }
+        }
     }
 }
 
@@ -133,12 +162,14 @@ extension PollCreateTableViewController {
                 let titleCell = tableView.dequeueReusableCellWithIdentifier("textfieldCell", forIndexPath: indexPath) as? TextfieldTableViewCell ?? TextfieldTableViewCell()
                 titleTextFieldCell = titleCell
                 titleCell.textField.placeholder = "Name of your Poll"
+                titleCell.textField.autocapitalizationType = UITextAutocapitalizationType.Sentences
                 
                 return titleCell
             default:
                 let endDateCell = tableView.dequeueReusableCellWithIdentifier("textfieldCell", forIndexPath: indexPath) as? TextfieldTableViewCell ?? TextfieldTableViewCell()
                 endDateCell.textField.placeholder = "Poll deadline"
                 endDateCell.textField.inputView = datePickerView
+                endDateCell.textField.text = String("Set poll deadline: \(datePicker.date.stringValue())")
                 endDateTextFieldCell = endDateCell
                 
                 return endDateCell
@@ -149,24 +180,28 @@ extension PollCreateTableViewController {
                 let optionCell = tableView.dequeueReusableCellWithIdentifier("optionCell", forIndexPath: indexPath) as? OptionTableViewCell ?? OptionTableViewCell()
                 optionCell.setupCell(indexPath.row + 1)
                 option1Cell = optionCell
+                optionCell.textField.autocapitalizationType = UITextAutocapitalizationType.Sentences
                 
                 return optionCell
             case 1:
                 let optionCell = tableView.dequeueReusableCellWithIdentifier("optionCell", forIndexPath: indexPath) as? OptionTableViewCell ?? OptionTableViewCell()
                 optionCell.setupCell(indexPath.row + 1)
                 option2Cell = optionCell
+                optionCell.textField.autocapitalizationType = UITextAutocapitalizationType.Sentences
                 
                 return optionCell
             case 2:
                 let optionCell = tableView.dequeueReusableCellWithIdentifier("optionCell", forIndexPath: indexPath) as? OptionTableViewCell ?? OptionTableViewCell()
                 optionCell.setupCell(indexPath.row + 1)
                 option3Cell = optionCell
+                optionCell.textField.autocapitalizationType = UITextAutocapitalizationType.Sentences
                 
                 return optionCell
             default:
                 let optionCell = tableView.dequeueReusableCellWithIdentifier("optionCell", forIndexPath: indexPath) as? OptionTableViewCell ?? OptionTableViewCell()
                 optionCell.setupCell(indexPath.row + 1)
                 option4Cell = optionCell
+                optionCell.textField.autocapitalizationType = UITextAutocapitalizationType.Sentences
                 
                 return optionCell
             }

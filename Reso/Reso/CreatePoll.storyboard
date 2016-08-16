@@ -82,36 +82,34 @@
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zlf-q5-KA1">
                                             <rect key="frame" x="544" y="8" width="28" height="28"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" secondItem="zlf-q5-KA1" secondAttribute="height" multiplier="1:1" id="xse-U7-3Za"/>
+                                                <constraint firstAttribute="width" constant="28" id="aid-Rl-39v"/>
                                             </constraints>
                                             <state key="normal" image="incomplete"/>
                                             <connections>
                                                 <action selector="addButtonTapped:" destination="dlT-dh-aQy" eventType="touchUpInside" id="GAT-9d-7GL"/>
                                             </connections>
                                         </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Options:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VxA-dK-aJY">
-                                            <rect key="frame" x="28" y="10" width="76" height="24"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Add Poll Options:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VxA-dK-aJY">
+                                            <rect key="frame" x="28" y="10" width="158" height="24"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p0w-bU-ogf">
                                             <rect key="frame" x="28" y="40" width="488" height="1"/>
-                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="1" id="Nxj-HW-cLz"/>
-                                            </constraints>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </view>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="p0w-bU-ogf" firstAttribute="leading" secondItem="VxA-dK-aJY" secondAttribute="leading" id="0IZ-MJ-bul"/>
-                                        <constraint firstItem="VxA-dK-aJY" firstAttribute="leading" secondItem="sIu-Xe-RIk" secondAttribute="leadingMargin" constant="20" id="3I9-Fz-v2H"/>
-                                        <constraint firstItem="VxA-dK-aJY" firstAttribute="centerY" secondItem="sIu-Xe-RIk" secondAttribute="centerY" id="CPH-AI-zO5"/>
-                                        <constraint firstItem="zlf-q5-KA1" firstAttribute="leading" secondItem="p0w-bU-ogf" secondAttribute="trailing" constant="28" id="Qab-cA-vXi"/>
-                                        <constraint firstItem="zlf-q5-KA1" firstAttribute="top" secondItem="sIu-Xe-RIk" secondAttribute="topMargin" id="lAU-8q-Pkt"/>
-                                        <constraint firstItem="p0w-bU-ogf" firstAttribute="top" secondItem="VxA-dK-aJY" secondAttribute="bottom" constant="6" id="p8I-HV-XcX"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="zlf-q5-KA1" secondAttribute="trailing" constant="20" id="w30-vD-RUU"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="zlf-q5-KA1" secondAttribute="bottom" id="xWa-88-0hw"/>
+                                        <constraint firstItem="p0w-bU-ogf" firstAttribute="top" secondItem="VxA-dK-aJY" secondAttribute="bottom" constant="6" id="0Uh-Vj-ow1"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="p0w-bU-ogf" secondAttribute="trailing" constant="76" id="6rX-yr-X0X"/>
+                                        <constraint firstItem="p0w-bU-ogf" firstAttribute="top" secondItem="sIu-Xe-RIk" secondAttribute="top" constant="40" id="B4N-cL-R8F"/>
+                                        <constraint firstItem="p0w-bU-ogf" firstAttribute="leading" secondItem="VxA-dK-aJY" secondAttribute="leading" id="Hfl-Tb-B54"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="p0w-bU-ogf" secondAttribute="bottom" constant="-5" id="fhi-jT-fgJ"/>
+                                        <constraint firstItem="zlf-q5-KA1" firstAttribute="bottom" secondItem="sIu-Xe-RIk" secondAttribute="bottomMargin" id="fwr-ll-EWT"/>
+                                        <constraint firstItem="zlf-q5-KA1" firstAttribute="top" secondItem="sIu-Xe-RIk" secondAttribute="topMargin" id="g4d-ok-LFA"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="zlf-q5-KA1" secondAttribute="trailing" constant="20" id="gPc-iz-fZk"/>
+                                        <constraint firstItem="p0w-bU-ogf" firstAttribute="leading" secondItem="sIu-Xe-RIk" secondAttribute="leadingMargin" constant="20" id="zC9-yj-Nkn"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -195,6 +193,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="110" id="W24-X2-sdA"/>
                                             </constraints>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                             <state key="normal" title="Add Members">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
@@ -278,6 +277,11 @@
                         <constraint firstItem="P7B-vv-uhH" firstAttribute="leading" secondItem="yfS-08-JMJ" secondAttribute="leading" id="vHz-jv-TpR"/>
                     </constraints>
                 </view>
+                <tapGestureRecognizer id="xBV-5e-WvC">
+                    <connections>
+                        <action selector="userTappedScreen:" destination="jmn-9Z-NcF" id="GPE-Dd-VKK"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1790" y="876"/>
         </scene>
@@ -285,10 +289,11 @@
         <scene sceneID="3Q3-xV-9N2">
             <objects>
                 <tableViewController id="QqT-yz-G3A" customClass="PollCreateDetailTableViewController" customModule="Reso" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="e0I-G7-5mX">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="e0I-G7-5mX">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" id="h6M-mj-5FB">
                             <rect key="frame" x="0.0" y="64" width="600" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>

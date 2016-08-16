@@ -35,7 +35,6 @@ class PollResultsViewController: UIViewController, ChartViewDelegate {
         guard let poll = poll else { return }
         PollController.observeOptions(poll) { (options) in
             self.options = options.sort { $0.identifier < $1.identifier }
-            print(options)
         }
     }
     

@@ -21,7 +21,7 @@ class PollOptionsViewController: UIViewController {
         guard let poll = poll else {
             return []
         }
-        return poll.options
+        return poll.options.sort { $0.identifier < $1.identifier }
     }
     
     weak var delegate: ChangeAlphaWhenButtonTapped?
