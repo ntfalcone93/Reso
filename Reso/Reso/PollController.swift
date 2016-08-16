@@ -132,7 +132,7 @@ class PollController {
         pollRef.child(pollId).child(Option.key).child(option.identifier).child(Option.voteKey).updateChildValues([UserController.shared.currentUserId : true])
     }
     
-    func fetchUsersForPoll(poll: Poll, completion: (user: [User]) -> Void) {
+    static func fetchUsersForPoll(poll: Poll, completion: (users: [User]) -> Void) {
         var users = [User]()
         let group = dispatch_group_create()
         poll.memberIds.forEach { (id) in
@@ -145,9 +145,28 @@ class PollController {
             })
         }
         dispatch_group_notify(group, dispatch_get_main_queue()) {
-            completion(user: users)
+            completion(users: users)
         }
-        
+    }
+    
+    static func fetchUsersPhotos(users: [User], completion: (users: [User]) -> Void) {
+        var usersWithPhotos = [User]()
+        let group = dispatch_group_create()
+        users.forEach { (user) in
+            dispatch_group_enter(group)
+            UserController.fetchUsersPhoto(user, completion: { (user) in
+                usersWithPhotos.append(user)
+                dispatch_group_leave(group)
+            })
+        }
+        dispatch_group_notify(group, dispatch_get_main_queue()) { 
+            completion(users: usersWithPhotos)
+        }
     }
 }
+
+
+
+
+
 

@@ -16,15 +16,16 @@ class CommentsTableViewCell: UITableViewCell {
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var userCommentLabel: UILabel!
     
+    override func awakeFromNib() {
+        userNameLabel.text = ""
+        userCommentLabel.text = ""
+    }
     
     // MARK: - Function
     
     func updateWithComment(comment: Comment, user: User) {
-        userNameLabel.text = "\(user.firstName) \(user.lastName)"
-        userCommentLabel.text = comment.text
-    }
-    
-    func updateCell(comment: Comment) {
+        userPhotoImageView.image = user.photo
+        userNameLabel.text = user.discreetName
         userCommentLabel.text = comment.text
     }
 }

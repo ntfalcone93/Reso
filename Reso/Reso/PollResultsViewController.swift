@@ -9,7 +9,7 @@
 import UIKit
 import Charts
 
-class PollResultsViewController: UIViewController {
+class PollResultsViewController: UIViewController, ChartViewDelegate {
     
     var options = [Option]() {
         didSet {
@@ -28,6 +28,11 @@ class PollResultsViewController: UIViewController {
         pieChartView.usePercentValuesEnabled = true
         
         observeOptions()
+        
+
+
+
+        
     }
     
     func observeOptions() {
