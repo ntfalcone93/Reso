@@ -19,6 +19,8 @@ class PollCreateDetailTableViewController: UITableViewController, UISearchBarDel
     
     //swipe to delete needed on 'Added' tableview??
     
+    var poll: Poll?
+    
     //MARK: - Outlets
     @IBOutlet weak var memberSegmentController: UISegmentedControl!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -66,10 +68,13 @@ class PollCreateDetailTableViewController: UITableViewController, UISearchBarDel
         let user = filteredUsers[indexPath.row]
         selectedMembers.append(user)
         filterSelectedUsers()
-        tableView.reloadData()
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        UIView.animateWithDuration(0.75) {
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        }
+        searchBar.text = ""
     }
-    
     
     //MARK: - Actions
     
