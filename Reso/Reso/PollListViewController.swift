@@ -8,10 +8,11 @@
 
 import UIKit
 
-class PollListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class PollListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var pollSegmentController: UISegmentedControl!
+    @IBOutlet weak var createNewPollButtonOutlet: UIBarButtonItem!
     
     
     var polls: [Poll] = []
@@ -43,7 +44,8 @@ class PollListViewController: UIViewController, UITableViewDataSource, UITableVi
             performSegueWithIdentifier("toLogin", sender: self)
             return
         }
-       // setupLeftNavItem()
+        setupLeftNavItem()
+        //setupRightNavItem()
         setupSegmentedController()
     }
     
@@ -57,18 +59,44 @@ class PollListViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func setupLeftNavItem() {
-        let rightNavButton = UIButton()
-        rightNavButton.setImage(UIImage(named: "defaultProfileImage"), forState: UIControlState.Normal)
-        rightNavButton.layer.borderWidth = 1
-        rightNavButton.layer.borderColor = UIColor.blackColor().CGColor
-        rightNavButton.clipsToBounds = true
-        rightNavButton.addTarget(self, action: #selector(PollListViewController.logoutAlert), forControlEvents: .TouchUpInside)
-        rightNavButton.frame = CGRectMake(0, 0, 30, 30)
-        rightNavButton.layer.cornerRadius = rightNavButton.frame.height / 2
-        let barButton = UIBarButtonItem(customView: rightNavButton)
+        let leftNavItem = UIButton()
+        let usersImage = FirebaseController.storageRef.child("users/\(UserController.shared.currentUserId)/photoUrl")
+        leftNavItem.setBackgroundImage(UserController.shared.currentUser?.photo, forState: .Normal)
+        print(UserController.shared.currentUser?.photo)
+        leftNavItem.layer.borderWidth = 1
+        leftNavItem.layer.borderColor = UIColor.blackColor().CGColor
+        leftNavItem.clipsToBounds = true
+        leftNavItem.addTarget(self, action: #selector(PollListViewController.logoutAlert), forControlEvents: .TouchUpInside)
+        leftNavItem.frame = CGRectMake(0, 0, 30, 30)
+        leftNavItem.layer.cornerRadius = leftNavItem.frame.height / 2
+        let barButton = UIBarButtonItem(customView: leftNavItem)
         self.navigationItem.leftBarButtonItem = barButton
         
     }
+    
+    //    func setupProfileImage() {
+    //        let user: User?
+    //        let _ = user?.photo
+    //    }
+    
+    
+    //    func setupRightNavItem() {
+    //
+    //        let rightNavButton = UIButton()
+    //        rightNavButton.setTitle("+", forState: .Normal)
+    //        rightNavButton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
+    //        rightNavButton.titleLabel!.font = UIFont(name: "AmericanTypewriter", size: 45)!
+    //        rightNavButton.layer.shadowColor = UIColor.blackColor().CGColor
+    //        rightNavButton.layer.shadowRadius = 0.5
+    //        rightNavButton.layer.shadowOffset = CGSize(width: 0, height: 1.0)
+    //        rightNavButton.layer.shadowOpacity = 2.5
+    //        rightNavButton.clipsToBounds = true
+    //        rightNavButton.addTarget(self, action: #selector(PollListViewController.logoutAlert), forControlEvents: .TouchUpInside)
+    //        rightNavButton.frame = CGRectMake(0, 0, 30, 30)
+    //        rightNavButton.layer.cornerRadius = rightNavButton.frame.height / 2
+    //        let barButton = UIBarButtonItem(customView: rightNavButton)
+    //        self.navigationItem.rightBarButtonItem = barButton
+    //    }
     
     func setupSegmentedController() {
         pollSegmentController.layer.borderColor = MyColors.myLightGreenColor().CGColor
@@ -104,14 +132,25 @@ class PollListViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
-            return "Incomplete"
-        } else {
-            return "Complete"
+            if incompletePolls.count >= 1 {
+                return "In progress"
+            } else {
+                return nil
+            }
         }
+        if section == 1 {
+            if completedPolls.count >= 1 {
+                return "Expired"
+            } else {
+                return nil
+            }
+        }
+        return ""
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
+            print(incompletePolls.count)
             return incompletePolls.count
         } else {
             return completedPolls.count
@@ -147,5 +186,27 @@ class PollListViewController: UIViewController, UITableViewDataSource, UITableVi
                 pollOptionsVC.poll = completedPolls[indexPath.row]
             }
         }
+    }
+    
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]?  {
+        
+        let selectedPoll = self.polls[indexPath.row]
+        
+        let leaveAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "leave") { (UITableViewRowAction, NSIndexPath) -> Void in
+            
+            var membersInSelectedPoolArray = selectedPoll.memberIds
+            if membersInSelectedPoolArray.contains(UserController.shared.currentUserId) {
+            let indexPathOfCurrentUserID = membersInSelectedPoolArray.indexOf(UserController.shared.currentUserId)
+            membersInSelectedPoolArray.removeAtIndex(indexPathOfCurrentUserID!)
+            }
+            self.tableView.reloadData()
+        }
+        
+        return [leaveAction]
+        
     }
 }

@@ -34,10 +34,8 @@ class LoginSignupViewController: UIViewController, UITextFieldDelegate //,UIView
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if firstNameTextField.hidden ==  false && lastNameTextField.hidden == false {
-            self.setBottomBorder(firstNameTextField)
-            self.setBottomBorder(lastNameTextField)
-        }
+        self.setBottomBorder(firstNameTextField)
+        self.setBottomBorder(lastNameTextField)
         self.setBottomBorder(emailTextField)
         self.setBottomBorder(passwordTextField)
         
@@ -179,7 +177,8 @@ class LoginSignupViewController: UIViewController, UITextFieldDelegate //,UIView
     @IBAction func createAccountButtonTapped(sender: AnyObject) {
         switch accountType {
         case .Existing:
-            UIView.animateWithDuration(0.3, animations: {
+            UIView.animateWithDuration(0.5, animations: {
+                self.stackViewTopConstraint.constant = 20
                 self.firstNameTextField.hidden = false
                 self.lastNameTextField.hidden = false
                 self.imagePickerView.hidden = false
@@ -187,7 +186,10 @@ class LoginSignupViewController: UIViewController, UITextFieldDelegate //,UIView
                 self.loginButtonOutlet.setTitle("Create account", forState: .Normal)
             })
         case .Create:
-            UIView.animateWithDuration(0.3, animations: {
+            UIView.animateWithDuration(0.5, animations: {
+                self.stackViewTopConstraint.constant = 85
+                })
+            UIView.animateWithDuration(0.5, animations: {
                 self.setBottomBorder(self.firstNameTextField)
                 self.setBottomBorder(self.lastNameTextField)
                 self.firstNameTextField.hidden = true
@@ -230,7 +232,11 @@ class LoginSignupViewController: UIViewController, UITextFieldDelegate //,UIView
         self.emailTextField.resignFirstResponder()
         self.passwordTextField.resignFirstResponder()
         UIView.animateWithDuration(0.5) {
+            if self.firstNameTextField.hidden == false {
+                self.stackViewTopConstraint.constant  = 20
+            } else {
             self.stackViewTopConstraint.constant = 85
+            }
         }
         return true
     }
