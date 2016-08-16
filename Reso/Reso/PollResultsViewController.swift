@@ -33,7 +33,7 @@ class PollResultsViewController: UIViewController {
     func observeOptions() {
         guard let poll = poll else { return }
         PollController.observeOptions(poll) { (options) in
-            self.options = options
+            self.options = options.sort { $0.identifier < $1.identifier }
         }
     }
     
@@ -65,13 +65,14 @@ class PollResultsViewController: UIViewController {
         
         
         for i in 0..<dataPoints.count {
-            if values[i] == 0.0 {
-                continue
-            } else {
-                let dataEntry = ChartDataEntry(value: values[i], xIndex: i)
-                
-                dataEntries.append(dataEntry)
-            }
+            //            if values[i] == 0.0 {
+            //                continue
+            //
+            //            } else {
+            let dataEntry = ChartDataEntry(value: values[i], xIndex: i)
+            
+            dataEntries.append(dataEntry)
+            //            }
         }
         
         let pieChartDataSet = PieChartDataSet(yVals: dataEntries, label: "")
