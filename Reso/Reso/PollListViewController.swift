@@ -45,7 +45,6 @@ class PollListViewController: UIViewController {
             return
         }
         setupLeftNavItem()
-        //setupRightNavItem()
         setupSegmentedController()
     }
     
@@ -74,30 +73,6 @@ class PollListViewController: UIViewController {
         
     }
     
-    //    func setupProfileImage() {
-    //        let user: User?
-    //        let _ = user?.photo
-    //    }
-    
-    
-    //    func setupRightNavItem() {
-    //
-    //        let rightNavButton = UIButton()
-    //        rightNavButton.setTitle("+", forState: .Normal)
-    //        rightNavButton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
-    //        rightNavButton.titleLabel!.font = UIFont(name: "AmericanTypewriter", size: 45)!
-    //        rightNavButton.layer.shadowColor = UIColor.blackColor().CGColor
-    //        rightNavButton.layer.shadowRadius = 0.5
-    //        rightNavButton.layer.shadowOffset = CGSize(width: 0, height: 1.0)
-    //        rightNavButton.layer.shadowOpacity = 2.5
-    //        rightNavButton.clipsToBounds = true
-    //        rightNavButton.addTarget(self, action: #selector(PollListViewController.logoutAlert), forControlEvents: .TouchUpInside)
-    //        rightNavButton.frame = CGRectMake(0, 0, 30, 30)
-    //        rightNavButton.layer.cornerRadius = rightNavButton.frame.height / 2
-    //        let barButton = UIBarButtonItem(customView: rightNavButton)
-    //        self.navigationItem.rightBarButtonItem = barButton
-    //    }
-    
     func setupSegmentedController() {
         pollSegmentController.layer.borderColor = MyColors.myLightGreenColor().CGColor
     }
@@ -106,12 +81,12 @@ class PollListViewController: UIViewController {
         
         let alert = UIAlertController(title: "", message: "Are you sure that you want to log out?", preferredStyle: .Alert)
         let logoutAction = UIAlertAction(title: "Logout", style: .Default) { (action) in
-            //FirebaseController.base.unauth()
-            //self.performSegueWithIdentifier("noUserLoggedIn", sender: nil)
+            UserController.logoutUser()
+            self.performSegueWithIdentifier("toLogin", sender: self)
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .Default, handler: nil)
-        alert.addAction(logoutAction)
         alert.addAction(cancelAction)
+        alert.addAction(logoutAction)
         presentViewController(alert, animated: true, completion: nil)
     }
     
@@ -150,7 +125,6 @@ class PollListViewController: UIViewController {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            print(incompletePolls.count)
             return incompletePolls.count
         } else {
             return completedPolls.count
