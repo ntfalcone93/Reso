@@ -28,11 +28,7 @@ class PollResultsViewController: UIViewController, ChartViewDelegate {
         pieChartView.usePercentValuesEnabled = true
         
         observeOptions()
-        
 
-
-
-        
     }
     
     func observeOptions() {
@@ -63,27 +59,41 @@ class PollResultsViewController: UIViewController, ChartViewDelegate {
         
         pieChartView.noDataText = "No Results"
         pieChartView.noDataTextDescription = "There is no results to display."
-        pieChartView.descriptionText = "Results"
+        pieChartView.descriptionText = ""
         
         var dataEntries: [ChartDataEntry] = []
         pieChartView.centerText = ""
         
+        var extraColors: [UIColor] = []
+        var extraLabels: [String] = []
+        
+        var allColors = [
+            UIColor(red: 0.984, green: 0.118, blue: 0.251, alpha: 1.00),
+            UIColor(red: 0.996, green: 0.902, blue: 0.192, alpha: 1.00),
+            UIColor(red: 0.243, green: 0.867, blue: 1.000, alpha: 1.00),
+            UIColor(red: 0.145, green: 1.000, blue: 0.545, alpha: 1.00)]
+        
+        var selectedColors = [UIColor]()
+        var names = [String]()
         
         for i in 0..<dataPoints.count {
-            //            if values[i] == 0.0 {
-            //                continue
-            //
-            //            } else {
-            let dataEntry = ChartDataEntry(value: values[i], xIndex: i)
-            
-            dataEntries.append(dataEntry)
-            //            }
+            if values[i] != 0.0 {
+                selectedColors.append(allColors[i])
+                names.append(dataPoints[i])
+                let dataEntry = ChartDataEntry(value: values[i], xIndex: i)
+                dataEntries.append(dataEntry)
+            } else {
+                if i < allColors.count {
+                    extraLabels.append(dataPoints[i])
+                    extraColors.append(allColors[i])
+                }
+            }
         }
         
         let pieChartDataSet = PieChartDataSet(yVals: dataEntries, label: "")
-        pieChartDataSet.colors = [UIColor(red: 0.984, green: 0.118, blue: 0.251, alpha: 1.00), UIColor(red: 0.996, green: 0.902, blue: 0.192, alpha: 1.00), UIColor(red: 0.243, green: 0.867, blue: 1.000, alpha: 1.00), UIColor(red: 0.145, green: 1.000, blue: 0.545, alpha: 1.00)]
+        pieChartDataSet.colors = selectedColors
         
-        let pieChartData = PieChartData(xVals: dataPoints, dataSet: pieChartDataSet)
+        let pieChartData = PieChartData(xVals: names, dataSet: pieChartDataSet)
         
         let formatter = NSNumberFormatter()
         formatter.numberStyle = NSNumberFormatterStyle.PercentStyle
@@ -93,13 +103,14 @@ class PollResultsViewController: UIViewController, ChartViewDelegate {
         pieChartData.setValueFormatter(formatter)
         
         pieChartView.data = pieChartData
-        pieChartView.animate(yAxisDuration: 2.0, easingOption: .EaseInOutBack)
+        pieChartView.animate(yAxisDuration: 0.1, easingOption: .EaseInOutBack)
         pieChartView.backgroundColor = UIColor.clearColor()
-        pieChartView.descriptionTextColor = UIColor.whiteColor()
+        pieChartView.descriptionTextColor = UIColor.blackColor()
         
-        pieChartView.drawSliceTextEnabled = false
-        pieChartView.drawHoleEnabled = false
-        
+        pieChartView.holeColor = UIColor.clearColor()
+        pieChartView.legend.setExtra(colors: extraColors, labels: extraLabels)
+        pieChartView.notifyDataSetChanged()
+
         pieChartView.centerText = ""
         pieChartView.highlighter = nil
         
