@@ -30,9 +30,6 @@ class PollTableViewCell: UITableViewCell {
     @IBOutlet weak var timerRemainingLabel: UILabel!
     
     func updateWithPoll(poll: Poll) {
-        
-        pollNameLabel.sizeToFit()
-        timerRemainingLabel.sizeToFit()
         pollNameLabel.text = poll.title
         //votingStatusImageView.image = poll.hasVoted ? UIImage(named: "complete") : UIImage(named: "incomplete")
         if poll.hasVoted == true {
