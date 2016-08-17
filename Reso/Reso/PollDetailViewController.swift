@@ -53,10 +53,7 @@ class PollDetailViewController: UIViewController, UITextFieldDelegate, ChangeAlp
         
         self.navigationItem.title = "Poll Information"
         
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 0.020, green: 0.643, blue: 0.753, alpha: 1.00)
-        
         fetchComments()
-        
         fetchUsers()
     }
     
