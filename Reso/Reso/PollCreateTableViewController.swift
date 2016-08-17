@@ -43,6 +43,7 @@ class PollCreateTableViewController: UITableViewController {
     }
     
     func createOptions() {
+        options.removeAll()
         if let option1Cell = option1Cell, name = option1Cell.textField.text where name.characters.count > 0 {
             options.append(Option(name: name))
         }
