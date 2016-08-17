@@ -46,6 +46,7 @@ class PollCreateTableViewController: UITableViewController {
     }
     
     func createOptions() {
+        options.removeAll()
         if let option1Cell = option1Cell, name = option1Cell.textField.text where name.characters.count > 0 {
             options.append(Option(name: name))
         }
@@ -73,6 +74,12 @@ class PollCreateTableViewController: UITableViewController {
             presentPollAlertController("You forgot a poll name.", message: "Please add it to the poll name field.")
             return
         }
+        // Options
+        guard option1Cell?.textField.text?.characters.count > 0 && option2Cell?.textField.text?.characters.count > 0 else {
+            presentPollAlertController("Missing Information", message: "Please add at least two options to your poll.")
+            return
+        }
+        createOptions()
         // Members
         guard members.count > 0 else {
             presentPollAlertController("Missing Information", message: "Please add members to your poll.")
@@ -80,12 +87,6 @@ class PollCreateTableViewController: UITableViewController {
         }
         var memberIds = members.flatMap { $0.identifier }
         memberIds.append(UserController.shared.currentUserId)
-        // Options
-        if option1Cell?.textField.text?.characters.count > 0 && option2Cell?.textField.text?.characters.count > 0 {
-            createOptions()
-        } else {
-            presentPollAlertController("Missing Information", message: "Please add at least two options to your poll.")
-        }
         // Create poll
         PollController.create(title, options: options, memberIds: memberIds, pollType: pollType, endDate: datePicker.date)
         dismissViewControllerAnimated(true, completion: nil)
