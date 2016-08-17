@@ -51,7 +51,9 @@ class PollListViewController: UIViewController {
         navigationItem.titleView = imageView
         
         setupLeftNavItem()
+        setupRightNavItem()
         setupSegmentedController()
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -65,9 +67,7 @@ class PollListViewController: UIViewController {
     
     func setupLeftNavItem() {
         let leftNavItem = UIButton()
-        let usersImage = FirebaseController.storageRef.child("users/\(UserController.shared.currentUserId)/photoUrl")
-        leftNavItem.setBackgroundImage(UserController.shared.currentUser?.photo, forState: .Normal)
-        print(UserController.shared.currentUser?.photo)
+        leftNavItem.setImage(UIImage(named: "settingsIcon"), forState: .Normal)
         leftNavItem.layer.borderWidth = 1
         leftNavItem.layer.borderColor = UIColor.blackColor().CGColor
         leftNavItem.clipsToBounds = true
@@ -77,6 +77,28 @@ class PollListViewController: UIViewController {
         let barButton = UIBarButtonItem(customView: leftNavItem)
         self.navigationItem.leftBarButtonItem = barButton
         
+    }
+    
+    func setupRightNavItem() {
+        let rightNavButton = UIButton()
+        rightNavButton.addTarget(self, action: #selector(PollListViewController.RightNavButtonSegue), forControlEvents: UIControlEvents.TouchUpInside)
+        rightNavButton.setTitle("+", forState: .Normal)
+        rightNavButton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
+        rightNavButton.titleLabel!.font = UIFont(name: "AmericanTypewriter", size: 45)!
+        rightNavButton.layer.shadowColor = UIColor.blackColor().CGColor
+        rightNavButton.layer.shadowRadius = 0.5
+        rightNavButton.layer.shadowOffset = CGSize(width: 0, height: 1.0)
+        rightNavButton.layer.shadowOpacity = 2.5
+        rightNavButton.clipsToBounds = true
+        rightNavButton.addTarget(self, action: #selector(PollListViewController.logoutAlert), forControlEvents: .TouchUpInside)
+        rightNavButton.frame = CGRectMake(0, 0, 30, 30)
+        rightNavButton.layer.cornerRadius = rightNavButton.frame.height / 2
+        let barButton = UIBarButtonItem(customView: rightNavButton)
+        self.navigationItem.rightBarButtonItem = barButton
+    }
+    
+    func RightNavButtonSegue() {
+        performSegueWithIdentifier("toCreatePoll", sender: self)
     }
     
     func setupSegmentedController() {
