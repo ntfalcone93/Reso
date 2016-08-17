@@ -163,7 +163,8 @@ class PollListViewController: UIViewController {
     }
     
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
+        // If pollSegment is private then the user can edit
+        return pollSegment == .Private
     }
     
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]?  {
@@ -171,13 +172,9 @@ class PollListViewController: UIViewController {
         let selectedPoll = self.polls[indexPath.row]
         
         let leaveAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "leave") { (UITableViewRowAction, NSIndexPath) -> Void in
-            
-            var membersInSelectedPoolArray = selectedPoll.memberIds
-            if membersInSelectedPoolArray.contains(UserController.shared.currentUserId) {
-            let indexPathOfCurrentUserID = membersInSelectedPoolArray.indexOf(UserController.shared.currentUserId)
-            membersInSelectedPoolArray.removeAtIndex(indexPathOfCurrentUserID!)
-            }
-            self.tableView.reloadData()
+            PollController.leavePoll(selectedPoll)
+            self.polls.removeAtIndex(indexPath.row)
+            self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
         }
         
         return [leaveAction]
