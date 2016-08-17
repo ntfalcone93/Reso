@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="APP-4N-ID8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="APP-4N-ID8">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -84,7 +84,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="28" id="aid-Rl-39v"/>
                                             </constraints>
-                                            <state key="normal" image="incomplete"/>
+                                            <state key="normal" image="addIcon"/>
                                             <connections>
                                                 <action selector="addButtonTapped:" destination="dlT-dh-aQy" eventType="touchUpInside" id="GAT-9d-7GL"/>
                                             </connections>
@@ -309,7 +309,7 @@
                                 <rect key="frame" x="0.0" y="136" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rL0-p8-UIH" id="lix-4e-ZWr">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -370,6 +370,6 @@
     </scenes>
     <resources>
         <image name="ResoBackground" width="414" height="736"/>
-        <image name="incomplete" width="1200" height="1200"/>
+        <image name="addIcon" width="320" height="315"/>
     </resources>
 </document>
