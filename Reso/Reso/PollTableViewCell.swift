@@ -16,7 +16,8 @@ import UIKit
 
 class PollTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var votingStatusImageView: UIImageView!
+    
+    @IBOutlet weak var votingStatusView: UIView!
     
     @IBOutlet weak var pollNameLabel: UILabel!
     
@@ -28,18 +29,13 @@ class PollTableViewCell: UITableViewCell {
     
     @IBOutlet weak var timerRemainingLabel: UILabel!
     
-    @IBOutlet weak var timeRemainingLabelWidthConstraint: NSLayoutConstraint!
-    
     func updateWithPoll(poll: Poll) {
-        
-        pollNameLabel.sizeToFit()
-        timerRemainingLabel.sizeToFit()
         pollNameLabel.text = poll.title
         //votingStatusImageView.image = poll.hasVoted ? UIImage(named: "complete") : UIImage(named: "incomplete")
         if poll.hasVoted == true {
-            votingStatusImageView.image = UIImage(named: "complete")
+            votingStatusView.hidden = false
         } else {
-            votingStatusImageView.hidden = true
+            votingStatusView.hidden = true
         }
         numberOfMembersLabel.text = "\(poll.memberIds.count)"
         timerRemainingLabel.text = "\(stringFromTimeInterval(poll.timeRemaining))"
@@ -50,7 +46,7 @@ class PollTableViewCell: UITableViewCell {
             self.timeRemainingIcon.alpha = 0.0
             self.numberOfMembersLabel.alpha = 0.0
             self.membersIconImageView.alpha = 0.0
-            self.votingStatusImageView.alpha = 0.0
+            self.votingStatusView.alpha = 0.0
             self.pollNameLabel.alpha = 0.0
             }, completion: nil)
         
@@ -59,7 +55,7 @@ class PollTableViewCell: UITableViewCell {
             self.timeRemainingIcon.alpha = 1.0
             self.numberOfMembersLabel.alpha = 1.0
             self.membersIconImageView.alpha = 1.0
-            self.votingStatusImageView.alpha = 1.0
+            self.votingStatusView.alpha = 1.0
             self.pollNameLabel.alpha = 1.0
             
             }, completion: nil)
@@ -74,15 +70,8 @@ class PollTableViewCell: UITableViewCell {
         let days = (ti / 60 / 60 / 24)
         let hours = (ti / 60 / 60)
         let minutes = (ti - (hours*60*60)) / 60
-        
-        if interval <= 0 {
-            timeRemainingLabelWidthConstraint.constant = 13
-            return "-"
-            
-        } else {
-        timeRemainingLabelWidthConstraint.constant = 70
+
         return String(format: "%0.2d:%0.2d:%0.2d",days,hours,minutes)
-        }
     }
 
 }
