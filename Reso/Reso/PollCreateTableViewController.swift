@@ -32,14 +32,11 @@ class PollCreateTableViewController: UITableViewController {
         super.viewDidLoad()
         
         tableView.backgroundView = UIImageView(image: UIImage(named: "ResoBackground"))
-        
         datePicker.date = defaultTimeInterval
     }
     
-    
     let defaultTimeInterval = NSDate(timeIntervalSinceNow: 86400)
     let minTimeInterval = NSDate(timeIntervalSinceNow: 300)
-    
     
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         cell.backgroundColor = UIColor.clearColor()
@@ -107,13 +104,9 @@ class PollCreateTableViewController: UITableViewController {
     func presentPollAlertController(title: String, message: String?){
         
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-        
         let dismissAction = UIAlertAction(title: "Dismiss", style: .Cancel, handler: nil)
-        
         alertController.addAction(dismissAction)
-        
         presentViewController(alertController, animated: true, completion: nil)
-        
     }
     
     //MARK: - Segue
@@ -145,7 +138,7 @@ extension PollCreateTableViewController {
         case 1:
             return optionCount
         default:
-            return members.count + 1
+            return pollType == .Private ? members.count + 1 : 0
         }
     }
     
@@ -205,13 +198,18 @@ extension PollCreateTableViewController {
                 
                 return optionCell
             }
+            
         default:
+            
             switch indexPath.row {
             case 0:
+                
+                //if PollType = PollType.Private
+                
                 let addMemberCell = tableView.dequeueReusableCellWithIdentifier("addMemberCell", forIndexPath: indexPath) as? AddMemberTableViewCell ?? AddMemberTableViewCell()
                 addMemberCell.delegate = self
-                
                 return addMemberCell
+               
             default:
                 let memberCell = tableView.dequeueReusableCellWithIdentifier("memberCell", forIndexPath: indexPath)
                 
@@ -236,15 +234,16 @@ extension PollCreateTableViewController {
             headerCell.delegate = self
             headerCell.headerType = .Option
             optionHeaderCell = headerCell
-            headerCell.backgroundColor = .clearColor()
             
             return headerCell
         default:
+            guard pollType == .Private else {
+                return nil
+            }
             guard let headerCell = tableView.dequeueReusableCellWithIdentifier("headerCell") as? HeaderTableViewCell else {
                 return HeaderTableViewCell()
             }
             headerCell.headerType = .Member
-            headerCell.contentView.backgroundColor = .clearColor()
             
             return headerCell.contentView
         }
@@ -254,6 +253,8 @@ extension PollCreateTableViewController {
         switch section {
         case 0:
             return 0
+        case 2:
+            return pollType == .Private ? 44 : 0
         default:
             return 44
         }
@@ -274,6 +275,7 @@ extension PollCreateTableViewController: SegmentCellDelegate {
     
     func segmentChanged(pollType: PollType) {
         self.pollType = pollType
+        tableView.reloadData()
     }
 }
 

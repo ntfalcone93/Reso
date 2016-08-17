@@ -70,7 +70,7 @@ class PollCreateDetailTableViewController: UITableViewController, UISearchBarDel
         filterSelectedUsers()
         
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
-        UIView.animateWithDuration(0.75) {
+        UIView.animateWithDuration(0.4) {
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
         searchBar.text = ""
