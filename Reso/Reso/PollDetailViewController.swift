@@ -92,7 +92,7 @@ class PollDetailViewController: UIViewController, UITextFieldDelegate, ChangeAlp
     func fetchComments() {
         guard let poll = poll else { return }
         CommentController.observeCommentsOnPoll(poll) { (comments) in
-            self.comments = comments
+            self.comments = comments.sort { $0.timestamp.timeIntervalSince1970 < $1.timestamp.timeIntervalSince1970 }
             self.tableView.reloadData()
         }
     }
