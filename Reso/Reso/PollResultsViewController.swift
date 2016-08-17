@@ -28,6 +28,8 @@ class PollResultsViewController: UIViewController, ChartViewDelegate {
         pieChartView.usePercentValuesEnabled = true
         
         observeOptions()
+        
+
 
     }
     
@@ -110,6 +112,7 @@ class PollResultsViewController: UIViewController, ChartViewDelegate {
         pieChartView.holeColor = UIColor.clearColor()
         pieChartView.legend.setExtra(colors: extraColors, labels: extraLabels)
         pieChartView.notifyDataSetChanged()
+        pieChartView.drawHoleEnabled = false
 
         pieChartView.centerText = ""
         pieChartView.highlighter = nil

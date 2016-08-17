@@ -38,7 +38,8 @@ class PollDetailViewController: UIViewController, UITextFieldDelegate, ChangeAlp
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        tableView.estimatedRowHeight = 44
+        tableView.rowHeight = UITableViewAutomaticDimension
         
         setupKeyboardNotifications()
         
@@ -51,7 +52,7 @@ class PollDetailViewController: UIViewController, UITextFieldDelegate, ChangeAlp
         
         commentTextField.delegate = self
         
-        self.navigationItem.title = "Poll Information"
+        self.navigationItem.title = "Welcome to Patrick's App!"
         
         fetchComments()
         fetchUsers()
@@ -210,7 +211,10 @@ extension PollDetailViewController {
                 self.view.frame.origin.y += (keyboardSize.height - offset.height)
             })
         }
+        
+        
     }
+    
     
     func keyboardWillHide(sender: NSNotification) {
         guard let userInfo: [NSObject: AnyObject] = sender.userInfo,
@@ -233,6 +237,7 @@ extension PollDetailViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return comments.count
     }
+
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("commentCell", forIndexPath: indexPath) as? CommentsTableViewCell ?? CommentsTableViewCell()
