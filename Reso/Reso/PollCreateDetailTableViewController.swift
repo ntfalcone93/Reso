@@ -82,9 +82,13 @@ class PollCreateDetailTableViewController: UITableViewController, UISearchBarDel
         switch memberType {
         case .Searched:
             searchBar.hidden = false
+            tableView.frame.origin.y = tableView.frame.origin.y + 44
+            tableView.frame = CGRect(x: 0, y: 0, width: tableView.frame.width, height: tableView.frame.height - 44)
             tableView.reloadData()
         case .Added:
             searchBar.hidden = true
+            tableView.frame = CGRect(x: 0, y: 0, width: tableView.frame.width, height: tableView.frame.height + 44)
+            tableView.frame.origin.y = tableView.frame.origin.y - 44
             tableView.reloadData()
         }
     }
@@ -123,5 +127,4 @@ class PollCreateDetailTableViewController: UITableViewController, UISearchBarDel
         
         return cell
     }
-    
 }
