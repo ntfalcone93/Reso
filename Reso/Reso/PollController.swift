@@ -45,6 +45,16 @@ class PollController {
         usersPollRef.child(userId).child(pollId).setValue(true)
     }
     
+    static func leavePoll(poll: Poll) {
+        guard let pollId = poll.identifier else {
+            return
+        }
+        // Removes user from polls members
+        pollRef.child(pollId).child(Poll.membersKey).child(UserController.shared.currentUserId).removeValue()
+        // Removes poll from usersPolls endpoint
+        usersPollRef.child(UserController.shared.currentUserId).child(pollId).removeValue()
+    }
+    
     static func delete(poll: Poll) {
         guard let pollId = poll.identifier else {
             poll.delete()

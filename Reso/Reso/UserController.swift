@@ -68,6 +68,16 @@ class UserController {
         })
     }
     
+    static func logoutUser() {
+        do {
+            try FIRAuth.auth()?.signOut()
+            shared.currentUser = nil
+            deleteUserFromDefaults()
+        } catch {
+            print("There was an error while signing out user. Error: \(error)")
+        }
+    }
+    
     static func fetchUserForIdentifier(identifier: String, completion: (user: User?) -> Void) {
         FirebaseController.ref.child("users").child(identifier).observeSingleEventOfType(.Value, withBlock: { data in
             guard let dataDict = data.value as? [String: AnyObject],
@@ -92,8 +102,8 @@ class UserController {
     
     static func fetchUsersPhoto(user: User, completion: (user: User) -> Void) {
         guard let photoURLString = user.photoUrl, photoURL = NSURL(string: photoURLString) else {
-        completion(user: user)
-        return
+            completion(user: user)
+            return
         }
         ImageController.imageForURL(photoURL) { (image) in
             var user = user
@@ -116,6 +126,11 @@ class UserController {
         return user
     }
     
+    private static func deleteUserFromDefaults() {
+        NSUserDefaults.standardUserDefaults().removeObjectForKey(currentUserKey)
+        NSUserDefaults.standardUserDefaults().removeObjectForKey(currentUserIdKey)
+    }
+    
     private static func saveUsersPhoto(photo: UIImage, user: User) {
         guard let photoData = UIImageJPEGRepresentation(photo, 0.8) else { return }
         let newKey = FirebaseController.ref.childByAutoId().key
@@ -128,8 +143,6 @@ class UserController {
                 downloadUrl = metadata.downloadURL(),
                 userId = user.identifier else { return }
             userRef.child(userId).child("photoUrl").setValue(downloadUrl.absoluteString)
-            print(downloadUrl.absoluteString)
-            print("hey")
         }
     }
     

@@ -152,7 +152,6 @@ class LoginSignupViewController: UIViewController, UITextFieldDelegate //,UIView
             })
         case .Create:
             guard let firstName = firstNameTextField.text, lastName = lastNameTextField.text, image = defaultProfileImage.image else { return }
-            print("\(defaultProfileImage.image)")
             
             if firstName == "" || lastName == "" {
                 self.loginAlert("Invalid information", message: "Provide:\n- First name\n- Last name")
