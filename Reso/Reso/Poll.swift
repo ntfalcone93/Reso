@@ -72,7 +72,6 @@ struct Poll: FirebaseType {
     init?(dictionary: [String : AnyObject], identifier: String) {
         guard let title = dictionary[kTitle] as? String,
             options = dictionary[kOptions] as? [String: [String: AnyObject]],
-            membersDicts = dictionary[kMembers] as? [String: AnyObject],
             isPrivate = dictionary[kIsPrivate] as? Bool,
             creationDate = dictionary[kCreationDate] as? Double,
             endDate = dictionary[kEndDate] as? Double else {
@@ -80,7 +79,11 @@ struct Poll: FirebaseType {
         }
         self.title = title
         self.options = options.flatMap{ Option(dictionary: $1, identifier: $0) }
-        self.memberIds = Array(membersDicts.keys)
+        if let membersDicts = dictionary[kMembers] as? [String: AnyObject] {
+            self.memberIds = Array(membersDicts.keys)
+        } else {
+            self.memberIds = []
+        }
         self.isPrivate = isPrivate
         self.creationDate = NSDate(timeIntervalSince1970: creationDate)
         self.endDate = NSDate(timeIntervalSince1970: endDate)
