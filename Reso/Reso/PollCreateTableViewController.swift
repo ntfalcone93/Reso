@@ -70,13 +70,16 @@ class PollCreateTableViewController: UITableViewController {
             presentPollAlertController("You forgot a poll name.", message: "Please add it to the poll name field.")
             return
         }
+        var memberIds = [String]()
         // Members
-        guard members.count > 0 else {
-            presentPollAlertController("Missing Information", message: "Please add members to your poll.")
-            return
+        if pollType == .Private {
+            guard members.count > 0 else {
+                presentPollAlertController("Missing Information", message: "Please add members to your poll.")
+                return
+            }
+            memberIds.appendContentsOf(members.flatMap { $0.identifier })
+            memberIds.append(UserController.shared.currentUserId)
         }
-        var memberIds = members.flatMap { $0.identifier }
-        memberIds.append(UserController.shared.currentUserId)
         // Options
         if option1Cell?.textField.text?.characters.count > 0 && option2Cell?.textField.text?.characters.count > 0 {
             createOptions()
@@ -207,7 +210,7 @@ extension PollCreateTableViewController {
                 let addMemberCell = tableView.dequeueReusableCellWithIdentifier("addMemberCell", forIndexPath: indexPath) as? AddMemberTableViewCell ?? AddMemberTableViewCell()
                 addMemberCell.delegate = self
                 return addMemberCell
-               
+                
             default:
                 let memberCell = tableView.dequeueReusableCellWithIdentifier("memberCell", forIndexPath: indexPath)
                 
