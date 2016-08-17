@@ -38,6 +38,8 @@ class PollDetailViewController: UIViewController, UITextFieldDelegate, ChangeAlp
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         setupKeyboardNotifications()
         
         hideKeyboardWhenTappedAround()
@@ -48,8 +50,11 @@ class PollDetailViewController: UIViewController, UITextFieldDelegate, ChangeAlp
         tableView.allowsSelection = false
         
         commentTextField.delegate = self
-    
         
+        self.navigationItem.title = "Poll Information"
+        
+        fetchComments()
+        fetchUsers()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -67,7 +72,6 @@ class PollDetailViewController: UIViewController, UITextFieldDelegate, ChangeAlp
         
         if let commentText = commentTextField.text, let currentUserID = currentUser.identifier, poll = self.poll, pollID = poll.identifier {
             CommentController.create(commentText, senderId: currentUserID, pollId: pollID)
-            updateComments(poll)
         } else {
             let alertController = UIAlertController(title: "Missing Information", message: "You did not type any text.", preferredStyle: .Alert)
             alertController.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: nil))
@@ -82,18 +86,19 @@ class PollDetailViewController: UIViewController, UITextFieldDelegate, ChangeAlp
     
     // MARK: - Functions
     
+    func fetchComments() {
+        guard let poll = poll else { return }
+        CommentController.observeCommentsOnPoll(poll) { (comments) in
+            self.comments = comments.sort { $0.timestamp.timeIntervalSince1970 < $1.timestamp.timeIntervalSince1970 }
+            self.tableView.reloadData()
+        }
+    }
+    
     func changeAlpha() {
         UIView.animateWithDuration(0.5) {
             self.pollOptionsContainerView.alpha = self.pollDetail == .Options ? 0 : 1
             self.pollResultsContainerView.alpha = self.pollDetail == .Options ? 1 : 0
         }
-    }
-    
-    func updateComments(pollID: Poll) {
-        CommentController.observeCommentsOnPoll(pollID, completion: { (comments) in
-            self.comments = comments
-            self.tableView.reloadData()
-        })
     }
     
     func checkIfCurrentUserVoted() -> Bool {
@@ -104,6 +109,30 @@ class PollDetailViewController: UIViewController, UITextFieldDelegate, ChangeAlp
             }
         }
         return false
+    }
+    
+    // MARK: - Helper Function
+    
+    func fetchUsers() {
+        guard let poll = poll else { return }
+        PollController.fetchUsersForPoll(poll) { (users) in
+            self.users = users
+            self.tableView.reloadData()
+            PollController.fetchUsersPhotos(users, completion: { (users) in
+                self.users = users
+                self.tableView.reloadData()
+            })
+        }
+    }
+    
+    func userForID(userID: String) -> User? {
+        var userToReturn: User?
+        users.forEach { (user) in
+            if user.identifier == userID {
+                userToReturn = user
+            }
+        }
+        return userToReturn
     }
     
     // MARK: - Navigation
@@ -125,6 +154,14 @@ class PollDetailViewController: UIViewController, UITextFieldDelegate, ChangeAlp
 extension PollDetailViewController {
     
     // MARK: - TextField Delegate(s)
+    
+    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+
+        commentTextField.autocapitalizationType = .Sentences
+        commentTextField.autocorrectionType = .Yes
+        
+        return true
+    }
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         
@@ -178,7 +215,7 @@ extension PollDetailViewController {
     func keyboardWillHide(sender: NSNotification) {
         guard let userInfo: [NSObject: AnyObject] = sender.userInfo,
             keyboardSize: CGSize = userInfo[UIKeyboardFrameBeginUserInfoKey]?.CGRectValue.size else { return }
-        self.view.frame.origin.y  += keyboardSize.height
+        self.view.frame.origin.y += keyboardSize.height
     }
     
     func hideKeyboardWhenTappedAround() {
@@ -201,9 +238,20 @@ extension PollDetailViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCellWithIdentifier("commentCell", forIndexPath: indexPath) as? CommentsTableViewCell ?? CommentsTableViewCell()
         
         let comment = comments[indexPath.row]
+        guard let user = userForID(comment.senderID) else {
+            return CommentsTableViewCell()
+        }
         
-        cell.updateCell(comment)
+        cell.updateWithComment(comment, user: user)
         
         return cell
     }
 }
+
+
+
+
+
+
+
+

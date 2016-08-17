@@ -11,6 +11,7 @@ import Foundation
 struct Poll: FirebaseType {
     
     static let key = "polls"
+    static let membersKey = "members"
     private let kTitle = "title"
     private let kOptions = "options"
     private let kMembers = "members"

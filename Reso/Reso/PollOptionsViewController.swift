@@ -6,6 +6,11 @@
 //  Copyright © 2016 ResoPolling. All rights reserved.
 //
 
+
+// Change button size
+// Chagne percentage color to black
+// get rid of results on bottom right
+
 import UIKit
 
 class PollOptionsViewController: UIViewController {
@@ -43,6 +48,8 @@ class PollOptionsViewController: UIViewController {
         super.viewDidLoad()
         
         setupButtonsWithOptions()
+        
+
     }
     
     func setupButtonsWithOptions() {
@@ -50,8 +57,8 @@ class PollOptionsViewController: UIViewController {
         buttonCollection.forEach { (button) in
             button.layer.cornerRadius = button.frame.height / 2
         }
-        
-        questionLabel.text = poll?.title
+        guard let poll = poll else { return }
+        questionLabel.text = "\(poll.title)?"
         
         if options.count == 2 {
             
@@ -88,7 +95,8 @@ class PollOptionsViewController: UIViewController {
     // MARK: Button Tapped
     
     @IBAction func buttonTapped(sender: UIButton) {
-        guard let poll = poll else { return }
+        guard var poll = poll else { return }
+        poll.options.sortInPlace { $0.identifier < $1.identifier }
         switch sender.tag {
         case 0:
             guard options.count >= 1 else {
