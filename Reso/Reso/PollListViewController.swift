@@ -44,6 +44,12 @@ class PollListViewController: UIViewController {
             performSegueWithIdentifier("toLogin", sender: self)
             return
         }
+        
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
+        imageView.contentMode = .ScaleAspectFit
+        imageView.image = UIImage(named: "RESO")
+        navigationItem.titleView = imageView
+        
         setupLeftNavItem()
         setupSegmentedController()
     }
