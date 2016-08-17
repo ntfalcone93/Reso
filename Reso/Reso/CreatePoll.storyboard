@@ -100,6 +100,7 @@
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </view>
                                     </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstItem="p0w-bU-ogf" firstAttribute="top" secondItem="VxA-dK-aJY" secondAttribute="bottom" constant="6" id="0Uh-Vj-ow1"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="p0w-bU-ogf" secondAttribute="trailing" constant="76" id="6rX-yr-X0X"/>
@@ -112,6 +113,7 @@
                                         <constraint firstItem="p0w-bU-ogf" firstAttribute="leading" secondItem="sIu-Xe-RIk" secondAttribute="leadingMargin" constant="20" id="zC9-yj-Nkn"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="addButton" destination="zlf-q5-KA1" id="3FU-nd-O8L"/>
                                     <outlet property="headerLabel" destination="VxA-dK-aJY" id="2gC-34-P3j"/>
