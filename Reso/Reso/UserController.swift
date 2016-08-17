@@ -102,8 +102,8 @@ class UserController {
     
     static func fetchUsersPhoto(user: User, completion: (user: User) -> Void) {
         guard let photoURLString = user.photoUrl, photoURL = NSURL(string: photoURLString) else {
-        completion(user: user)
-        return
+            completion(user: user)
+            return
         }
         ImageController.imageForURL(photoURL) { (image) in
             var user = user

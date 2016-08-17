@@ -14,7 +14,7 @@ struct User: FirebaseType {
     private let kFirstName = "firstName"
     private let kLastName = "lastName"
     private let kFullName = "fullName"
-    private let kPhotoUrl = "photo"
+    private let kPhotoUrl = "photoUrl"
     
     var firstName: String
     var lastName: String
