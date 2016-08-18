@@ -19,6 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FIRApp.configure()
         
+        UINavigationBar.appearance().barTintColor = .whiteColor()
+        
         return true
     }
 
