@@ -38,7 +38,10 @@ struct User: FirebaseType {
     }
     
     var dictionaryCopy: [String : AnyObject] {
-        return [kFirstName: firstName, kLastName: lastName]
+        guard let photoUrl = photoUrl else {
+            return [kFirstName: firstName, kLastName: lastName]
+        }
+        return [kFirstName: firstName, kLastName: lastName, kPhotoUrl: photoUrl]
     }
     
     init(firstName: String, lastName: String, identifier: String) {
