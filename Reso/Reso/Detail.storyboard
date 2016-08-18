@@ -96,7 +96,7 @@
                                                                 <rect key="frame" x="0.0" y="28" width="600" height="60"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="POM-rK-0XO" id="Sg1-Gy-Hx0">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="59.5"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
                                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iXw-9L-wyS" userLabel="userPhotoImageView">
@@ -349,7 +349,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Vjy-iS-RRb" userLabel="Question One Stack View">
                                         <rect key="frame" x="0.0" y="120" width="560" height="56"/>
                                         <subviews>
-                                            <button opaque="NO" tag="1" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hQR-jc-gAO" userLabel="questionOneButton">
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hQR-jc-gAO" userLabel="questionOneButton">
                                                 <rect key="frame" x="0.0" y="0.0" width="56" height="56"/>
                                                 <color key="backgroundColor" red="0.98039215686274506" green="0.88235294117647056" blue="0.25098039215686274" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
@@ -373,7 +373,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ni9-7g-afm" userLabel="Question One Stack View">
                                         <rect key="frame" x="0.0" y="180" width="560" height="56"/>
                                         <subviews>
-                                            <button opaque="NO" tag="2" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JN7-3v-Dzf" userLabel="questionOneButton">
+                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JN7-3v-Dzf" userLabel="questionOneButton">
                                                 <rect key="frame" x="0.0" y="0.0" width="56" height="56"/>
                                                 <color key="backgroundColor" red="0.24313725490196078" green="0.8666666666666667" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
