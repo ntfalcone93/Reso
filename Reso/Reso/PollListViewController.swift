@@ -178,9 +178,9 @@ class PollListViewController: UIViewController {
         let selectedPoll = self.polls[indexPath.row]
         
         let leaveAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "leave") { (UITableViewRowAction, NSIndexPath) -> Void in
-            PollController.leavePoll(selectedPoll)
-            self.polls.removeAtIndex(indexPath.row)
-            self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+            PollController.leavePoll(selectedPoll, completion: { 
+                self.tableView.reloadData()
+            })
         }
         
         return [leaveAction]
