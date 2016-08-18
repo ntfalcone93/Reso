@@ -66,15 +66,16 @@ class PollListViewController: UIViewController {
     
     func setupLeftNavItem() {
         let leftNavItem = UIButton()
-        if let user = UserController.shared.currentUser, userphoto = user.photo {
-            print(user.fullName)
-            print(userphoto)
-            leftNavItem.setImage(userphoto, forState: .Normal)
+        if let user = UserController.shared.currentUser {
+            UserController.fetchUsersPhoto(user, completion: { (user) in
+                leftNavItem.setImage(user.photo, forState: .Normal)
+                leftNavItem.layer.cornerRadius = leftNavItem.frame.height / 2
+                leftNavItem.layer.masksToBounds = true
+                leftNavItem.layer.borderColor = UIColor.blackColor().CGColor
+                leftNavItem.layer.borderWidth = 1.0
+            })
         } else {
             leftNavItem.setImage(UIImage(named: "settingsIcon"), forState: .Normal)
-            print(UserController.shared.currentUser?.fullName)
-            print(UserController.shared.currentUser?.photo)
-            print(UserController.shared.currentUser?.photoUrl)
         }
         leftNavItem.clipsToBounds = true
         leftNavItem.addTarget(self, action: #selector(PollListViewController.logoutAlert), forControlEvents: .TouchUpInside)
