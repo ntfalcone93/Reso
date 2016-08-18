@@ -89,6 +89,8 @@ class PollOptionsViewController: UIViewController {
         } else {
             return
         }
+        
+
     }
     
     // MARK: - IBActions
