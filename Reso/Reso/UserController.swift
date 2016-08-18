@@ -37,10 +37,11 @@ class UserController {
             } else if let firebaseUser = user {
                 var user = User(firstName: firstName, lastName: lastName, identifier: firebaseUser.uid)
                 user.save()
-                UserController.shared.currentUser = user
-                UserController.saveUserInDefaults(user)
-                saveUsersPhoto(image, user: user)
-                completion(user: user)
+                saveUsersPhoto(image, user: user, completion: { (user) in
+                    UserController.shared.currentUser = user
+                    UserController.saveUserInDefaults(user)
+                    completion(user: user)
+                })
             } else {
                 completion(user: nil)
             }
@@ -131,12 +132,13 @@ class UserController {
         NSUserDefaults.standardUserDefaults().removeObjectForKey(currentUserIdKey)
     }
     
-    private static func saveUsersPhoto(photo: UIImage, user: User) {
+    private static func saveUsersPhoto(photo: UIImage, user: User, completion: (user: User) -> Void) {
         guard let photoData = UIImageJPEGRepresentation(photo, 0.8) else { return }
         let newKey = FirebaseController.ref.childByAutoId().key
         FirebaseController.storageRef.child(User.userKey).child(newKey).putData(photoData, metadata: nil) { (metadata, error) in
             guard error == nil else {
                 print("Error: \(error?.localizedDescription)")
+                completion(user: user)
                 return
             }
             guard let metadata = metadata,
@@ -145,7 +147,8 @@ class UserController {
             userRef.child(userId).child("photoUrl").setValue(downloadUrl.absoluteString)
             var userWithPhotoUrl = user
             userWithPhotoUrl.photoUrl = downloadUrl.absoluteString
-            saveUserInDefaults(user)
+            saveUserInDefaults(userWithPhotoUrl)
+            completion(user: userWithPhotoUrl)
         }
     }
 }
