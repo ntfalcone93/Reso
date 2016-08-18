@@ -143,6 +143,9 @@ class UserController {
                 downloadUrl = metadata.downloadURL(),
                 userId = user.identifier else { return }
             userRef.child(userId).child("photoUrl").setValue(downloadUrl.absoluteString)
+            var userWithPhotoUrl = user
+            userWithPhotoUrl.photoUrl = downloadUrl.absoluteString
+            saveUserInDefaults(user)
         }
     }
 }
