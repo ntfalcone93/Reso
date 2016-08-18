@@ -15,9 +15,9 @@ import UIKit
 
 
 class PollTableViewCell: UITableViewCell {
-
     
-    @IBOutlet weak var votingStatusView: UIView!
+    
+    @IBOutlet weak var votingStatusImageView: UIImageView!
     
     @IBOutlet weak var pollNameLabel: UILabel!
     
@@ -31,14 +31,21 @@ class PollTableViewCell: UITableViewCell {
     
     func updateWithPoll(poll: Poll) {
         pollNameLabel.text = poll.title
-        //votingStatusImageView.image = poll.hasVoted ? UIImage(named: "complete") : UIImage(named: "incomplete")
         if poll.hasVoted == true {
-            votingStatusView.hidden = false
+            votingStatusImageView.image = UIImage(named: "newCheckMark")
         } else {
-            votingStatusView.hidden = true
+            votingStatusImageView.image = UIImage(named: "uncheckedBox")
+        }
+        if poll.isPrivate == false {
+            membersIconImageView.hidden = true
+            numberOfMembersLabel.hidden = true
         }
         numberOfMembersLabel.text = "\(poll.memberIds.count)"
         timerRemainingLabel.text = "\(stringFromTimeInterval(poll.timeRemaining))"
+        if timerRemainingLabel.text?.characters.first == "0" {
+            timerRemainingLabel.textColor = UIColor.redColor()
+        }
+        
         // TODO: Replace with corresponding images
         
         UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
@@ -46,7 +53,7 @@ class PollTableViewCell: UITableViewCell {
             self.timeRemainingIcon.alpha = 0.0
             self.numberOfMembersLabel.alpha = 0.0
             self.membersIconImageView.alpha = 0.0
-            self.votingStatusView.alpha = 0.0
+            self.votingStatusImageView.alpha = 0.0
             self.pollNameLabel.alpha = 0.0
             }, completion: nil)
         
@@ -55,11 +62,11 @@ class PollTableViewCell: UITableViewCell {
             self.timeRemainingIcon.alpha = 1.0
             self.numberOfMembersLabel.alpha = 1.0
             self.membersIconImageView.alpha = 1.0
-            self.votingStatusView.alpha = 1.0
+            self.votingStatusImageView.alpha = 1.0
             self.pollNameLabel.alpha = 1.0
             
             }, completion: nil)
-
+        
         
     }
     
@@ -67,11 +74,16 @@ class PollTableViewCell: UITableViewCell {
         
         let ti = NSInteger(interval)
         _ = ti % 60
-        let days = (ti / 60 / 60 / 24)
         let hours = (ti / 60 / 60)
         let minutes = (ti - (hours*60*60)) / 60
-
-        return String(format: "%0.2d:%0.2d:%0.2d",days,hours,minutes)
+        
+        if hours <= 0 && minutes <= 0 {
+            return String(format: "-", minutes)
+        } else if hours <= 0 && minutes >= 0 {
+            return String(format: "%0.2d mins")
+        } else {
+            return String(format: "%0.2d hrs",hours)
+        }
     }
-
+    
 }
