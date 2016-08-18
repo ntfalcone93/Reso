@@ -42,9 +42,9 @@ class PollTableViewCell: UITableViewCell {
         }
         numberOfMembersLabel.text = "\(poll.memberIds.count)"
         timerRemainingLabel.text = "\(stringFromTimeInterval(poll.timeRemaining))"
-        if timerRemainingLabel.text?.characters.first == "0" {
-            timerRemainingLabel.textColor = UIColor.redColor()
-        }
+//        if timerRemainingLabel.text?.characters.first == "0" {
+//            timerRemainingLabel.textColor = UIColor.redColor()
+//        }
         
         // TODO: Replace with corresponding images
         
@@ -78,10 +78,13 @@ class PollTableViewCell: UITableViewCell {
         let minutes = (ti - (hours*60*60)) / 60
         
         if hours <= 0 && minutes <= 0 {
-            return String(format: "-", minutes)
+            timerRemainingLabel.textColor  = UIColor.whiteColor()
+            return String(format: "-")
         } else if hours <= 0 && minutes >= 0 {
-            return String(format: "%0.2d mins")
+            timerRemainingLabel.textColor  = UIColor.redColor()
+            return String(format: "%0.2d min", minutes)
         } else {
+            timerRemainingLabel.textColor  = UIColor.blackColor()
             return String(format: "%0.2d hrs",hours)
         }
     }
