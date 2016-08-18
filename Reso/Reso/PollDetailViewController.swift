@@ -24,6 +24,8 @@ class PollDetailViewController: UIViewController, UITextFieldDelegate, ChangeAlp
         return poll.hasVoted == false ? .Options : .Results
     }
     
+    var pollType: PollType = .Private
+    
     // MARK: - IBOutlets
     
     @IBOutlet weak var commentTextField: UITextField!
@@ -38,7 +40,8 @@ class PollDetailViewController: UIViewController, UITextFieldDelegate, ChangeAlp
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        tableView.estimatedRowHeight = 60
+        tableView.rowHeight = UITableViewAutomaticDimension
         
         setupKeyboardNotifications()
         
@@ -61,7 +64,7 @@ class PollDetailViewController: UIViewController, UITextFieldDelegate, ChangeAlp
         super.viewWillAppear(animated)
         
         sendButton.enabled = false
-
+        
     }
     
     // MARK: - IBActions
@@ -91,6 +94,9 @@ class PollDetailViewController: UIViewController, UITextFieldDelegate, ChangeAlp
         CommentController.observeCommentsOnPoll(poll) { (comments) in
             self.comments = comments.sort { $0.timestamp.timeIntervalSince1970 < $1.timestamp.timeIntervalSince1970 }
             self.tableView.reloadData()
+            if self.pollType == .Public {
+                self.fetchCommentsSenders()
+            }
         }
     }
     
@@ -114,15 +120,46 @@ class PollDetailViewController: UIViewController, UITextFieldDelegate, ChangeAlp
     // MARK: - Helper Function
     
     func fetchUsers() {
-        guard let poll = poll else { return }
-        PollController.fetchUsersForPoll(poll) { (users) in
-            self.users = users
-            self.tableView.reloadData()
-            PollController.fetchUsersPhotos(users, completion: { (users) in
+        if pollType == .Private {
+            guard let poll = poll else { return }
+            PollController.fetchUsersForPoll(poll) { (users) in
                 self.users = users
                 self.tableView.reloadData()
+                self.fetchUsersPhotos(users)
+            }
+        }
+    }
+    
+    func fetchUsersPhotos(users: [User]) {
+        PollController.fetchUsersPhotos(users, completion: { (users) in
+            self.users = users
+            self.tableView.reloadData()
+        })
+    }
+    
+    func fetchCommentsSenders() {
+        var senderIds = [String]()
+        comments.forEach { (comment) in
+            if senderIds.contains(comment.senderID) == false {
+                senderIds.append(comment.senderID)
+            }
+        }
+        guard comments.count > 0 else { return }
+        let group = dispatch_group_create()
+        senderIds.forEach { (senderId) in
+            dispatch_group_enter(group)
+            UserController.fetchUserForIdentifier(senderId, completion: { (user) in
+                if let user = user {
+                    self.users.append(user)
+                }
+                dispatch_group_leave(group)
             })
         }
+        dispatch_group_notify(group, dispatch_get_main_queue()) {
+            self.tableView.reloadData()
+            self.fetchUsersPhotos(self.users)
+        }
+        
     }
     
     func userForID(userID: String) -> User? {
@@ -156,7 +193,7 @@ extension PollDetailViewController {
     // MARK: - TextField Delegate(s)
     
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
-
+        
         commentTextField.autocapitalizationType = .Sentences
         commentTextField.autocorrectionType = .Yes
         
@@ -238,11 +275,11 @@ extension PollDetailViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCellWithIdentifier("commentCell", forIndexPath: indexPath) as? CommentsTableViewCell ?? CommentsTableViewCell()
         
         let comment = comments[indexPath.row]
-        guard let user = userForID(comment.senderID) else {
-            return CommentsTableViewCell()
+        if let user = userForID(comment.senderID)  {
+            cell.updateWithCommentAndUser(comment, user: user)
+        } else {
+            cell.updateWithComment(comment)
         }
-        
-        cell.updateWithComment(comment, user: user)
         
         return cell
     }

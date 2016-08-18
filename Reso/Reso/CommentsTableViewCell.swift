@@ -23,9 +23,13 @@ class CommentsTableViewCell: UITableViewCell {
     
     // MARK: - Function
     
-    func updateWithComment(comment: Comment, user: User) {
+    func updateWithCommentAndUser(comment: Comment, user: User) {
         userPhotoImageView.image = user.photo
         userNameLabel.text = user.discreetName
+        userCommentLabel.text = comment.text
+    }
+    
+    func updateWithComment(comment: Comment) {
         userCommentLabel.text = comment.text
     }
 }

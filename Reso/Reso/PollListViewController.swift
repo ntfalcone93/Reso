@@ -39,6 +39,8 @@ class PollListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.estimatedRowHeight = 63
+        tableView.rowHeight = UITableViewAutomaticDimension
         
         guard UserController.shared.currentUser != nil else {
             performSegueWithIdentifier("toLogin", sender: self)
@@ -50,6 +52,9 @@ class PollListViewController: UIViewController {
         imageView.image = UIImage(named: "RESO")
         navigationItem.titleView = imageView
         setupSegmentedController()
+        setupLeftNavItem()
+        setupRightNavItem()
+        
         
     }
     
@@ -60,8 +65,6 @@ class PollListViewController: UIViewController {
             return
         }
         observePolls()
-        setupLeftNavItem()
-        setupRightNavItem()
     }
     
     func setupLeftNavItem() {
@@ -184,6 +187,7 @@ class PollListViewController: UIViewController {
                 pollOptionsVC = segue.destinationViewController as? PollDetailViewController else {
                     return
             }
+            pollOptionsVC.pollType = pollSegment
             if indexPath.section == 0 {
                 pollOptionsVC.poll = incompletePolls[indexPath.row]
             } else {

@@ -41,7 +41,7 @@ class PollTableViewCell: UITableViewCell {
             numberOfMembersLabel.hidden = true
         }
         numberOfMembersLabel.text = "\(poll.memberIds.count)"
-        timerRemainingLabel.text = "\(stringFromTimeInterval(poll.timeRemaining))"
+//        timerRemainingLabel.text = "\(stringFromTimeInterval(poll.timeRemaining))"
         if timerRemainingLabel.text?.characters.first == "0" {
             timerRemainingLabel.textColor = UIColor.redColor()
         }
