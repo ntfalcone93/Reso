@@ -38,7 +38,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="45"/>
                                         <subviews>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="YRn-pX-5Yq">
-                                                <rect key="frame" x="150" y="10" width="300" height="26"/>
+                                                <rect key="frame" x="60" y="10" width="480" height="26"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="hfW-by-Gj3"/>
                                                 </constraints>
@@ -57,7 +57,7 @@
                                             <constraint firstItem="YRn-pX-5Yq" firstAttribute="centerX" secondItem="m0f-CM-CEw" secondAttribute="centerX" id="Bze-YO-vES"/>
                                             <constraint firstItem="YRn-pX-5Yq" firstAttribute="centerY" secondItem="m0f-CM-CEw" secondAttribute="centerY" id="JmR-0h-wCU"/>
                                             <constraint firstAttribute="height" constant="45" id="W4v-XG-B3K"/>
-                                            <constraint firstItem="YRn-pX-5Yq" firstAttribute="width" secondItem="m0f-CM-CEw" secondAttribute="width" multiplier="1/2" id="lUc-22-1OK"/>
+                                            <constraint firstItem="YRn-pX-5Yq" firstAttribute="width" secondItem="m0f-CM-CEw" secondAttribute="width" multiplier="4/5" id="lUc-22-1OK"/>
                                         </constraints>
                                     </view>
                                     <tableView clipsSubviews="YES" alpha="0.75" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="63" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6Qx-Va-vDR">
@@ -69,22 +69,22 @@
                                                 <rect key="frame" x="0.0" y="28" width="600" height="63"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0ZP-Nm-jbx" id="VmU-EP-qVS">
-                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="62.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="63"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="Zyr-0d-3MQ">
+                                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zyr-0d-3MQ">
                                                             <rect key="frame" x="8" y="8" width="584" height="47"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zvs-LP-koN">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="47" height="47"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="32" height="47"/>
                                                                     <subviews>
-                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="complete" translatesAutoresizingMaskIntoConstraints="NO" id="CGg-0C-z1V">
-                                                                            <rect key="frame" x="8" y="8" width="31" height="31"/>
+                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="uncheckedBox" translatesAutoresizingMaskIntoConstraints="NO" id="CGg-0C-z1V">
+                                                                            <rect key="frame" x="8" y="8" width="16" height="31"/>
                                                                         </imageView>
                                                                     </subviews>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" secondItem="zvs-LP-koN" secondAttribute="height" multiplier="1:1" id="Msh-0d-KyT"/>
+                                                                        <constraint firstAttribute="width" secondItem="zvs-LP-koN" secondAttribute="height" multiplier="1:1.5" id="Msh-0d-KyT"/>
                                                                         <constraint firstAttribute="trailingMargin" secondItem="CGg-0C-z1V" secondAttribute="trailing" id="iVD-ef-NgO"/>
                                                                         <constraint firstItem="CGg-0C-z1V" firstAttribute="leading" secondItem="zvs-LP-koN" secondAttribute="leadingMargin" id="lI9-IO-pNb"/>
                                                                         <constraint firstAttribute="bottomMargin" secondItem="CGg-0C-z1V" secondAttribute="bottom" id="rGq-11-Vdc"/>
@@ -92,9 +92,9 @@
                                                                     </constraints>
                                                                 </view>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Which summer vacation?" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zSx-6G-45y">
-                                                                    <rect key="frame" x="49" y="0.0" width="433" height="47"/>
+                                                                    <rect key="frame" x="32" y="0.0" width="452" height="47"/>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
@@ -137,29 +137,29 @@
                                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KVY-q6-McT">
                                                                                     <rect key="frame" x="0.0" y="26" width="84" height="21"/>
                                                                                     <subviews>
-                                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" image="clock" translatesAutoresizingMaskIntoConstraints="NO" id="f5N-Ud-a8r">
-                                                                                            <rect key="frame" x="6" y="3" width="16" height="16"/>
+                                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" misplaced="YES" text="15 hrs" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="awh-NB-aav">
+                                                                                            <rect key="frame" x="41" y="2" width="44" height="17"/>
+                                                                                            <constraints>
+                                                                                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="70" id="wcB-E4-yhO"/>
+                                                                                            </constraints>
+                                                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                                            <nil key="highlightedColor"/>
+                                                                                        </label>
+                                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" misplaced="YES" image="clock" translatesAutoresizingMaskIntoConstraints="NO" id="f5N-Ud-a8r">
+                                                                                            <rect key="frame" x="17" y="3" width="16" height="16"/>
                                                                                             <constraints>
                                                                                                 <constraint firstAttribute="width" constant="16" id="Sfl-hd-z6A"/>
                                                                                                 <constraint firstAttribute="height" constant="16" id="ag0-MV-GFQ"/>
                                                                                             </constraints>
                                                                                         </imageView>
-                                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="00:00:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="awh-NB-aav">
-                                                                                            <rect key="frame" x="27" y="3" width="57" height="16"/>
-                                                                                            <constraints>
-                                                                                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="57" id="wcB-E4-yhO"/>
-                                                                                            </constraints>
-                                                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                                            <nil key="highlightedColor"/>
-                                                                                        </label>
                                                                                     </subviews>
                                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="trailing" secondItem="awh-NB-aav" secondAttribute="trailing" id="3N0-8w-LoU"/>
                                                                                         <constraint firstItem="awh-NB-aav" firstAttribute="centerY" secondItem="KVY-q6-McT" secondAttribute="centerY" id="GNU-kl-gfS"/>
                                                                                         <constraint firstItem="f5N-Ud-a8r" firstAttribute="centerY" secondItem="awh-NB-aav" secondAttribute="centerY" id="n77-4h-er7"/>
-                                                                                        <constraint firstItem="awh-NB-aav" firstAttribute="leading" secondItem="f5N-Ud-a8r" secondAttribute="trailing" constant="5" id="wYc-5Z-WiK"/>
+                                                                                        <constraint firstItem="awh-NB-aav" firstAttribute="leading" secondItem="f5N-Ud-a8r" secondAttribute="trailing" constant="8" id="wYc-5Z-WiK"/>
                                                                                     </constraints>
                                                                                 </view>
                                                                             </subviews>
@@ -200,7 +200,7 @@
                                                     <outlet property="pollNameLabel" destination="zSx-6G-45y" id="8D5-Wy-rHV"/>
                                                     <outlet property="timeRemainingIcon" destination="f5N-Ud-a8r" id="cYH-u4-21t"/>
                                                     <outlet property="timerRemainingLabel" destination="awh-NB-aav" id="VV6-wE-CXc"/>
-                                                    <outlet property="votingStatusView" destination="zvs-LP-koN" id="Ebf-60-wRP"/>
+                                                    <outlet property="votingStatusImageView" destination="CGg-0C-z1V" id="4Q0-TD-CJZ"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -236,7 +236,8 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Reso" id="lpq-Lo-yTE">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="f1L-Hy-p2l">
+                        <barButtonItem key="leftBarButtonItem" id="B9g-6V-oOL"/>
+                        <barButtonItem key="rightBarButtonItem" id="f1L-Hy-p2l">
                             <connections>
                                 <segue destination="fnD-mL-WMG" kind="presentation" id="9ZX-8f-u4F"/>
                             </connections>
@@ -293,8 +294,8 @@
     <resources>
         <image name="ResoBackground" width="414" height="736"/>
         <image name="clock" width="1200" height="1200"/>
-        <image name="complete" width="1200" height="1200"/>
-        <image name="memberImage" width="1200" height="1200"/>
+        <image name="memberImage" width="992" height="987"/>
+        <image name="uncheckedBox" width="950" height="950"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Tu5-Hj-7z6"/>
