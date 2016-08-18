@@ -14,7 +14,7 @@ enum AccountType {
     case Create
 }
 
-class LoginSignupViewController: UIViewController, UITextFieldDelegate //,UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning
+class LoginSignupViewController: UIViewController, UITextFieldDelegate
 {
     
     @IBOutlet weak var emailTextField: UITextField!
@@ -26,6 +26,7 @@ class LoginSignupViewController: UIViewController, UITextFieldDelegate //,UIView
     @IBOutlet weak var imagePickerView: UIView!
     @IBOutlet weak var defaultProfileImage: UIImageView!
     @IBOutlet weak var stackViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var selectImageButtonOutlet: UIButton!
     
     var accountType: AccountType = .Existing
     
@@ -34,15 +35,13 @@ class LoginSignupViewController: UIViewController, UITextFieldDelegate //,UIView
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.setBottomBorder(firstNameTextField)
-        self.setBottomBorder(lastNameTextField)
         self.setBottomBorder(emailTextField)
         self.setBottomBorder(passwordTextField)
         
-        emailTextField.attributedPlaceholder = NSAttributedString(string:"Email", attributes:[NSForegroundColorAttributeName: UIColor.whiteColor().colorWithAlphaComponent(1.0)])
-        passwordTextField.attributedPlaceholder = NSAttributedString(string:"Password", attributes:[NSForegroundColorAttributeName: UIColor.whiteColor().colorWithAlphaComponent(1.0)])
-        firstNameTextField.attributedPlaceholder = NSAttributedString(string:"First name", attributes:[NSForegroundColorAttributeName: UIColor.whiteColor().colorWithAlphaComponent(1.0)])
-        lastNameTextField.attributedPlaceholder = NSAttributedString(string:"Last name", attributes:[NSForegroundColorAttributeName: UIColor.whiteColor().colorWithAlphaComponent(1.0)])
+        emailTextField.attributedPlaceholder = NSAttributedString(string:"Email", attributes:[NSForegroundColorAttributeName: UIColor.whiteColor().colorWithAlphaComponent(0.5)])
+        passwordTextField.attributedPlaceholder = NSAttributedString(string:"Password", attributes:[NSForegroundColorAttributeName: UIColor.whiteColor().colorWithAlphaComponent(0.5)])
+        firstNameTextField.attributedPlaceholder = NSAttributedString(string:"First name", attributes:[NSForegroundColorAttributeName: UIColor.whiteColor().colorWithAlphaComponent(0.5)])
+        lastNameTextField.attributedPlaceholder = NSAttributedString(string:"Last name", attributes:[NSForegroundColorAttributeName: UIColor.whiteColor().colorWithAlphaComponent(0.5)])
         
         defaultProfileImage.layer.shadowColor = UIColor.blackColor().CGColor
         defaultProfileImage.layer.shadowRadius = 3.0
@@ -51,7 +50,12 @@ class LoginSignupViewController: UIViewController, UITextFieldDelegate //,UIView
         
     }
     
-    @IBAction func selectImageTapped(sender: AnyObject) {
+    override func viewWillAppear(animated: Bool) {
+        self.setBottomBorder(firstNameTextField)
+        self.setBottomBorder(lastNameTextField)
+    }
+    
+    @IBAction func selectImageTapped() {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         
@@ -82,57 +86,6 @@ class LoginSignupViewController: UIViewController, UITextFieldDelegate //,UIView
         
     }
     
-    
-    //    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-    //
-    //        let presentationAnimator = TransitionPresentationAimator()
-    //        return presentationAnimator
-    //
-    //    }
-    //
-    //    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-    //
-    //        let dismissalAnimator = TransitionDismissalAnimator()
-    //        return dismissalAnimator
-    //
-    //    }
-    //
-    //    func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
-    //        return 0.5
-    //    }
-    //
-    //    func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
-    //
-    //        let fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)!
-    //        let toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!
-    //        let containerView = transitionContext.containerView()
-    //
-    //        let animationDuration = self .transitionDuration(transitionContext)
-    //
-    //        // take a snapshot of the detail ViewController so we can do whatever with it (cause it's only a view), and don't have to care about breaking constraints
-    //        let snapshotView = toViewController.view.resizableSnapshotViewFromRect(toViewController.view.frame, afterScreenUpdates: true, withCapInsets: UIEdgeInsetsZero)
-    //        snapshotView.transform = CGAffineTransformMakeScale(0.1, 0.1)
-    //        snapshotView.center = fromViewController.view.center
-    //        containerView.addSubview(snapshotView)
-    //
-    //        // hide the detail view until the snapshot is being animated
-    //        toViewController.view.alpha = 0.0
-    //        containerView.addSubview(toViewController.view)
-    //
-    //        UIView.animateWithDuration(animationDuration, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 20.0, options: [],
-    //                                   animations: { () -> Void in
-    //                                    snapshotView.transform = CGAffineTransformIdentity
-    //            }, completion: { (finished) -> Void in
-    //                snapshotView.removeFromSuperview()
-    //                toViewController.view.alpha = 1.0
-    //                transitionContext.completeTransition(finished)
-    //        })
-    //    }
-    //
-    //    }
-    
-    
-    
     @IBAction func loginButtonTapped(sender: AnyObject) {
         guard let email = emailTextField.text, password = passwordTextField.text where email.characters.contains("@") && password.characters.count >= 6 else { return self.loginAlert("Invalid Information", message: "Provide:\n-email\n-password (6 or more characters)") }
         setupActivityView()
@@ -143,7 +96,7 @@ class LoginSignupViewController: UIViewController, UITextFieldDelegate //,UIView
                 self.activityView.stopAnimating()
                 guard user != nil else {
                     
-                    self.loginAlert("Sorry", message: "Unable to access your account at this time. Please try again.")
+                    self.loginAlert("Sorry", message: "Unable to access your account. Please try again.")
                     // TODO: Present an alert saying that we weren't able to login an account
                     return
                 }
@@ -154,12 +107,14 @@ class LoginSignupViewController: UIViewController, UITextFieldDelegate //,UIView
             guard let firstName = firstNameTextField.text, lastName = lastNameTextField.text, image = defaultProfileImage.image else { return }
             
             if firstName == "" || lastName == "" {
+                
                 self.loginAlert("Invalid information", message: "Provide:\n- First name\n- Last name")
             }
-            
-            if image.images == UIImage(named: "defaultProfileImage") {
+            if selectImageButtonOutlet.selected == false  {
+                activityView.stopAnimating()
                 self.photoAlert("", message: "Would you like to add a new photo of yourself?")
             }
+            else {
             
             UserController.createUser(firstName, lastName: lastName, image: image, email: email, password: password, completion: { (user) in
                 self.activityView.stopAnimating()
@@ -170,6 +125,7 @@ class LoginSignupViewController: UIViewController, UITextFieldDelegate //,UIView
                 }
                 self.dismissViewControllerAnimated(true, completion: nil)
             })
+        }
         }
     }
     
@@ -187,6 +143,7 @@ class LoginSignupViewController: UIViewController, UITextFieldDelegate //,UIView
         case .Create:
             UIView.animateWithDuration(0.5, animations: {
                 self.stackViewTopConstraint.constant = 85
+                
                 })
             UIView.animateWithDuration(0.5, animations: {
                 self.setBottomBorder(self.firstNameTextField)
@@ -204,9 +161,11 @@ class LoginSignupViewController: UIViewController, UITextFieldDelegate //,UIView
     func photoAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         let okAction = UIAlertAction(title: "Yes", style: .Default) { (okAction) in
-            self.selectImageTapped(self)
+            self.selectImageTapped()
         }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Default) { (cancel) in
+            self.selectImageButtonOutlet.selected = true
+        }
         alert.addAction(okAction)
         alert.addAction(cancelAction)
         presentViewController(alert, animated: true, completion: nil)
@@ -264,6 +223,8 @@ extension LoginSignupViewController: UIImagePickerControllerDelegate, UINavigati
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         
+        selectImageButtonOutlet.selected = true
+        defaultProfileImage.backgroundColor = UIColor.clearColor()
         defaultProfileImage.layer.borderWidth = 4.0
         defaultProfileImage.clipsToBounds = true
         defaultProfileImage.layer.borderColor = UIColor.whiteColor().CGColor
@@ -274,7 +235,7 @@ extension LoginSignupViewController: UIImagePickerControllerDelegate, UINavigati
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        print("user cancelled image")
+        selectImageButtonOutlet.selected = true
         dismissViewControllerAnimated(true, completion: nil)
     }
     
