@@ -145,5 +145,4 @@ class UserController {
             userRef.child(userId).child("photoUrl").setValue(downloadUrl.absoluteString)
         }
     }
-    
 }

@@ -84,7 +84,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="28" id="aid-Rl-39v"/>
                                             </constraints>
-                                            <state key="normal" image="incomplete"/>
+                                            <state key="normal" image="addIcon"/>
                                             <connections>
                                                 <action selector="addButtonTapped:" destination="dlT-dh-aQy" eventType="touchUpInside" id="GAT-9d-7GL"/>
                                             </connections>
@@ -100,6 +100,7 @@
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </view>
                                     </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstItem="p0w-bU-ogf" firstAttribute="top" secondItem="VxA-dK-aJY" secondAttribute="bottom" constant="6" id="0Uh-Vj-ow1"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="p0w-bU-ogf" secondAttribute="trailing" constant="76" id="6rX-yr-X0X"/>
@@ -112,6 +113,7 @@
                                         <constraint firstItem="p0w-bU-ogf" firstAttribute="leading" secondItem="sIu-Xe-RIk" secondAttribute="leadingMargin" constant="20" id="zC9-yj-Nkn"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="addButton" destination="zlf-q5-KA1" id="3FU-nd-O8L"/>
                                     <outlet property="headerLabel" destination="VxA-dK-aJY" id="2gC-34-P3j"/>
@@ -307,7 +309,7 @@
                                 <rect key="frame" x="0.0" y="136" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rL0-p8-UIH" id="lix-4e-ZWr">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -368,6 +370,6 @@
     </scenes>
     <resources>
         <image name="ResoBackground" width="414" height="736"/>
-        <image name="incomplete" width="1200" height="1200"/>
+        <image name="addIcon" width="320" height="315"/>
     </resources>
 </document>

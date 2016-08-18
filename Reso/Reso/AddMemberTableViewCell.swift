@@ -19,6 +19,11 @@ class AddMemberTableViewCell: UITableViewCell {
         addMemberButton.layer.borderWidth = 2.0
         addMemberButton.layer.borderColor = UIColor.whiteColor().CGColor
         addMemberButton.layer.cornerRadius = 8
+        
+//        if PollType = PollType.Public {
+//            addMemberButton.hidden = true
+//        }
+        
     }
     
     @IBAction func addMemberTapped(sender: AnyObject) {

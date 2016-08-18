@@ -313,7 +313,7 @@
 				TargetAttributes = {
 					02C816611D4FF64700A82AD3 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 6AWSLUNK93;
+						DevelopmentTeam = ERYZJ7RQDH;
 					};
 				};
 			};
@@ -557,6 +557,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ResoDevelopment.Reso;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -576,6 +577,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ResoDevelopment.Reso;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
