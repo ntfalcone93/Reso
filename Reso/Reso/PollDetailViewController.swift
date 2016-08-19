@@ -47,8 +47,15 @@ class PollDetailViewController: UIViewController, UITextFieldDelegate, ChangeAlp
         
         hideKeyboardWhenTappedAround()
         
+        let hasntExpired = poll?.endDate.timeIntervalSince1970 > NSDate().timeIntervalSince1970
+        
         self.pollOptionsContainerView.alpha = self.pollDetail == .Options ? 1 : 0
         self.pollResultsContainerView.alpha = self.pollDetail == .Options ? 0 : 1
+        
+        if !hasntExpired {
+            self.pollOptionsContainerView.alpha = 0
+            self.pollResultsContainerView.alpha = 1
+        }
         
         tableView.allowsSelection = false
         

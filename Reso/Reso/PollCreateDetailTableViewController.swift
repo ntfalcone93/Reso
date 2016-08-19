@@ -64,16 +64,17 @@ class PollCreateDetailTableViewController: UITableViewController, UISearchBarDel
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        let user = filteredUsers[indexPath.row]
-        selectedMembers.append(user)
-        filterSelectedUsers()
-        
-        tableView.deselectRowAtIndexPath(indexPath, animated: false)
-        UIView.animateWithDuration(0.4) {
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        if memberType == .Searched {
+            let user = filteredUsers[indexPath.row]
+            selectedMembers.append(user)
+            filterSelectedUsers()
+            
+            UIView.animateWithDuration(0.4) {
+                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            }
+            searchBar.text = ""
         }
-        searchBar.text = ""
+        tableView.deselectRowAtIndexPath(indexPath, animated: false)
     }
     
     //MARK: - Actions

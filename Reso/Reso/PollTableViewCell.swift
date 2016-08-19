@@ -36,10 +36,10 @@ class PollTableViewCell: UITableViewCell {
         } else {
             votingStatusImageView.image = UIImage(named: "uncheckedBox")
         }
-        if poll.isPrivate == false {
-            membersIconImageView.hidden = true
-            numberOfMembersLabel.hidden = true
-        }
+        
+        membersIconImageView.hidden = poll.isPrivate ? false : true
+        numberOfMembersLabel.hidden = poll.isPrivate ? false : true
+        
         numberOfMembersLabel.text = "\(poll.memberIds.count)"
         timerRemainingLabel.text = "\(stringFromTimeInterval(poll.timeRemaining))"
 //        if timerRemainingLabel.text?.characters.first == "0" {

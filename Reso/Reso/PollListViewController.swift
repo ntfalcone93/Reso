@@ -69,17 +69,7 @@ class PollListViewController: UIViewController {
     
     func setupLeftNavItem() {
         let leftNavItem = UIButton()
-        if let user = UserController.shared.currentUser {
-            UserController.fetchUsersPhoto(user, completion: { (user) in
-                leftNavItem.setImage(user.photo, forState: .Normal)
-                leftNavItem.layer.cornerRadius = leftNavItem.frame.height / 2
-                leftNavItem.layer.masksToBounds = true
-                leftNavItem.layer.borderColor = UIColor.blackColor().CGColor
-                leftNavItem.layer.borderWidth = 1.0
-            })
-        } else {
-            leftNavItem.setImage(UIImage(named: "settingsIcon"), forState: .Normal)
-        }
+        leftNavItem.setImage(UIImage(named: "settingsIcon"), forState: .Normal)
         leftNavItem.clipsToBounds = true
         leftNavItem.addTarget(self, action: #selector(PollListViewController.logoutAlert), forControlEvents: .TouchUpInside)
         leftNavItem.frame = CGRectMake(0, 0, 30, 30)
@@ -206,7 +196,7 @@ class PollListViewController: UIViewController {
         let selectedPoll = self.polls[indexPath.row]
         
         let leaveAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "leave") { (UITableViewRowAction, NSIndexPath) -> Void in
-            PollController.leavePoll(selectedPoll, completion: { 
+            PollController.leavePoll(selectedPoll, completion: {
                 self.tableView.reloadData()
             })
         }
